@@ -200,14 +200,6 @@
     var l3 = lineHtml(line3, 0,  'hl-period');
 
     return ''+
-      '<div class="h-eyebrow" aria-label="יבוא אישי מארה״ב · מודל חדש · 100% שקוף">'+
-        '<span>יבוא אישי מארה״ב</span>'+
-        '<span class="he-dot" aria-hidden="true">·</span>'+
-        '<span>מודל חדש</span>'+
-        '<span class="he-dot" aria-hidden="true">·</span>'+
-        '<span>100% שקוף</span>'+
-      '</div>'+
-      '<div class="h-rule" aria-hidden="true"></div>'+
       '<h1 class="h-headline" aria-label="הרכב שתמיד רצית במחיר שלא ידעת שאפשרי.">'+
         '<span class="hl-line">'+l1+'</span>'+
         '<span class="hl-line">'+l2+'</span>'+
