@@ -169,30 +169,37 @@
       });
     }
 
-    const isMobile = window.matchMedia('(max-width: 720px)').matches;
-    const reduced  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // VERTICAL STACK — IntersectionObserver reveals each panel on scroll.
+    // Replaces the broken horizontal-pin scrollytelling.
+    const panels = section.querySelectorAll('.hpanel');
+    const railFill = section.querySelector('#howRailFill');
+    const dots = section.querySelectorAll('.hrail-dot');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting && e.intersectionRatio > 0.25) {
+          e.target.classList.add('is-in');
+          // Visual progression
+          panels.forEach(p => p.classList.remove('is-active'));
+          e.target.classList.add('is-active');
+          const idx = parseInt(e.target.dataset.step, 10) - 1;
+          dots.forEach((d, i) => d.classList.toggle('is-on', i <= idx));
+          if (railFill) railFill.style.width = ((idx + 1) / panels.length * 100) + '%';
+        }
+      });
+    }, { threshold: [0, 0.25, 0.55] });
+    panels.forEach(p => io.observe(p));
+    // Always show first panel immediately
+    if (panels[0]) { panels[0].classList.add('is-in', 'is-active'); }
+    if (dots[0]) dots[0].classList.add('is-on');
+    if (railFill) railFill.style.width = (100 / panels.length) + '%';
+    return;
+  }
 
-    if (isMobile || reduced || !window.gsap || !window.ScrollTrigger) {
-      // Mobile / no-GSAP fallback: simple IntersectionObserver to toggle .is-active
-      const panels = section.querySelectorAll('.hpanel');
-      const railFill = section.querySelector('#howRailFill');
-      const dots = section.querySelectorAll('.hrail-dot');
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting && e.intersectionRatio > 0.4) {
-            panels.forEach((p) => p.classList.remove('is-active'));
-            e.target.classList.add('is-active');
-            const idx = parseInt(e.target.dataset.step, 10) - 1;
-            dots.forEach((d, i) => d.classList.toggle('is-on', i <= idx));
-            if (railFill) railFill.style.width = ((idx + 1) / panels.length * 100) + '%';
-          }
-        });
-      }, { threshold: [0, 0.4, 0.7, 1] });
-      panels.forEach((p) => io.observe(p));
-      // Activate first
-      if (panels[0]) panels[0].classList.add('is-active');
-      return;
-    }
+  // (legacy pin code below is now dead — kept for reference, not executed)
+  function _legacyPinBoot(section) {
+    const isMobile = false;
+    const reduced  = false;
+    if (isMobile || reduced) return;
 
     // --- Desktop: GSAP ScrollTrigger horizontal pinned scroll ---
     const gsap = window.gsap;
