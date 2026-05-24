@@ -219,8 +219,7 @@
         '<span class="hl-line">'+l3+'</span>'+
       '</h1>'+
       '<p class="h-sub">'+
-        '<strong>בצד שלכם.</strong> שקיפות מלאה. מחיר אחד סופי בשקלים. '+
-        '<span class="hs-cobalt">חוסכים עד 78%</span>.'+
+        '<strong>מחיר אחד סופי.</strong> ללא עמלות נסתרות. שקיפות מלאה.'+
       '</p>'+
       '<div class="h-stats" aria-label="Headline statistics">'+
         '<div class="h-stat">'+
