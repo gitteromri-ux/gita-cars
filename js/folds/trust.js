@@ -163,7 +163,7 @@
     return `
       <div class="tr-cta-wrap" data-tr-reveal>
         <a href="#intake" class="tr-cta">
-          קבל הצעה תוך 72 שעות
+          קבל הצעה תוך זמן קצר
           <span class="arrow">→</span>
         </a>
       </div>

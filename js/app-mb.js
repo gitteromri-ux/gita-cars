@@ -978,7 +978,7 @@
   // ============================================================
   document.addEventListener('DOMContentLoaded', () => {
     try { buildNav(); } catch (e) { console.error('nav', e); }
-    /* HERO disabled here — owned by js/folds/hero.js (5-model alternating) */
+    try { buildHero(); } catch (e) { console.error('hero', e); }
     try { buildBoard(); } catch (e) { console.error('board', e); }
     try { buildFilters(); renderCatalog(); } catch (e) { console.error('catalog', e); }
     try { buildFAQ(); } catch (e) { console.error('faq', e); }

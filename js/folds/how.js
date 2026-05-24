@@ -47,7 +47,7 @@
       n: '05',
       name: 'שילוח',
       desc: 'RoRo או קונטיינר. ביטוח מלא. מעקב חי בפורטל. ממוצע 38 ימי שיט.',
-      time: '38 ימים',
+      time: 'זמן קצוב',
       video: './videos/drone-roro-shipping.mp4',
       vlabel: 'SHIPPING',
     },

@@ -324,9 +324,18 @@
     root.removeAttribute('data-reveal');
     root.innerHTML = buildHTML();
 
-    // Force native-scroll fallback on ALL viewports (no GSAP ScrollTrigger pinning)
-    bootMobile(root);
-    return;
+    const mq = window.matchMedia('(max-width: 768px)');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    if (mq.matches || reduce.matches) {
+      bootMobile(root);
+      return;
+    }
+
+    const ok = await ensureGSAP();
+    if (!ok) { bootMobile(root); return; }
+    // small delay so layout settles
+    requestAnimationFrame(() => bootDesktop(root));
   }
 
   window.__GITA_VALUE_PROP__ = init;

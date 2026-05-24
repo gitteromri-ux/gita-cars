@@ -1592,12 +1592,12 @@
     try { initCounters(); } catch (e) { console.error('[GITA-A] counters', e); }
     try { initHeroBigType(); } catch (e) { console.error('[GITA-A] bigtype', e); }
     try { initHeroLiveStrip(); } catch (e) { console.error('[GITA-A] livestrip', e); }
-    /* initLenis disabled — native scroll only */
+    try { initLenis(); } catch (e) { console.error('[GITA-A] lenis', e); }
     try { init30StepModal(); } catch (e) { console.error('[GITA-A] reg30', e); }
     try { initReviews(); } catch (e) { console.error('[GITA-A] reviews', e); }
     try { initAdvisors(); } catch (e) { console.error('[GITA-A] advisors', e); }
     try { initIntakeForm(); } catch (e) { console.error('[GITA-A] intake', e); }
-    /* initCursor disabled — default cursor */
+    try { initCursor(); } catch (e) { console.error('[GITA-A] cursor', e); }
     try { initMobWA(); } catch (e) { console.error('[GITA-A] mobwa', e); }
     // Late-bind magnetic/tilt after app-mb.js renders catalog
     setTimeout(() => {

@@ -173,7 +173,7 @@
     // Headline lines — Hebrew, 3 lines, ride-up reveal char-by-char
     // Line 1: "כל רכב מארה״ב."
     // Line 2: "במחיר נמוך מבישראל."
-    // Line 3: "72 שעות. עד הבית."
+    // Line 3: "זמן קצר. עד הבית."
     var line1 = 'הרכב שתמיד רצית';
     var line2 = 'במחיר שלא ידעת';
     var line3 = 'שאפשרי.';
@@ -200,6 +200,14 @@
     var l3 = lineHtml(line3, 0,  'hl-period');
 
     return ''+
+      '<div class="h-eyebrow" style="display:none" aria-hidden="true">'+
+        '<span></span>'+
+        '<span class="he-dot" aria-hidden="true">·</span>'+
+        '<span>מודל חדש</span>'+
+        '<span class="he-dot" aria-hidden="true">·</span>'+
+        '<span>100% שקוף</span>'+
+      '</div>'+
+      '<div class="h-rule" aria-hidden="true"></div>'+
       '<h1 class="h-headline" aria-label="הרכב שתמיד רצית במחיר שלא ידעת שאפשרי.">'+
         '<span class="hl-line">'+l1+'</span>'+
         '<span class="hl-line">'+l2+'</span>'+
@@ -219,14 +227,14 @@
           '<span class="h-stat-lbl">חיסכון ממוצע ללקוח</span>'+
         '</div>'+
         '<div class="h-stat">'+
-          '<span class="h-stat-num" data-target="5" data-suffix="%">0<span class="hsn-accent">%</span></span>'+
-          '<span class="h-stat-lbl">עמלת שירות שקופה בלבד</span>'+
+          '<span class="h-stat-num" data-target="72" data-suffix="h">0<span class="hsn-accent">h</span></span>'+
+          '<span class="h-stat-lbl">מהפנייה להצעה מותאמת</span>'+
         '</div>'+
       '</div>'+
       '<div class="h-cta-wrap">'+
         '<div class="h-cta-primary">'+
           '<a href="#offer" class="h-cta" id="hCta">'+
-            '<span class="h-cta-label">פתח תיק — לקוחות חדשים</span>'+
+            '<span class="h-cta-label">קבלו הצעה תוך זמן קצר</span>'+
             '<span class="h-cta-arrow" aria-hidden="true">'+
               '<svg viewBox="0 0 22 22" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">'+
                 '<path d="M4 11h14M12 5l6 6-6 6" stroke-linecap="square"/>'+
@@ -235,9 +243,9 @@
           '</a>'+
           '<span class="h-cta-sub">מקדמה 500₪ בלבד · ללא התחייבות</span>'+
         '</div>'+
-        '<a href="./login.html" class="h-cta-secondary">'+
-          '<span>כניסה ללקוחות קיימים</span>'+
-          '<span class="h-cta2-arrow" aria-hidden="true">→</span>'+
+        '<a href="#how" class="h-cta-secondary">'+
+          '<span>איך זה עובד ב-6 שלבים</span>'+
+          '<span class="h-cta2-arrow" aria-hidden="true">↓</span>'+
         '</a>'+
       '</div>'+
       '<div class="h-livestrip" aria-live="polite">'+
@@ -403,11 +411,9 @@
     }};
   }
 
-  // ── Car tilt DISABLED — caused weird 3D rotation effect ────
+  // ── Car tilt (mousemove desktop / deviceorientation mobile) ────
   function wireTilt(carWrap){
     if(!carWrap) return;
-    carWrap.style.transform = 'none';
-    return; // no-op
     var isMobile = window.matchMedia('(max-width: 860px)').matches;
     var maxYaw   = isMobile ? 5  : 15;
     var maxPitch = isMobile ? 3  : 8;
