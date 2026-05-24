@@ -187,14 +187,13 @@
   to { clip-path: inset(0 0 0 0); }
 }
 
-/* headline — massive, clipping the left edge */
+/* headline — large but readable, 3 balanced lines */
 [data-fold="hero"] .h-headline{
-  font: 900 clamp(72px, 11.5vw, 200px)/0.82 'Heebo', sans-serif;
-  letter-spacing: -0.05em;
+  font: 900 clamp(40px, 5.4vw, 88px)/1.02 'Heebo', sans-serif;
+  letter-spacing: -0.02em;
   color: var(--h-text);
   margin: 0 0 28px;
-  margin-inline-start: -3vw;   /* the cinematic clip */
-  max-width: none;
+  max-width: 700px;
   white-space: normal;
   position:relative;
 }
