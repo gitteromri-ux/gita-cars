@@ -51,6 +51,28 @@ h1, h2, h3, h4, h5, h6 { color: var(--ink-1) !important; }
 p, span, li, td, th, label, a { color: var(--ink-2); }
 .muted, .subdued, .small, [class*="-sub"], [class*="-dim"] { color: var(--ink-3) !important; }
 
+/* Hero - eliminate ALL background tints + giant background text */
+[data-fold="hero"] {
+  background: linear-gradient(180deg, #ffffff 0%, #f6f8fc 100%) !important;
+}
+[data-fold="hero"] .hero-particles,
+[data-fold="hero"] .hero-ambient,
+[data-fold="hero"] [class*="bg-text"],
+[data-fold="hero"] [class*="giant"],
+[data-fold="hero"] [class*="watermark"],
+[data-fold="hero"] [class*="backdrop"] {
+  display: none !important;
+  opacity: 0 !important;
+}
+[data-fold="hero"] .h-stat, [data-fold="hero"] .h-stat-num,
+[data-fold="hero"] [class*="stat"] {
+  background: transparent !important;
+  background-image: none !important;
+}
+[data-fold="hero"] .h-cta-wrap, [data-fold="hero"] [class*="cta"] {
+  background: transparent !important;
+}
+
 /* Hero headline gradient — keep cobalt accent */
 [data-fold="hero"] .h-headline,
 [data-fold="hero"] .h-headline .hl-char {
@@ -79,12 +101,47 @@ p, span, li, td, th, label, a { color: var(--ink-2); }
   color: #ffffff !important;
 }
 
-/* Cards / panels */
-.vcard, .card, .panel, [class*="-card"], .cat-card, .board-card, .b-card {
+/* Cards / panels - VERY HIGH specificity to beat board.css gradient backgrounds */
+.vcard, .card, .panel, [class*="-card"], .cat-card, .board-card, .b-card,
+.bb-card, .ticker-card, .board-row, .board-col, .board-cell,
+[data-fold="board"] [class*="card"], [data-fold="board"] [class*="col"],
+[data-fold="board"] [class*="row"], [data-fold="board"] [class*="cell"],
+[data-fold="board"] .vcard, [data-fold="board"] article {
   background: #ffffff !important;
+  background-image: none !important;
   border: 1px solid var(--hairline) !important;
   box-shadow: 0 1px 3px rgba(10,14,26,.04), 0 8px 24px rgba(10,14,26,.06) !important;
   color: var(--ink-1) !important;
+}
+[data-fold="board"] * {
+  color: var(--ink-1) !important;
+}
+[data-fold="board"] .h-stat-num, [data-fold="board"] [class*="price"],
+[data-fold="board"] [class*="-num"], [data-fold="board"] strong {
+  -webkit-text-fill-color: var(--ink-1) !important;
+  background: none !important;
+  color: var(--ink-1) !important;
+}
+[data-fold="board"] [class*="sub"], [data-fold="board"] [class*="label"],
+[data-fold="board"] [class*="meta"], [data-fold="board"] small {
+  color: var(--ink-3) !important;
+}
+[data-fold="board"] [class*="save"], [data-fold="board"] [class*="badge"],
+[data-fold="board"] [class*="pct"] {
+  background: var(--cobalt) !important;
+  color: #ffffff !important;
+}
+[data-fold="board"] [class*="save"] *, [data-fold="board"] [class*="badge"] * {
+  color: #ffffff !important;
+}
+/* Ticker / marquee inside board */
+[data-fold="board"] .marquee, [data-fold="board"] .ticker,
+[data-fold="board"] [class*="marquee"], [data-fold="board"] [class*="ticker"] {
+  background: #0a0e1a !important;
+  color: #ffffff !important;
+}
+[data-fold="board"] .marquee *, [data-fold="board"] .ticker * {
+  color: #ffffff !important;
 }
 .vcard:hover, .card:hover, .cat-card:hover, .board-card:hover {
   border-color: var(--cobalt) !important;
