@@ -403,9 +403,11 @@
     }};
   }
 
-  // ── Car tilt (mousemove desktop / deviceorientation mobile) ────
+  // ── Car tilt DISABLED — caused weird 3D rotation effect ────
   function wireTilt(carWrap){
     if(!carWrap) return;
+    carWrap.style.transform = 'none';
+    return; // no-op
     var isMobile = window.matchMedia('(max-width: 860px)').matches;
     var maxYaw   = isMobile ? 5  : 15;
     var maxPitch = isMobile ? 3  : 8;
