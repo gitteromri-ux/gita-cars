@@ -2297,16 +2297,13 @@ html.lenis, html.lenis body { height: auto; }
 /* ── BASE: Override body background to midnight palette ── */
 body { background: var(--mb-bg-midnight); }
 
-/* ── Universal reveal on scroll ── */
+/* ── Universal reveal on scroll — FORCED VISIBLE (no JS dependency) ── */
 [data-reveal] {
-  opacity: 0;
-  transform: translateY(36px);
-  transition: opacity .9s cubic-bezier(.22,.61,.36,1), transform .9s cubic-bezier(.22,.61,.36,1);
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
 }
 [data-reveal].in-view { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) {
-  [data-reveal] { opacity: 1; transform: none; transition: none; }
-}
 
 /* ============================================================
    HERO additions — character-by-character + scroll hint + big-type
