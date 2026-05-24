@@ -709,7 +709,7 @@
   // ============================================================
   document.addEventListener('DOMContentLoaded', () => {
     try { buildNav(); } catch (e) { console.error('nav', e); }
-    try { buildHero(); } catch (e) { console.error('hero', e); }
+    // try { buildHero(); } catch (e) { console.error('hero', e); }  // disabled - js/folds/hero.js owns the hero
     try { buildBoard(); } catch (e) { console.error('board', e); }
     try { buildFilters(); renderCatalog(); } catch (e) { console.error('catalog', e); }
     try { buildFAQ(); } catch (e) { console.error('faq', e); }
