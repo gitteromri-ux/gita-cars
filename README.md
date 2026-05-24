@@ -1,4 +1,4 @@
-# AutoImports CARS
+# GITA CARS
 
 אתר ייעוץ ויבוא אישי של רכבי יוקרה מארה״ב. עברית RTL, ערכת צבעים כחול+לבן בנוסח Mercedes USA.
 

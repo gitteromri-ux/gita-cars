@@ -1,5 +1,5 @@
 // ============================================
-// AutoImports — Mercedes-Benz grade app (mb)
+// GITA — Mercedes-Benz grade app (mb)
 // powers hero · stock board · catalog · VDP · FAQ · WhatsApp
 // ============================================
 (function () {
@@ -357,226 +357,108 @@
 
   // ============================================================
   // VDP — cars.com-grade vehicle detail page
-  // gallery + live configurator + sticky aside + trust/compare/related
   // ============================================================
-  const _vdpState = { slug: null, imgIdx: 0, imgs: [], trimIdx: 0, pkgs: new Set(), colorIdx: 0 };
-
-  function _vdpImgsFor(slug) {
-    return [
-      `./images/car-${slug}.png`,
-      `./images/${slug}-front.png`,
-      `./images/${slug}-side.png`,
-      `./images/${slug}-interior.png`,
-      `./images/${slug}-rear.png`,
-      `./images/${slug}-wheels.png`,
-    ];
-  }
-
-  function _vdpRelated(c) {
-    // up to 4 other cars sharing body type, fallback to same fuel category
-    const sameBody = CARS.filter(x => x.slug !== c.slug && x.body === c.body);
-    const pool = sameBody.length >= 4 ? sameBody : CARS.filter(x => x.slug !== c.slug && fuelOf(x) === fuelOf(c));
-    return pool.slice(0, 4);
-  }
-
-  function _vdpRecalc() {
-    const c = CARS.find(x => x.slug === _vdpState.slug);
-    if (!c) return;
-    const trim = (c.trims && c.trims[_vdpState.trimIdx]) || null;
-    const trimDeltaUSD = trim ? (trim.delta || 0) : 0;
-    let pkgsUSD = 0;
-    (c.packages || []).forEach((p, i) => { if (_vdpState.pkgs.has(i)) pkgsUSD += (p.price || 0); });
-    const addonsUSD = trimDeltaUSD + pkgsUSD;
-    const addonsNIS = addonsUSD * FX;
-    // service fee — 5%
-    const baseNIS = c.landedNIS + addonsNIS;
-    const serviceFee = Math.round(baseNIS * 0.05);
-    const finalNIS = baseNIS + serviceFee;
-    const saveNIS = Math.max(0, c.israelNIS - finalNIS);
-    const savePct = c.israelNIS > 0 ? Math.round((saveNIS / c.israelNIS) * 100) : 0;
-
-    const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
-    set('vdpPriceMain', fmtILS(finalNIS));
-    set('vdpPriceStrike', fmtILS(c.israelNIS));
-    set('vdpPriceSave', fmtILS(saveNIS));
-    set('vdpBadge', 'חיסכון ' + savePct + '%');
-    set('vdpBrAddons', addonsUSD ? '+' + fmtUSD(addonsUSD) : '—');
-    set('vdpBrFee', fmtILS(serviceFee));
-    set('vdpBrTotal', fmtILS(finalNIS));
-    set('vdpCompareOurs', fmtILS(finalNIS));
-    set('vdpCompareSave', fmtILS(saveNIS));
-    // mobile sticky
-    set('vdpMobilePrice', fmtILS(finalNIS));
-    // finance recalc
-    _vdpFinanceRecalc(finalNIS);
-    // pulse the price element
-    const main = document.getElementById('vdpPriceMain');
-    if (main) { main.classList.remove('pulse'); void main.offsetWidth; main.classList.add('pulse'); }
-  }
-
-  function _vdpFinanceRecalc(finalNIS) {
-    const dpEl = document.getElementById('vdpFinDown');
-    const moEl = document.getElementById('vdpFinMonths');
-    const dpVal = document.getElementById('vdpFinDownVal');
-    const moVal = document.getElementById('vdpFinMonthsVal');
-    const payEl = document.getElementById('vdpFinPay');
-    if (!dpEl || !moEl) return;
-    const dp = parseInt(dpEl.value || '0', 10);
-    const mo = parseInt(moEl.value || '60', 10);
-    if (dpVal) dpVal.textContent = '₪' + dp.toLocaleString('en-US');
-    if (moVal) moVal.textContent = mo + ' חודשים';
-    const principal = Math.max(0, finalNIS - dp);
-    const r = 0.065 / 12;
-    const pmt = (r * principal) / (1 - Math.pow(1 + r, -mo));
-    if (payEl) payEl.textContent = '₪' + Math.round(pmt).toLocaleString('en-US') + ' / חודש';
-  }
-
-  function _vdpSelectImg(idx) {
-    const imgs = _vdpState.imgs;
-    if (!imgs.length) return;
-    idx = ((idx % imgs.length) + imgs.length) % imgs.length;
-    _vdpState.imgIdx = idx;
-    const main = document.getElementById('vdpMainImg');
-    if (main) {
-      main.style.opacity = '0';
-      setTimeout(() => {
-        main.src = imgs[idx];
-        main.style.opacity = '1';
-      }, 120);
-    }
-    const idxEl = document.getElementById('vdpImgIdx');
-    if (idxEl) idxEl.textContent = String(idx + 1);
-    document.querySelectorAll('.vdp-thumb').forEach((el, i) => el.classList.toggle('active', i === idx));
-  }
-
   function openVDP(slug) {
     const c = CARS.find(x => x.slug === slug);
     if (!c) return;
     const ov = $('#vdpOverlay');
     const cont = $('#vdpContent');
+    const saveNIS = Math.round(c.israelNIS - c.landedNIS);
 
-    _vdpState.slug = slug;
-    _vdpState.imgs = _vdpImgsFor(slug);
-    _vdpState.imgIdx = 0;
-    _vdpState.trimIdx = 0;
-    _vdpState.pkgs = new Set();
-    _vdpState.colorIdx = 0;
-
-    const angleLabels = ['ראשי', 'חזית', 'צד', 'פנים', 'אחור', 'גלגלים'];
-    const thumbs = _vdpState.imgs.map((src, i) => `
-      <button class="vdp-thumb ${i === 0 ? 'active' : ''}" onclick="window.gitaVdpImg(${i})" aria-label="${angleLabels[i]}">
-        <img src="${src}" alt="${angleLabels[i]}" onerror="this.parentElement.classList.add('missing'); this.src='./images/car-${c.slug}.png'" />
-        <span>${angleLabels[i]}</span>
-      </button>`).join('');
-
-    const colorChips = (c.colors || []).map((col, i) =>
-      `<button class="vdp-color ${i === 0 ? 'active' : ''}" data-i="${i}" onclick="window.gitaVdpColor(${i})" title="${col.hex}" style="background:${col.code}"><span>${col.hex}</span></button>`
+    const colorChips = (c.colors || []).map(col =>
+      `<button class="vdp-color" title="${col.hex}" style="background:${col.code}"><span>${col.hex}</span></button>`
     ).join('');
 
-    const trimRows = (c.trims || []).map((t, i) => `
-      <label class="vdp-trim ${i === 0 ? 'active' : ''}" data-i="${i}">
-        <input type="radio" name="vdpTrim" value="${i}" ${i === 0 ? 'checked' : ''} onchange="window.gitaVdpTrim(${i})" />
+    const trimRows = (c.trims || []).map(t => `
+      <div class="vdp-trim">
         <div class="vdp-trim-head">
           <h5>${t.name}</h5>
-          <span class="vdp-trim-delta">${t.delta ? '+' + fmtUSD(t.delta) : 'סטנדרט'}</span>
+          <span>${t.delta ? '+' + fmtUSD(t.delta) : 'סטנדרט'}</span>
         </div>
         <ul>${(t.items || []).map(x => `<li>${x}</li>`).join('')}</ul>
-      </label>`).join('');
+      </div>`).join('');
 
-    const pkgRows = (c.packages || []).map((p, i) => `
-      <label class="vdp-pkg" data-i="${i}">
-        <input type="checkbox" value="${i}" onchange="window.gitaVdpPkg(${i}, this.checked)" />
+    const pkgRows = (c.packages || []).map(p => `
+      <div class="vdp-pkg">
         <div class="vdp-pkg-head">
           <h5>${p.name}</h5>
           <span>+${fmtUSD(p.price)}</span>
         </div>
         <ul>${(p.items || []).map(x => `<li>${x}</li>`).join('')}</ul>
-      </label>`).join('');
+      </div>`).join('');
 
     const featRows = (c.features || []).map(f => `<li>${f}</li>`).join('');
     const safetyRows = (c.safety || []).map(f => `<li>${f}</li>`).join('');
 
-    const related = _vdpRelated(c);
-    const relatedHTML = related.map(r => {
-      const saveR = Math.round(r.israelNIS - r.landedNIS);
-      return `
-      <button class="vdp-rel" onclick="window.openVDP('${r.slug}')">
-        <div class="vdp-rel-media" style="background:${gradFor(r.body, fuelOf(r))}">
-          <img src="./images/car-${r.slug}.png" alt="${r.name}" onerror="this.style.display='none'" />
-        </div>
-        <div class="vdp-rel-info">
-          <span class="vdp-rel-make">${makeOf(r)} · ${r.year || ''}</span>
-          <b>${r.name}</b>
-          <div class="vdp-rel-price">${fmtILS(r.landedNIS)} <em>חוסך ${fmtILS(saveR)}</em></div>
-        </div>
-      </button>`;
-    }).join('');
-
-    // parallel-import estimate (heuristic — between official and AutoImports):
-    const parallelNIS = Math.round((c.israelNIS + c.landedNIS) / 2);
-
     cont.innerHTML = `
-      <!-- HERO with gallery -->
       <div class="vdp-hero">
+        <div class="vdp-hero-bg" style="background:${gradFor(c.body, fuelOf(c))}">
+          <div class="vdp-hero-glow"></div>
+          <img class="vdp-hero-img" src="./images/car-${c.slug}.png" alt="${c.name}" />
+        </div>
         <div class="vdp-hero-text">
           <div class="vdp-eyebrow">${makeOf(c)} · ${c.year || ''} · #${c.rank} בחיסכון</div>
           <h1>${c.name}</h1>
           <p>${c.nameEn}</p>
         </div>
-
-        <div class="vdp-gallery">
-          <div class="vdp-gallery-main" style="background:${gradFor(c.body, fuelOf(c))}">
-            <div class="vdp-hero-glow"></div>
-            <img id="vdpMainImg" src="${_vdpState.imgs[0]}" alt="${c.name}"
-                 onerror="this.src='./images/car-${c.slug}.png'" />
-            <button class="vdp-gallery-nav prev" aria-label="הקודמת" onclick="window.gitaVdpPrev()">‹</button>
-            <button class="vdp-gallery-nav next" aria-label="הבאה" onclick="window.gitaVdpNext()">›</button>
-            <div class="vdp-gallery-counter"><span id="vdpImgIdx">1</span>/<span id="vdpImgTotal">${_vdpState.imgs.length}</span></div>
-          </div>
-          <div class="vdp-gallery-thumbs" id="vdpThumbs">${thumbs}</div>
-        </div>
       </div>
-
-      <!-- TRUST strip -->
-      <div class="vdp-trust">
-        <div><i>✓</i><span>Carfax כלול חינם</span></div>
-        <div><i>✓</i><span>PPI במכון מורשה</span></div>
-        <div><i>✓</i><span>אחריות 24 חודש</span></div>
-        <div><i>✓</i><span>ביטוח שילוח מלא</span></div>
-      </div>
-
-      <!-- TABS -->
-      <nav class="vdp-tabs" id="vdpTabs">
-        <a href="#vdpSec-overview" data-tab="overview" class="active">סקירה</a>
-        <a href="#vdpSec-specs" data-tab="specs">מפרטים</a>
-        <a href="#vdpSec-config" data-tab="config">בניית רכב</a>
-        <a href="#vdpSec-safety" data-tab="safety">בטיחות</a>
-        <a href="#vdpSec-finance" data-tab="finance">מימון</a>
-        <a href="#vdpSec-compare" data-tab="compare">השוואה</a>
-      </nav>
 
       <div class="vdp-layout">
         <div class="vdp-main">
 
-          <!-- OVERVIEW -->
-          <section class="vdp-sec" id="vdpSec-overview">
-            <h3>סקירה כללית</h3>
-            <div class="vdp-quick">
-              <div><span>הנעה</span><b>${c.drivetrain || '-'}</b></div>
-              <div><span>מנוע</span><b>${c.engine || '-'}</b></div>
-              <div><span>כ"ס</span><b>${c.hp || '-'}</b></div>
-              <div><span>מומנט</span><b>${c.torque || '-'} Nm</b></div>
-              <div><span>0-100</span><b>${c.zero100 || '-'}s</b></div>
-              <div><span>מהירות מרבית</span><b>${c.topSpeed || '-'} קמ"ש</b></div>
-              <div><span>ת. הילוכים</span><b>${c.transmission || '-'}</b></div>
-              <div><span>מושבים</span><b>${c.seats || '-'}</b></div>
-            </div>
-            ${c.note ? `<div class="vdp-note">${c.note}</div>` : ''}
-          </section>
+          <!-- Quick specs strip -->
+          <div class="vdp-quick">
+            <div><span>הנעה</span><b>${c.drivetrain || '-'}</b></div>
+            <div><span>מנוע</span><b>${c.engine || '-'}</b></div>
+            <div><span>כ"ס</span><b>${c.hp || '-'}</b></div>
+            <div><span>מומנט</span><b>${c.torque || '-'} Nm</b></div>
+            <div><span>0-100</span><b>${c.zero100 || '-'}s</b></div>
+            <div><span>מהירות מרבית</span><b>${c.topSpeed || '-'} קמ"ש</b></div>
+            <div><span>ת. הילוכים</span><b>${c.transmission || '-'}</b></div>
+            <div><span>מושבים</span><b>${c.seats || '-'}</b></div>
+          </div>
 
-          <!-- SPECS -->
-          <section class="vdp-sec" id="vdpSec-specs">
-            <h3>מפרטים טכניים</h3>
+          <!-- Description / note -->
+          ${c.note ? `<div class="vdp-note">${c.note}</div>` : ''}
+
+          <!-- Colors -->
+          ${(c.colors && c.colors.length) ? `
+          <section class="vdp-sec">
+            <h3>צבעים זמינים <span class="vdp-count">${c.colors.length}</span></h3>
+            <div class="vdp-colors">${colorChips}</div>
+          </section>` : ''}
+
+          <!-- Trims -->
+          ${(c.trims && c.trims.length) ? `
+          <section class="vdp-sec">
+            <h3>גימור / Trim <span class="vdp-count">${c.trims.length}</span></h3>
+            <div class="vdp-trims">${trimRows}</div>
+          </section>` : ''}
+
+          <!-- Packages -->
+          ${(c.packages && c.packages.length) ? `
+          <section class="vdp-sec">
+            <h3>חבילות אופציונליות <span class="vdp-count">${c.packages.length}</span></h3>
+            <div class="vdp-pkgs">${pkgRows}</div>
+          </section>` : ''}
+
+          <!-- Features -->
+          ${(c.features && c.features.length) ? `
+          <section class="vdp-sec">
+            <h3>פיצ'רים סטנדרטיים <span class="vdp-count">${c.features.length}</span></h3>
+            <ul class="vdp-feat">${featRows}</ul>
+          </section>` : ''}
+
+          <!-- Safety -->
+          ${(c.safety && c.safety.length) ? `
+          <section class="vdp-sec">
+            <h3>בטיחות <span class="vdp-count">${c.safety.length}</span></h3>
+            <ul class="vdp-feat safety">${safetyRows}</ul>
+          </section>` : ''}
+
+          <!-- Dimensions -->
+          <section class="vdp-sec">
+            <h3>מידות וביצועים</h3>
             <div class="vdp-dims">
               ${c.length ? `<div><span>אורך</span><b>${c.length} מ"מ</b></div>` : ''}
               ${c.width ? `<div><span>רוחב</span><b>${c.width} מ"מ</b></div>` : ''}
@@ -588,203 +470,52 @@
               ${c.towing ? `<div><span>גרירה</span><b>${c.towing} ק"ג</b></div>` : ''}
               ${c.mpg ? `<div><span>צריכה</span><b>${c.mpg} MPG</b></div>` : ''}
             </div>
-            ${(c.features && c.features.length) ? `
-              <h4 class="vdp-h4">פיצ'רים סטנדרטיים <span class="vdp-count">${c.features.length}</span></h4>
-              <ul class="vdp-feat">${featRows}</ul>` : ''}
-            <div class="vdp-meta">
-              ${c.origin ? `<div><span>מקור ייצור</span><b>${c.origin}</b></div>` : ''}
-              ${c.warranty ? `<div><span>אחריות</span><b>${c.warranty}</b></div>` : ''}
-              ${c.source ? `<div><span>מקור הצעה</span><b>${c.source}</b></div>` : ''}
-            </div>
           </section>
 
-          <!-- CONFIG — colors, trims, packages -->
-          <section class="vdp-sec" id="vdpSec-config">
-            <h3>בנה את הרכב שלך</h3>
-            <p class="vdp-sub">בחר צבע, רמת גימור וחבילות — המחיר בצד מתעדכן מיידית.</p>
-
-            ${(c.colors && c.colors.length) ? `
-              <div class="vdp-cfg-block">
-                <h4 class="vdp-h4">צבע <span class="vdp-count">${c.colors.length}</span></h4>
-                <div class="vdp-colors">${colorChips}</div>
-                <div class="vdp-color-name" id="vdpColorName">${c.colors[0] ? c.colors[0].hex : ''}</div>
-              </div>` : ''}
-
-            ${(c.trims && c.trims.length) ? `
-              <div class="vdp-cfg-block">
-                <h4 class="vdp-h4">רמת גימור <span class="vdp-count">${c.trims.length}</span></h4>
-                <div class="vdp-trims">${trimRows}</div>
-              </div>` : ''}
-
-            ${(c.packages && c.packages.length) ? `
-              <div class="vdp-cfg-block">
-                <h4 class="vdp-h4">חבילות אופציונליות <span class="vdp-count">${c.packages.length}</span></h4>
-                <div class="vdp-pkgs">${pkgRows}</div>
-              </div>` : ''}
+          <!-- Origin / source -->
+          <section class="vdp-sec meta">
+            ${c.origin ? `<div><span>מקור ייצור</span><b>${c.origin}</b></div>` : ''}
+            ${c.warranty ? `<div><span>אחריות</span><b>${c.warranty}</b></div>` : ''}
+            ${c.source ? `<div><span>מקור הצעה</span><b>${c.source}</b></div>` : ''}
           </section>
-
-          <!-- SAFETY -->
-          ${(c.safety && c.safety.length) ? `
-          <section class="vdp-sec" id="vdpSec-safety">
-            <h3>בטיחות <span class="vdp-count">${c.safety.length}</span></h3>
-            <ul class="vdp-feat safety">${safetyRows}</ul>
-          </section>` : '<section class="vdp-sec" id="vdpSec-safety"></section>'}
-
-          <!-- FINANCE -->
-          <section class="vdp-sec" id="vdpSec-finance">
-            <h3>מימון — מחשבון מהיר</h3>
-            <p class="vdp-sub">ריבית משוערת 6.5% שנתית. הריבית הסופית מאושרת ע״י שותף-המימון.</p>
-            <div class="vdp-fin">
-              <div class="vdp-fin-row">
-                <label>מקדמה: <span id="vdpFinDownVal">₪0</span></label>
-                <input id="vdpFinDown" type="range" min="0" max="200000" step="5000" value="0" oninput="window.gitaVdpRecalc()" />
-              </div>
-              <div class="vdp-fin-row">
-                <label>תקופה: <span id="vdpFinMonthsVal">60 חודשים</span></label>
-                <input id="vdpFinMonths" type="range" min="12" max="84" step="6" value="60" oninput="window.gitaVdpRecalc()" />
-              </div>
-              <div class="vdp-fin-result">
-                <span>תשלום חודשי משוער</span>
-                <b id="vdpFinPay">—</b>
-              </div>
-            </div>
-          </section>
-
-          <!-- COMPARISON -->
-          <section class="vdp-sec vdp-compare" id="vdpSec-compare">
-            <h3>השוואת מחיר — ה-${c.name} בשלוש דרכים</h3>
-            <div class="vdp-cmp-row hi">
-              <span>יבואן רשמי בישראל</span>
-              <b>${fmtILS(c.israelNIS)}</b>
-            </div>
-            <div class="vdp-cmp-row mid">
-              <span>יבוא מקביל (משוער)</span>
-              <b>${fmtILS(parallelNIS)}</b>
-            </div>
-            <div class="vdp-cmp-row best">
-              <span>AutoImports.co.il</span>
-              <b id="vdpCompareOurs">${fmtILS(c.landedNIS)}</b>
-            </div>
-            <div class="vdp-cmp-save">חוסך מול היבואן <b id="vdpCompareSave">${fmtILS(c.israelNIS - c.landedNIS)}</b></div>
-          </section>
-
-          <!-- RELATED -->
-          ${related.length ? `
-          <section class="vdp-sec" id="vdpSec-related">
-            <h3>רכבים דומים</h3>
-            <div class="vdp-related-grid">${relatedHTML}</div>
-          </section>` : ''}
 
         </div>
 
-        <!-- Sticky live-price aside -->
+        <!-- Sticky price box -->
         <aside class="vdp-aside">
           <div class="vdp-price-box">
-            <div class="vdp-badge" id="vdpBadge">חיסכון ${c.savePct}%</div>
-            <div class="vdp-price-main pulse" id="vdpPriceMain">${fmtILS(c.landedNIS)}</div>
+            <div class="vdp-badge">חיסכון של ${c.savePct}%</div>
+            <div class="vdp-price-main">${fmtILS(c.landedNIS)}</div>
             <div class="vdp-price-lbl">מחיר סופי בישראל — כולל הכל</div>
 
             <div class="vdp-price-strike">
               <span>מחיר יבואן רשמי</span>
-              <b id="vdpPriceStrike">${fmtILS(c.israelNIS)}</b>
+              <b>${fmtILS(c.israelNIS)}</b>
             </div>
             <div class="vdp-price-save">
-              חוסך <b id="vdpPriceSave">${fmtILS(c.israelNIS - c.landedNIS)}</b>
+              חוסך <b>${fmtILS(saveNIS)}</b>
             </div>
 
-            <details class="vdp-breakdown" open>
-              <summary>פירוט עלויות</summary>
+            <div class="vdp-breakdown">
+              <h6>פירוט עלויות</h6>
               <div class="vbl"><span>MSRP בארה"ב</span><b>${fmtUSD(c.msrp)}</b></div>
-              <div class="vbl"><span>תוספות (טרים+חבילות)</span><b id="vdpBrAddons">—</b></div>
               <div class="vbl"><span>מס קנייה</span><b>${fmtILS(c.purchaseTax * FX)}</b></div>
               <div class="vbl"><span>מע"מ 18%</span><b>${fmtILS(c.vat * FX)}</b></div>
               <div class="vbl"><span>שילוח</span><b>${fmtUSD(c.shipping)}</b></div>
-              <div class="vbl"><span>עמלת שירות 5%</span><b id="vdpBrFee">—</b></div>
-              <div class="vbl total"><span>סה"כ סופי</span><b id="vdpBrTotal">${fmtILS(c.landedNIS)}</b></div>
-            </details>
+              <div class="vbl total"><span>סה"כ סופי</span><b>${fmtILS(c.landedNIS)}</b></div>
+            </div>
 
-            <button class="vdp-cta" data-magnet onclick="window.gitaOpenWA('${c.slug}')">פתחו תיק עכשיו · ₪500 מקדמה</button>
-            <button class="vdp-cta ghost" onclick="window.gitaOpenWA('${c.slug}')">שאלות? וואטסאפ</button>
-            <p class="vdp-disclaimer">המחירים להמחשה. USD/ILS = ${FX}. החזר מלא של דמי-פתיחה אם אין התאמה תוך 30 יום.</p>
+            <button class="vdp-cta" onclick="window.gitaOpenWA('${c.slug}')">פתח תיק ₪500</button>
+            <button class="vdp-cta ghost" onclick="window.gitaOpenWA('${c.slug}')">שאל שאלה בוואטסאפ</button>
+            <p class="vdp-disclaimer">המחירים להמחשה. USD/ILS = ${FX}. החזר מלא של דמי פתיחה אם אין התאמה תוך 30 יום.</p>
           </div>
         </aside>
-      </div>
-
-      <!-- Mobile sticky bar -->
-      <div class="vdp-mobile-bar">
-        <div class="vdp-mobile-price">
-          <span>מחיר סופי</span>
-          <b id="vdpMobilePrice">${fmtILS(c.landedNIS)}</b>
-        </div>
-        <button class="vdp-mobile-cta" onclick="window.gitaOpenWA('${c.slug}')">פתחו תיק · ₪500</button>
       </div>
     `;
 
     ov.classList.add('open');
     document.body.style.overflow = 'hidden';
-
-    // wire up post-render behaviors
-    requestAnimationFrame(() => {
-      _vdpRecalc();
-      _vdpFinanceRecalc(c.landedNIS);
-      // tab scrollspy
-      const tabs = document.querySelectorAll('#vdpTabs a');
-      tabs.forEach(t => t.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(t.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }));
-      const scroller = $('#vdpContent');
-      if (scroller) {
-        scroller.addEventListener('scroll', () => {
-          const secs = ['overview','specs','config','safety','finance','compare'];
-          let active = secs[0];
-          for (const s of secs) {
-            const el = document.getElementById('vdpSec-' + s);
-            if (el && el.getBoundingClientRect().top < 180) active = s;
-          }
-          tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === active));
-        }, { passive: true });
-      }
-      // keyboard nav for gallery
-      document.addEventListener('keydown', _vdpKey);
-    });
   }
-
-  function _vdpKey(e) {
-    if (!$('#vdpOverlay').classList.contains('open')) return;
-    if (e.key === 'ArrowLeft') _vdpSelectImg(_vdpState.imgIdx - 1);
-    else if (e.key === 'ArrowRight') _vdpSelectImg(_vdpState.imgIdx + 1);
-    else if (e.key === 'Escape') closeVDP();
-  }
-
-  // expose configurator hooks
-  window.gitaVdpImg = (i) => _vdpSelectImg(i);
-  window.gitaVdpPrev = () => _vdpSelectImg(_vdpState.imgIdx - 1);
-  window.gitaVdpNext = () => _vdpSelectImg(_vdpState.imgIdx + 1);
-  window.gitaVdpColor = (i) => {
-    const c = CARS.find(x => x.slug === _vdpState.slug);
-    if (!c || !c.colors || !c.colors[i]) return;
-    _vdpState.colorIdx = i;
-    document.querySelectorAll('.vdp-color').forEach((el, j) => el.classList.toggle('active', i === j));
-    const nameEl = document.getElementById('vdpColorName');
-    if (nameEl) nameEl.textContent = c.colors[i].hex;
-    if (navigator.vibrate) navigator.vibrate(8);
-  };
-  window.gitaVdpTrim = (i) => {
-    _vdpState.trimIdx = i;
-    document.querySelectorAll('.vdp-trim').forEach((el, j) => el.classList.toggle('active', i === j));
-    _vdpRecalc();
-    if (navigator.vibrate) navigator.vibrate(8);
-  };
-  window.gitaVdpPkg = (i, checked) => {
-    if (checked) _vdpState.pkgs.add(i); else _vdpState.pkgs.delete(i);
-    const el = document.querySelector(`.vdp-pkg[data-i="${i}"]`);
-    if (el) el.classList.toggle('active', checked);
-    _vdpRecalc();
-    if (navigator.vibrate) navigator.vibrate(8);
-  };
-  window.gitaVdpRecalc = () => _vdpRecalc();
   function closeVDP() {
     $('#vdpOverlay').classList.remove('open');
     document.body.style.overflow = '';
@@ -881,7 +612,7 @@
     'תהליך': '6 שלבים פשוטים: 1) טופס קצר 60s, 2) פתיחת תיק ₪500 (החזר מלא אם אין התאמה), 3) הצעת רכב תוך 72h עם 3 חלופות, 4) בדיקת 200 נקודות + סרטון, 5) שילוח ימי 8-12 שבועות, 6) רישוי+מסירה בארץ. הכל מסונכרן בפורטל אישי.',
     'מיסים': 'בישראל יש 3 רכיבי מס: מס קנייה — 43-101% לבנזין, 35-55% ל-EV/PHEV (תלוי בזיהום וביצועים). מע"מ — 18% על הכל. ירידת ערך — מסילקה מהמדרגה הראשונה ברכבי 0 ק"מ. כל המסים מחושבים מראש בפורטל הלקוחות לפני שאתה מתחייב.',
     'יד שניה': 'אנחנו מתמחים גם ביד שניה איכותית מארה״ב. רכב 2-3 שנים בן 30,000 מייל = חיסכון של 25-40% נוסף לעומת חדש. כולל דו״ח Carfax מלא, בדיקת 200 נקודות, סרטוני בדיקה. רוב הלקוחות בוחרים יד שניה — זהו הסוד של היבוא האישי.',
-    'זמן': 'מהזמנה למסירה: 8-12 שבועות בסה״כ. 72 שעות להצעת רכב, 2-3 שבועות לרכישה ובדיקות בארה״ב, 4-5 שבועות שילוח ימי, 1-2 שבועות לרישוי בארץ. הכל מתועד בפורטל בזמן אמת.',
+    'זמן': 'מהזמנה למסירה: 8-12 שבועות בסה״כ. זמן קצר להצעת רכב, 2-3 שבועות לרכישה ובדיקות בארה״ב, 4-5 שבועות שילוח ימי, 1-2 שבועות לרישוי בארץ. הכל מתועד בפורטל בזמן אמת.',
     'אחריות': 'אחריות יצרן בינלאומית במידה והיא חלה. בנוסף — אחריות יבוא אישי שלנו ל-24 חודש על מרכיבי המנוע וההנעה. ביטוח שילוח 100%. החזר מלא של דמי פתיחת תיק (₪500) אם לא מצאנו רכב מתאים תוך 30 יום.',
     'מימון': 'אנחנו עובדים עם 4 חברות מימון בישראל המתמחות ביבוא אישי. ריבית החל מ-3.9%, מימון עד 75% מערך הרכב, תקופה עד 84 חודשים. אישור עקרוני תוך 48 שעות. ההון העצמי הנדרש: 25% + עלויות מס+רישוי.',
     'שילוח': 'שתי שיטות שילוח: RoRo (זול יותר, ~$2,500, רק לרכבים תקינים) או קונטיינר (~$3,800, מומלץ לרכבי יוקרה). ביטוח שילוח 100% מערך הרכב. מעקב חי בפורטל כל יום. נמלי יציאה: באלטימור / NJ / סבנה. יעד: חיפה.',
@@ -900,7 +631,7 @@
     for (const k of Object.keys(WA_KB)) {
       if (t.includes(k.toLowerCase())) return WA_KB[k];
     }
-    if (/שלום|היי|הי|hello|hi/i.test(text)) return 'שלום וברוך הבא ל-AutoImports.co.il! אני הסוכן המומחה שלנו ליבוא רכבי יוקרה מארה״ב. במה אוכל לעזור? לחץ על אחת הכפתורים למטה או שאל שאלה.';
+    if (/שלום|היי|הי|hello|hi/i.test(text)) return 'שלום וברוך הבא ל-GITA! אני הסוכן המומחה שלנו ליבוא רכבי יוקרה מארה״ב. במה אוכל לעזור? לחץ על אחת הכפתורים למטה או שאל שאלה.';
     if (/תודה|thanks/i.test(text)) return 'בכיף 😊 משהו נוסף? אם אתה רוצה לפתוח תיק ב-₪500 (החזר מלא אם אין התאמה) — פשוט כתוב "פתח תיק".';
     if (/פתח תיק/.test(text)) return 'מעולה! נשמח לפתוח לך תיק. אנא השאר: שם מלא + טלפון + רכב/קטגוריה רצויה + תקציב. יועץ מומחה יחזור אליך תוך 4 שעות עם הצעה מותאמת. או חייג ישירות: 050-000-0000';
     return 'אני מתמחה ביבוא אישי של רכבי יוקרה מארה״ב. נסה לשאול על: מחיר, תהליך, מיסים, יד שניה, EV, מימון, שילוח, או דגם ספציפי כמו G63 / G580 / Tesla / Bronco.';
@@ -929,7 +660,7 @@
       if (badge) badge.style.display = 'none';
       if (panel.classList.contains('open') && !panel.dataset.greeted) {
         panel.dataset.greeted = '1';
-        setTimeout(() => waAdd('bot', 'שלום! אני הסוכן המומחה של AutoImports 🚗<br>במה אוכל לעזור היום?'), 200);
+        setTimeout(() => waAdd('bot', 'שלום! אני הסוכן המומחה של GITA 🚗<br>במה אוכל לעזור היום?'), 200);
       }
     });
 

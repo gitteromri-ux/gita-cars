@@ -1,4 +1,4 @@
-/* AutoImports CARS — App logic */
+/* GITA CARS — App logic */
 (function(){
   const $ = (s,r=document)=>r.querySelector(s);
   const $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
@@ -125,7 +125,7 @@
       <div class="vdp-hero">
         <img id="vdpHeroImg" src="${imgs[0]||''}" alt="${car.name}">
         <div class="vdp-hero-info">
-          <div class="eyebrow">#${car.rank} AutoImports · ${car.year} · ${heCat(car.type)}</div>
+          <div class="eyebrow">#${car.rank} GITA · ${car.year} · ${heCat(car.type)}</div>
           <h2>${car.name}</h2>
           <p>${car.nameEn} · ${car.engine}</p>
         </div>
@@ -256,12 +256,12 @@
 
   /* ============ Process Phase Tabs ============ */
   // Define actor mapping for each step (1=GITA, 0=client/both)
-  // Based on Excel: 1-3 client (selects/orders), 4-15 AutoImports (we do it all)
+  // Based on Excel: 1-3 client (selects/orders), 4-15 GITA (we do it all)
   const STEP_ACTOR = {
     1:'CLIENT', 2:'BOTH', 3:'CLIENT',
-    4:'AutoImports', 5:'AutoImports', 6:'BOTH', 7:'AutoImports',
-    8:'AutoImports', 9:'AutoImports', 10:'AutoImports', 11:'BOTH',
-    12:'AutoImports', 13:'AutoImports', 14:'AutoImports', 15:'CLIENT'
+    4:'GITA', 5:'GITA', 6:'BOTH', 7:'GITA',
+    8:'GITA', 9:'GITA', 10:'GITA', 11:'BOTH',
+    12:'GITA', 13:'GITA', 14:'GITA', 15:'CLIENT'
   };
   const ACTOR_LABEL = { GITA:'הצוות · אנחנו עושים', CLIENT:'הלקוח · אתה עושה', BOTH:'אנחנו + אתה' };
   const STEP_TIMES = {
@@ -297,7 +297,7 @@
     const list = PROCESS_STEPS.filter(s=>s.phase===phaseNum);
     grid.innerHTML = list.map(s=>{
       const n = stepNum(s);
-      const actor = STEP_ACTOR[n]||'AutoImports';
+      const actor = STEP_ACTOR[n]||'GITA';
       return `
       <div class="step-card reveal">
         <div class="step-num">${String(n).padStart(2,'0')}</div>
@@ -326,8 +326,8 @@
     const rows = PROCESS_STEPS.map((s,idx)=>{
       const n = idx+1;
       const phase = PHASES.find(p=>p.num===s.phase);
-      const a = STEP_ACTOR[n]||'AutoImports';
-      const actor = a==='AutoImports'?'<span class="task-actor gita">הצוות</span>':
+      const a = STEP_ACTOR[n]||'GITA';
+      const actor = a==='GITA'?'<span class="task-actor gita">הצוות</span>':
                     a==='CLIENT'?'<span class="task-actor client">לקוח</span>':
                     '<span class="task-actor gita">הצוות</span> <span class="task-actor client">+ לקוח</span>';
       return `<div class="task-row">
@@ -396,14 +396,14 @@
 
   /* ============ CTA Buttons (existing / new client) ============ */
   function existingCustomer(){
-    alert('פורטל לקוחות קיימים — בקרוב.\nאם יש לכם תיק פעיל — שלחו אימייל ל‑info@autoimports.co.il או חייגו 050-000-0000.');
+    alert('פורטל לקוחות קיימים — בקרוב.\nאם יש לכם תיק פעיל — שלחו אימייל ל‑info@gita.cars או חייגו 050-000-0000.');
   }
   function newCustomer(){
     document.querySelector('#cars').scrollIntoView({behavior:'smooth'});
   }
   function payDeposit(){
     if(confirm('פתיחת תיק יבוא אישי — ₪500 מקדמה.\n\nתועברו לעמוד תשלום מאובטח. האם להמשיך?')){
-      alert('עמוד תשלום — בקרוב.\nבינתיים: info@autoimports.co.il לפתיחת תיק ידנית.');
+      alert('עמוד תשלום — בקרוב.\nבינתיים: info@gita.cars לפתיחת תיק ידנית.');
     }
   }
   ['loginExisting','ctaExisting'].forEach(id=>$('#'+id).addEventListener('click',existingCustomer));

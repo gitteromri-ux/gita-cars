@@ -6,9 +6,9 @@
 (function(){
   // Step durations and actor mapping (assigned, not from Excel)
   const STEP_ACTOR = {
-    1:'CLIENT', 2:'BOTH', 3:'CLIENT', 4:'AutoImports', 5:'AutoImports',
-    6:'BOTH',  7:'AutoImports', 8:'AutoImports',  9:'AutoImports',10:'AutoImports',
-    11:'BOTH',12:'AutoImports',13:'AutoImports', 14:'AutoImports',15:'CLIENT'
+    1:'CLIENT', 2:'BOTH', 3:'CLIENT', 4:'GITA', 5:'GITA',
+    6:'BOTH',  7:'GITA', 8:'GITA',  9:'GITA',10:'GITA',
+    11:'BOTH',12:'GITA',13:'GITA', 14:'GITA',15:'CLIENT'
   };
   const ACTOR_LABEL = {
     CLIENT: { he:'אתה',    cls:'is-client', sub:'פעולה שלך' },
@@ -16,8 +16,8 @@
     BOTH:   { he:'יחד',     cls:'is-gita',   sub:'שיתוף פעולה' }
   };
   const STEP_ETA = {
-    1:'דקות',2:'בכל עת',3:'10 דקות',4:'48–72 שעות',5:'~72 שעות',
-    6:'24 שעות',7:'מיידי',8:'3–5 ימים',9:'~38 ימים',10:'5–7 ימים',
+    1:'דקות',2:'בכל עת',3:'10 דקות',4:'48–זמן קצר',5:'~זמן קצר',
+    6:'24 שעות',7:'מיידי',8:'3–5 ימים',9:'~זמן קצוב',10:'5–7 ימים',
     11:'3–5 ימים',12:'~14 ימים',13:'5–7 ימים',14:'1–2 ימים',15:'30 דקות'
   };
   const STEP_DOCS = {

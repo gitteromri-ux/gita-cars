@@ -75,11 +75,8 @@
     if(!hero) return;
 
     // Strip existing extras inserted by app-mb.js (scrollhint, bigtype, livestrip)
-    // We keep #heroStage, .hero-content (wraps #heroContent), #heroIndicators (required by task)
-    // FIX (Audit P0): also preserve .hero-content parent so #heroContent survives.
+    // We keep #heroStage, #heroContent, #heroIndicators (required by task)
     Array.from(hero.children).forEach(function(node){
-      // Preserve any element that has #heroContent inside it (the wrapper)
-      if(node.querySelector && node.querySelector('#heroContent')) return;
       if(!node.id) {
         node.remove();
         return;
@@ -170,14 +167,23 @@
   }
 
   function buildContentHTML(){
-    // Headline lines — Hebrew, 3 lines, ride-up reveal char-by-char
-    // Line 1: "כל רכב מארה״ב."
-    // Line 2: "במחיר נמוך מבישראל."
-    // Line 3: "זמן קצר. עד הבית."
+    // Headline lines — Hebrew with intentional accent on the final period
+    // Line 1: "יבוא רכבי יוקרה."
+    // Line 2: "מחיר אחד."
+    // Line 3: "סופי."
     var line1 = 'הרכב שתמיד רצית';
     var line2 = 'במחיר שלא ידעת';
     var line3 = 'שאפשרי.';
 
+    // Mark the trailing "." in each line as accent
+    function accentLastDot(str){
+      var idx = Array.from(str).lastIndexOf('.');
+      var m = {};
+      if(idx >= 0) m[idx] = (str === 'סופי.') ? 'hl-period' : 'hl-accent';
+      return m;
+    }
+
+    var base = 0;
     function lineHtml(text, baseDelay, accentCls){
       var arr = Array.from(text);
       var out = '';
@@ -194,70 +200,55 @@
       return out;
     }
 
-    // FIX #1: LCP optimization — show H1 immediately (no animation delay)
-    var l1 = lineHtml(line1, 0,  'hl-accent');
-    var l2 = lineHtml(line2, 0,  'hl-accent');
-    var l3 = lineHtml(line3, 0,  'hl-period');
+    var l1 = lineHtml(line1, 600,  'hl-accent');
+    var l2 = lineHtml(line2, 600 + Array.from(line1).length*22 + 60, 'hl-accent');
+    var l3 = lineHtml(line3, 600 + (Array.from(line1).length+Array.from(line2).length)*22 + 120, 'hl-period');
 
     return ''+
-      '<div class="h-eyebrow" style="display:none" aria-hidden="true">'+
-        '<span></span>'+
+      '<div class="h-eyebrow" aria-label="Trust · Credibility · The New Model">'+
+        '<span>אמון</span>'+
         '<span class="he-dot" aria-hidden="true">·</span>'+
-        '<span>מודל חדש</span>'+
+        '<span>אמינות</span>'+
         '<span class="he-dot" aria-hidden="true">·</span>'+
-        '<span>100% שקוף</span>'+
+        '<span>המודל החדש</span>'+
       '</div>'+
       '<div class="h-rule" aria-hidden="true"></div>'+
-      '<h1 class="h-headline" aria-label="הרכב שתמיד רצית במחיר שלא ידעת שאפשרי.">'+
+      '<h1 class="h-headline" aria-label="יבוא רכבי יוקרה. מחיר אחד. סופי.">'+
         '<span class="hl-line">'+l1+'</span>'+
         '<span class="hl-line">'+l2+'</span>'+
         '<span class="hl-line">'+l3+'</span>'+
       '</h1>'+
       '<p class="h-sub">'+
-        'אנחנו סורקים את כל ארצות-הברית, מבצעים תחרות בין שותפי-רכב — ואתם משלמים רק את המחיר האמיתי, פלוס '+
-        '<span class="hs-cobalt">5% עמלת שירות שקופה</span>.'+
+        '<strong>בצד שלכם.</strong> שקיפות מלאה. מחיר אחד סופי בשקלים. '+
+        '<span class="hs-cobalt">חוסכים עד 78%</span>.'+
       '</p>'+
-      '<div class="h-stats" aria-label="מספרי-מפתח">'+
+      '<div class="h-stats" aria-label="Headline statistics">'+
         '<div class="h-stat">'+
-          '<span class="h-stat-num" data-target="78" data-suffix="%">0<span class="hsn-accent">%</span></span>'+
-          '<span class="h-stat-lbl">חיסכון מקסימלי מול ישראל</span>'+
+          '<span class="h-stat-num" data-target="915" data-prefix="₪" data-suffix="K"><span class="hsn-accent">₪</span>0<span class="hsn-suffix">K</span></span>'+
+          '<span class="h-stat-lbl">חיסכון על מרצדס G63</span>'+
         '</div>'+
         '<div class="h-stat">'+
-          '<span class="h-stat-num" data-target="348" data-prefix="₪" data-suffix="K"><span class="hsn-accent">₪</span>0<span class="hsn-suffix">K</span></span>'+
-          '<span class="h-stat-lbl">חיסכון ממוצע ללקוח</span>'+
+          '<span class="h-stat-num" data-target="78" data-suffix="%">0<span class="hsn-accent">%</span></span>'+
+          '<span class="h-stat-lbl">חיסכון מקסימלי</span>'+
         '</div>'+
         '<div class="h-stat">'+
           '<span class="h-stat-num" data-target="72" data-suffix="h">0<span class="hsn-accent">h</span></span>'+
-          '<span class="h-stat-lbl">מהפנייה להצעה מותאמת</span>'+
+          '<span class="h-stat-lbl">מהבקשה להצעה</span>'+
         '</div>'+
       '</div>'+
       '<div class="h-cta-wrap">'+
-        '<div class="h-cta-primary">'+
-          '<a href="#offer" class="h-cta" id="hCta">'+
-            '<span class="h-cta-label">קבלו הצעה תוך זמן קצר</span>'+
-            '<span class="h-cta-arrow" aria-hidden="true">'+
-              '<svg viewBox="0 0 22 22" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">'+
-                '<path d="M4 11h14M12 5l6 6-6 6" stroke-linecap="square"/>'+
-              '</svg>'+
-            '</span>'+
-          '</a>'+
-          '<span class="h-cta-sub">מקדמה 500₪ בלבד · ללא התחייבות</span>'+
-        '</div>'+
-        '<a href="#how" class="h-cta-secondary">'+
-          '<span>איך זה עובד ב-6 שלבים</span>'+
-          '<span class="h-cta2-arrow" aria-hidden="true">↓</span>'+
+        '<a href="#offer" class="h-cta" id="hCta">'+
+          '<span class="h-cta-label">פתח תיק ב-500₪</span>'+
+          '<span class="h-cta-arrow" aria-hidden="true">'+
+            '<svg viewBox="0 0 22 22" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">'+
+              '<path d="M4 11h14M12 5l6 6-6 6" stroke-linecap="square"/>'+
+            '</svg>'+
+          '</span>'+
         '</a>'+
-      '</div>'+
-      '<div class="h-livestrip" aria-live="polite">'+
-        '<span class="hl-dot" aria-hidden="true"></span>'+
-        '<span class="hl-now">עכשיו:</span>'+
-        '<span class="hl-item">12 הצעות פעילות</span>'+
-        '<span class="hl-sep" aria-hidden="true">·</span>'+
-        '<span class="hl-item">USD/ILS 2.93</span>'+
-        '<span class="hl-sep" aria-hidden="true">·</span>'+
-        '<span class="hl-item">מע״מ 18%</span>'+
-        '<span class="hl-sep" aria-hidden="true">·</span>'+
-        '<span class="hl-item">עמלה 5%</span>'+
+        '<div class="h-urgency" aria-live="polite">'+
+          '<span class="hu-dot" aria-hidden="true"></span>'+
+          '<span>הזדרזו! הרכבים הטובים נתפסים מהר</span>'+
+        '</div>'+
       '</div>';
   }
 
