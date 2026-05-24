@@ -235,17 +235,23 @@
     // Per-panel number reveal — fires when each panel enters horizontally.
     // Because the section is pinned vertically, we use individual ScrollTriggers
     // attached to the horizontal scroll using `containerAnimation`.
-    panels.forEach((panel) => {
+    panels.forEach((panel, i) => {
       const num = panel.querySelector('.hpanel-num');
       const name = panel.querySelector('.hpanel-name');
       const desc = panel.querySelector('.hpanel-desc');
       const pill = panel.querySelector('.hpanel-pill');
       const media = panel.querySelector('.hpanel-media');
 
-      // Initial state
-      gsap.set([num, name, desc, pill], { y: 60, opacity: 0 });
-      gsap.set(num, { scale: 0.9, y: 80 });
-      gsap.set(media, { opacity: 0.5, scale: 0.92 });
+      if (i === 0) {
+        // First panel: show immediately so the fold is never blank.
+        gsap.set([num, name, desc, pill], { y: 0, opacity: 1, scale: 1 });
+        gsap.set(media, { opacity: 1, scale: 1 });
+      } else {
+        // Initial state for upcoming panels
+        gsap.set([num, name, desc, pill], { y: 60, opacity: 0 });
+        gsap.set(num, { scale: 0.9, y: 80 });
+        gsap.set(media, { opacity: 0.5, scale: 0.92 });
+      }
 
       ST.create({
         trigger: panel,
