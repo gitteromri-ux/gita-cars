@@ -1298,27 +1298,11 @@
     setInterval(() => { idx = (idx + 1) % picks.length; render(); }, 4200);
   }
 
-  // ── Module E: Lenis smooth scroll ───────────────────────────
+  // ── Module E: Lenis smooth scroll — DISABLED per user request ──
   function initLenis() {
-    if (prefersReduced) return;
-    if (typeof window.Lenis === 'undefined') {
-      // Retry once after a tick — defer-loaded
-      setTimeout(() => {
-        if (typeof window.Lenis !== 'undefined') initLenis();
-      }, 600);
-      return;
-    }
-    try {
-      const lenis = new window.Lenis({
-        duration: 1.15,
-        smoothWheel: true,
-        wheelMultiplier: 1.0,
-        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-      });
-      function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
-      requestAnimationFrame(raf);
-      window.__gitaLenis = lenis;
-    } catch (e) { console.warn('[GITA] Lenis init failed', e); }
+    // Lenis disabled — interferes with ScrollTrigger pin/scrollY tracking.
+    // User explicitly banned Lenis. Native scroll only.
+    return;
   }
 
   // ── Module F: 30-Step Regulatory Modal ──────────────────────
