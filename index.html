@@ -62,24 +62,108 @@
   </div>
 </nav>
 
-<!-- ========= HERO (Audi-style alternating) ========= -->
-<section class="hero-mb" id="hero">
-  <div class="hero-stage" id="heroStage">
-    <!-- 5 alternating slides injected by JS -->
-  </div>
-  <div class="hero-content">
-    <div class="hero-content-inner" id="heroContent">
-      <!-- text injected by JS -->
+<!-- ========= HERO V3 — clean static ========= -->
+<section class="hero-v3" id="hero">
+  <div class="hero-v3-bg" aria-hidden="true"></div>
+  <div class="hero-v3-grid">
+    <div class="hero-v3-text">
+      <div class="hero-v3-eyebrow">
+        <span class="hv3-dot"></span>
+        <span>יבוא אישי מארה״ב · 100% שקוף</span>
+      </div>
+      <h1 class="hero-v3-h1">
+        <span>כל רכב מארה״ב.</span>
+        <span class="hv3-accent">במחיר נמוך מבישראל.</span>
+        <span>72 שעות עד הצעה. 38 ימים עד הבית.</span>
+      </h1>
+      <p class="hero-v3-sub">
+        אנחנו סורקים את כל ארצות-הברית, מבצעים תחרות בין שותפי-רכב,
+        ומשלמים רק את המחיר האמיתי. פלוס 5% עמלת שירות שקופה.
+      </p>
+      <div class="hero-v3-stats">
+        <div class="hv3-stat">
+          <div class="hv3-stat-num">₪348K</div>
+          <div class="hv3-stat-lbl">חיסכון ממוצע ללקוח</div>
+        </div>
+        <div class="hv3-stat-sep"></div>
+        <div class="hv3-stat">
+          <div class="hv3-stat-num">78%</div>
+          <div class="hv3-stat-lbl">חיסכון מקסימלי מול ישראל</div>
+        </div>
+        <div class="hv3-stat-sep"></div>
+        <div class="hv3-stat">
+          <div class="hv3-stat-num">72<small>h</small></div>
+          <div class="hv3-stat-lbl">מהפנייה להצעה מותאמת</div>
+        </div>
+      </div>
+      <div class="hero-v3-cta-row">
+        <a href="./start.html" class="hv3-cta-primary">קבלו הצעה תוך 72 שעות →</a>
+        <a href="#how" class="hv3-cta-secondary">איך זה עובד ב-6 שלבים</a>
+      </div>
+      <div class="hero-v3-trust">
+        <span>מקדמה ₪500 בלבד · ללא התחייבות</span>
+        <span class="hv3-trust-sep">·</span>
+        <span>רישיון יבואן 17385</span>
+        <span class="hv3-trust-sep">·</span>
+        <span>ח״פ 516789432</span>
+      </div>
+    </div>
+    <div class="hero-v3-visual">
+      <img src="./images/car-mercedes-g580-eq.png" alt="Mercedes-Benz G580 EQ" class="hv3-car" loading="eager" fetchpriority="high">
+      <div class="hv3-badge">
+        <div class="hv3-badge-name">Mercedes-Benz G580 EQ</div>
+        <div class="hv3-badge-price">
+          <span class="hv3-was">₪2.1M ישראל</span>
+          <span class="hv3-now">₪1.18M יבוא</span>
+        </div>
+        <div class="hv3-badge-save">חיסכון: ₪915,000 (55%)</div>
+      </div>
     </div>
   </div>
-  <div class="hero-indicators" id="heroIndicators"></div>
-  <div class="hero-scrollhint" aria-hidden="true"><span>גלול</span><i class="hsh-line"></i></div>
-  <div class="hero-bigtype" aria-hidden="true">
-    <span class="bt-line" data-chars="מהיבואן הרשמי">מהיבואן הרשמי</span>
-    <span class="bt-line bt-italic" data-chars="אל המקור.">אל המקור.</span>
-  </div>
-  <div class="hero-livestrip" id="heroLiveStrip" aria-hidden="true"></div>
 </section>
+
+<style>
+.hero-v3{position:relative;min-height:90vh;background:#050B1A;color:#fff;direction:rtl;overflow:hidden;padding:120px 0 80px}
+.hero-v3-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 80% 40%,rgba(74,139,255,.22),transparent 60%),radial-gradient(ellipse 50% 40% at 20% 70%,rgba(30,95,255,.12),transparent 60%),#050B1A;z-index:0}
+.hero-v3-grid{position:relative;z-index:2;max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center}
+.hero-v3-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border:1px solid rgba(74,139,255,.35);border-radius:999px;font-size:13px;color:#A8C5FF;letter-spacing:.02em;margin-bottom:28px}
+.hv3-dot{width:6px;height:6px;border-radius:50%;background:#4A8BFF;box-shadow:0 0 12px #4A8BFF}
+.hero-v3-h1{font:800 clamp(34px,4.2vw,62px)/1.08 'Heebo',sans-serif;letter-spacing:-.025em;margin:0 0 24px;color:#fff}
+.hero-v3-h1 span{display:block}
+.hv3-accent{color:#4A8BFF}
+.hero-v3-sub{font:400 clamp(15px,1.15vw,18px)/1.65 'Heebo',sans-serif;color:#B4C2D9;max-width:560px;margin:0 0 36px}
+.hero-v3-stats{display:flex;align-items:center;gap:24px;padding:24px 0;border-block:1px solid rgba(255,255,255,.08);margin-bottom:32px}
+.hv3-stat-sep{width:1px;height:42px;background:rgba(255,255,255,.1)}
+.hv3-stat-num{font:800 clamp(24px,2.2vw,34px)/1 'Heebo',sans-serif;color:#fff;letter-spacing:-.02em}
+.hv3-stat-num small{font-size:.55em;color:#4A8BFF;font-weight:700;margin-inline-start:2px}
+.hv3-stat-lbl{font-size:12px;color:#7C8AA8;margin-top:6px;line-height:1.4}
+.hero-v3-cta-row{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:24px}
+.hv3-cta-primary{display:inline-flex;align-items:center;gap:8px;padding:18px 32px;background:#4A8BFF;color:#fff;border-radius:8px;font-weight:700;font-size:16px;text-decoration:none;box-shadow:0 8px 24px rgba(74,139,255,.4);transition:transform .2s,box-shadow .2s}
+.hv3-cta-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(74,139,255,.55)}
+.hv3-cta-secondary{display:inline-flex;align-items:center;padding:18px 24px;color:#A8C5FF;border:1px solid rgba(74,139,255,.3);border-radius:8px;font-weight:600;font-size:15px;text-decoration:none;transition:border-color .2s,color .2s}
+.hv3-cta-secondary:hover{border-color:#4A8BFF;color:#fff}
+.hero-v3-trust{display:flex;flex-wrap:wrap;gap:8px;font-size:12px;color:#7C8AA8}
+.hv3-trust-sep{color:#3D4A66}
+.hero-v3-visual{position:relative;display:flex;align-items:center;justify-content:center}
+.hv3-car{width:100%;max-width:580px;height:auto;filter:drop-shadow(0 24px 64px rgba(0,0,0,.5))}
+.hv3-badge{position:absolute;bottom:8%;inset-inline-end:0;background:rgba(10,15,26,.85);backdrop-filter:blur(12px);border:1px solid rgba(74,139,255,.25);border-radius:14px;padding:18px 22px;max-width:280px}
+.hv3-badge-name{font-size:12px;color:#7C8AA8;letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px}
+.hv3-badge-price{display:flex;flex-direction:column;gap:4px;margin-bottom:8px}
+.hv3-was{font-size:13px;color:#7C8AA8;text-decoration:line-through}
+.hv3-now{font-size:22px;font-weight:800;color:#4A8BFF}
+.hv3-badge-save{font-size:13px;color:#4ADE80;font-weight:600}
+@media (max-width:900px){
+  .hero-v3{padding:90px 0 60px;min-height:auto}
+  .hero-v3-grid{grid-template-columns:1fr;gap:36px;padding:0 20px}
+  .hero-v3-visual{order:-1}
+  .hv3-car{max-width:80%}
+  .hv3-badge{position:relative;bottom:auto;inset-inline-end:auto;margin:-30px auto 0;max-width:90%}
+  .hero-v3-stats{flex-wrap:wrap;gap:16px}
+  .hv3-stat-sep{display:none}
+  .hero-v3-cta-row{flex-direction:column;align-items:stretch}
+  .hv3-cta-primary,.hv3-cta-secondary{justify-content:center;text-align:center}
+}
+</style>
 
 <!-- ========= FOLD 2 — WHY BUY WITH US (הצעת הערך) ========= -->
 <div id="why-mount" data-reveal></div>
@@ -700,8 +784,7 @@
 <script src="./js/folds/used.js" defer></script>
 <script src="./js/folds/why.js" defer></script>
 <script src="./js/folds/trust.js" defer></script>
-<script src="./js/folds/hero.js"></script>
-<script src="./js/folds/hero-init.js"></script>
+<!-- old hero.js disabled — V3 is pure HTML/CSS -->
 <script src="./js/chatbot.js" defer></script>
 </body>
 </html>
