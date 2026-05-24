@@ -232,8 +232,8 @@
           '<span class="h-stat-lbl">חיסכון מקסימלי</span>'+
         '</div>'+
         '<div class="h-stat">'+
-          '<span class="h-stat-num" data-target="72" data-suffix="h">0<span class="hsn-accent">h</span></span>'+
-          '<span class="h-stat-lbl">מהבקשה להצעה</span>'+
+          '<span class="h-stat-num" data-target="348" data-suffix="K\u20aa">0<span class="hsn-accent">K\u20aa</span></span>'+
+          '<span class="h-stat-lbl">חיסכון ממוצע</span>'+
         '</div>'+
       '</div>'+
       '<div class="h-cta-wrap">'+
