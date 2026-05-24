@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="./css/pages/start.css">
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-<script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js" defer></script>
+
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23050B1A'/%3E%3Ctext x='32' y='44' font-family='Inter,Arial,sans-serif' font-size='30' font-weight='900' fill='%234A8BFF' text-anchor='middle'%3EAi%3C/text%3E%3C/svg%3E">
 </head>
 <body translate="no" class="notranslate" class="subpage">
@@ -46,7 +46,7 @@
 </nav><section class="page-hero" data-reveal>
   <div class="eyebrow">פתח תיק</div>
   <h1>פתח תיק.<br>30 שניות.</h1>
-  <p class="sub">מקדמה של ₪500 בלבד. החזר מלא אם אין התאמה תוך 30 יום. ההצעה תגיע תוך 72 שעות.</p>
+  <p class="sub">מקדמה של ₪500 בלבד. החזר מלא אם אין התאמה תוך 30 יום. ההצעה תגיע תוך זמן קצר.</p>
   <div class="cta-row">
     <a href="#" class="btn-primary-cobalt"></a>
     
@@ -126,7 +126,7 @@
     <!-- STEP 5 -->
     <div class="wiz-step" data-step="5">
       <h3>סיכום והשלמה</h3>
-      <p class="wiz-sub">תוך 72 שעות נחזיר אליך עם הצעה מותאמת.</p>
+      <p class="wiz-sub">תוך זמן קצר נחזיר אליך עם הצעה מותאמת.</p>
       <div class="wiz-summary" id="wizSummary"></div>
       <button class="btn-primary-cobalt wiz-finish" id="wizFinish">השלם פתיחת תיק →</button>
     </div>
@@ -215,7 +215,7 @@
   document.getElementById('wizBack').addEventListener('click', () => { if (step > 1) { step--; show(); } });
   document.getElementById('wizFinish').addEventListener('click', () => {
     save();
-    alert('תיק נפתח! נציג מטעם AutoImports יחזור אליך תוך 72 שעות. תודה ' + (state.name || '') + '.');
+    alert('תיק נפתח! נציג מטעם AutoImports יחזור אליך תוך זמן קצר. תודה ' + (state.name || '') + '.');
   });
 
   show();
