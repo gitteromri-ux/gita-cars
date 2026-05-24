@@ -538,13 +538,13 @@
             <div class="cbr-row"><span>שילוח ($2,000)</span><b id="cbShip">₪0</b></div>
             <div class="cbr-row"><span>מכס ושחרור</span><b id="cbCustoms">₪0</b></div>
             <div class="cbr-row"><span>עמלת שירות 5%</span><b id="cbFee">₪0</b></div>
-            <div class="cbr-row discount"><span>הנחה בלעדית GITA</span><b id="cbDiscount">−₪0</b></div>
+            <div class="cbr-row discount"><span>הנחה בלעדית</span><b id="cbDiscount">−₪0</b></div>
             <div class="cbr-row total"><span>סה"כ מחיר סופי בישראל</span><b id="cbTotal">₪0</b></div>
           </div>
 
           <div class="calc-compare">
             <div class="calc-col gita">
-              <div class="calc-col-lbl">מחיר GITA סופי</div>
+              <div class="calc-col-lbl">מחיר סופי</div>
               <div class="calc-col-price" id="ccGita">₪0</div>
             </div>
             <div class="calc-col vs">VS</div>
@@ -1307,7 +1307,7 @@
 
   // ── Module F: 30-Step Regulatory Modal ──────────────────────
   const REG30 = [
-    { t: 'בחירת רכב', d: 'הלקוח בוחר דגם וגרסה מתוך הקטלוג של GITA.' },
+    { t: 'בחירת רכב', d: 'הלקוח בוחר דגם וגרסה מתוך הקטלוג שלנו.' },
     { t: 'פתיחת תיק', d: 'תשלום מקדמה של ₪500 והתחלת תיק יבוא אישי.' },
     { t: 'איתור בארה״ב', d: 'צוות מקצועי מאתר את הרכב בסוכנויות מורשות בלבד.' },
     { t: 'תחרות מחיר', d: 'מכרז בין מספר סוכנויות להבטחת המחיר הטוב ביותר.' },
