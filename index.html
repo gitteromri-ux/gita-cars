@@ -2,634 +2,495 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#ffffff">
-<title>AutoImports — יבוא רכבי יוקרה מארה״ב | חיסכון של עד ₪348K</title>
-<meta name="description" content="ייעוץ ויבוא אישי של רכבי יוקרה מארצות הברית. שקיפות מלאה, מחיר משתלם ב-78%, מסירה תוך 8 שבועות.">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AutoImports — הרכב שתמיד חלמת במחיר שלא דמיינת</title>
+<meta name="description" content="ייבוא אישי של רכבי יוקרה ושטח מארה״ב — חיסכון של עד 50% מול היבואן הרשמי. ליווי מקצה לקצה.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@300;400;500;600;700;800;900&family=Anton&family=Bebas+Neue&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="./css/mb.css">
-<link rel="stylesheet" href="./css/award.css">
-<link rel="stylesheet" href="./css/folds/hero.css">
-<link rel="stylesheet" href="./css/folds/board.css">
-<link rel="stylesheet" href="./css/folds/how.css">
-<link rel="stylesheet" href="./css/folds/value-prop.css">
-<link rel="stylesheet" href="./css/folds/calc.css">
-<link rel="stylesheet" href="./css/folds/catalog.css">
-<link rel="stylesheet" href="./css/light-theme.css">
-
-<!-- Three.js (hero WebGL particle field) -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-
-<!-- GSAP for ScrollTrigger animations (Lenis removed per user request) -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='32' y='44' font-family='serif' font-size='32' font-weight='700' fill='%23fff' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- Award-level global overlays -->
-<div class="global-grain" aria-hidden="true"></div>
-<div class="global-vignette" aria-hidden="true"></div>
-
-<!-- ========= NAV ========= -->
-<nav class="mb-nav">
-  <div class="mb-nav-inner">
-    <a href="#" class="mb-logo">
-      <span class="mb-logo-mark">G</span>
-      <span>AutoImports.co.il</span>
+<!-- NAVIGATION -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <span class="logo-mark">AI</span>
+      <span class="logo-text">AutoImports</span>
     </a>
-    <div class="mb-nav-links">
-      <a href="#board">לוח דילים</a>
+    <nav class="nav-links">
       <a href="#catalog">קטלוג</a>
+      <a href="#compare">השוואה</a>
       <a href="#calc">מחשבון</a>
-      <a href="#how">תהליך</a>
-      <a href="#reviews">לקוחות</a>
-      <a href="#advisors">יועצים</a>
-      <a href="#intake">פתח תיק</a>
+      <a href="#process">תהליך</a>
+      <a href="#about">אודות</a>
       <a href="#faq">שאלות</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="#login" class="nav-login">כניסת לקוחות</a>
+      <a href="#catalog" class="nav-cta">התחל הזמנה</a>
     </div>
-    <a href="#catalog" class="mb-nav-cta">פתח תיק ₪500</a>
-    <button class="mb-burger" id="burger">☰</button>
   </div>
-</nav>
+</header>
 
-<!-- ========= HERO (Audi-style alternating) ========= -->
-<section class="hero-mb" id="hero">
-  <div class="hero-stage" id="heroStage">
-    <!-- 5 alternating slides injected by JS -->
+<!-- HERO: Cinematic full-bleed -->
+<section class="hero">
+  <div class="hero-stage">
+    <div class="hero-slide active" data-car="0">
+      <img src="images/car-ford-bronco-raptor.jpg" alt="Ford Bronco Raptor">
+    </div>
+    <div class="hero-slide" data-car="1">
+      <img src="images/car-mustang-gt-v8.jpg" alt="Ford Mustang GT V8">
+    </div>
+    <div class="hero-slide" data-car="2">
+      <img src="images/car-mercedes-g63-amg.jpg" alt="Mercedes G63 AMG">
+    </div>
+    <div class="hero-slide" data-car="3">
+      <img src="images/car-tesla-cybertruck-awd.jpg" alt="Tesla Cybertruck">
+    </div>
+    <div class="hero-slide" data-car="4">
+      <img src="images/car-rivian-r1s.jpg" alt="Rivian R1S">
+    </div>
   </div>
-  <div class="hero-content-inner" id="heroContent">
-    <!-- text injected by JS -->
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">ייבוא אישי · מארה״ב לישראל</div>
+    <h1 class="hero-title">
+      <span class="line">הרכב שתמיד חלמת</span>
+      <span class="line">במחיר שלא דמיינת</span>
+    </h1>
+    <p class="hero-sub">חיסכון של עד 50% מול היבואן הרשמי. ליווי מלא — מהבחירה ועד המסירה.</p>
+    <div class="hero-actions">
+      <a href="#catalog" class="btn-primary">צפה בקטלוג</a>
+      <a href="#calc" class="btn-ghost">חשב חיסכון</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">50<span>%</span></div><div class="stat-label">חיסכון ממוצע</div></div>
+      <div class="stat"><div class="stat-num">38<span>ימים</span></div><div class="stat-label">זמן הגעה</div></div>
+      <div class="stat"><div class="stat-num">15<span>שלבים</span></div><div class="stat-label">ליווי מלא</div></div>
+      <div class="stat"><div class="stat-num">100<span>%</span></div><div class="stat-label">שקיפות</div></div>
+    </div>
   </div>
-  <div class="hero-indicators" id="heroIndicators"></div>
-  <div class="hero-scrollhint" aria-hidden="true"><span>גלול</span><i class="hsh-line"></i></div>
-  <div class="hero-bigtype" aria-hidden="true">
-    <span class="bt-line" data-chars="במחיר ישראלי רשמי">במחיר ישראלי רשמי</span>
-    <span class="bt-line bt-italic" data-chars="אל המקור.">אל המקור.</span>
+
+  <div class="hero-nav">
+    <button class="hero-dot active" data-slide="0"></button>
+    <button class="hero-dot" data-slide="1"></button>
+    <button class="hero-dot" data-slide="2"></button>
+    <button class="hero-dot" data-slide="3"></button>
+    <button class="hero-dot" data-slide="4"></button>
   </div>
-  <div class="hero-livestrip" id="heroLiveStrip" aria-hidden="true"></div>
 </section>
 
-<!-- ========= TRUST BAR — magazine kicker ========= -->
-<div class="trust-bar" data-reveal>
+<!-- TRUST BAR -->
+<section class="trust-bar">
   <div class="trust-bar-inner">
     <div class="trust-item">
-      <div class="ti-num" data-count="348" data-prefix="₪" data-suffix="K">₪348K</div>
-      <div class="ti-lbl">חיסכון ממוצע<br>מול מחיר בישראל</div>
+      <div class="trust-num">17</div>
+      <div class="trust-label">דגמים זמינים</div>
     </div>
+    <div class="trust-divider"></div>
     <div class="trust-item">
-      <div class="ti-num" data-count="100" data-suffix="%">100%</div>
-      <div class="ti-lbl">שקיף<br>ללא עמלות נסתרות</div>
+      <div class="trust-num">₪918K</div>
+      <div class="trust-label">חיסכון מקסימלי</div>
     </div>
+    <div class="trust-divider"></div>
     <div class="trust-item">
-      <div class="ti-num" data-count="8" data-suffix="–12">8-12</div>
-      <div class="ti-lbl">שבועות<br>מהזמנה למסירה</div>
+      <div class="trust-num">38</div>
+      <div class="trust-label">ימי משלוח</div>
     </div>
+    <div class="trust-divider"></div>
     <div class="trust-item">
-      <div class="ti-num" data-count="100" data-suffix="%">100%</div>
-      <div class="ti-lbl">החזר אם<br>אין התאמה</div>
+      <div class="trust-num">15</div>
+      <div class="trust-label">שלבי תהליך</div>
     </div>
-  </div>
-</div>
-
-<!-- ========= MARQUEE — editorial strip ========= -->
-<section class="marquee-band" aria-hidden="true">
-  <div class="marquee-track">
-    <span>עוצרים את העלייה ביבוא רכבי יוקרה</span><span class="mq-sep">•</span>
-    <span class="mq-mono">AutoImports.co.il</span><span class="mq-sep">•</span>
-    <span>2026</span><span class="mq-sep">•</span>
-    <span>חיסכון עד 78%</span><span class="mq-sep">•</span>
-    <span>מהמקור</span><span class="mq-sep">•</span>
-    <span class="mq-mono">USD/ILS 2.93</span><span class="mq-sep">•</span>
-    <span>עוצרים את העלייה ביבוא רכבי יוקרה</span><span class="mq-sep">•</span>
-    <span class="mq-mono">AutoImports.co.il</span><span class="mq-sep">•</span>
-    <span>2026</span><span class="mq-sep">•</span>
-    <span>חיסכון עד 78%</span><span class="mq-sep">•</span>
-    <span>מהמקור</span><span class="mq-sep">•</span>
-    <span class="mq-mono">USD/ILS 2.93</span><span class="mq-sep">•</span>
-  </div>
-</section>
-
-<!-- ========= STOCK MARKET BOARD ========= -->
-<section class="board" id="board">
-  <div class="board-w">
-    <div class="board-head">
-      <div class="board-title">
-        <h2 class="h-1">לוח דילים חי — עשרת המובילים</h2>
-        <p>פערי המחירים הגדולים ביותר בין מחיר רכישה בארה״ב לבין המחיר בישראל בישראל. מתעדכן בזמן אמת לפי שערי מטבע ומיסוי.</p>
-      </div>
-      <div class="live-tag"><span class="dot"></span>שידור חי · עודכן עכשיו</div>
-    </div>
-
-    <div class="ticker">
-      <div class="ticker-track" id="tickerTrack"></div>
-    </div>
-
-    <div class="board-grid" id="boardGrid"></div>
-  </div>
-</section>
-
-<!-- ========= WHO WE ARE — editorial split with video ========= -->
-<section class="sec who" id="who" data-reveal>
-  <div class="sec-w">
-    <div class="who-split">
-      <div class="who-copy">
-        <div class="eyebrow">מי אנחנו</div>
-        <h2 class="h-display who-headline">המודל החדש<br><i class="who-italic">ליבוא יוקרה.</i></h2>
-        <p class="who-lede">צוות של מומחי יבוא, אמרגני רכב ויועצי מימון עם 15+ שנות ניסיון בשוק האמריקאי. נולדנו מתוך תסכול על המחירים בישראל בארץ — והפכנו את היבוא האישי למודל שקוף, מהיר ומקצועי.</p>
-        <ul class="who-pills">
-          <li><b>200</b> נקודות בדיקה</li>
-          <li><b>120+</b> לקוחות</li>
-          <li><b>4.9★</b> דירוג ממוצע</li>
-          <li><b>0</b> תלונות</li>
-        </ul>
-      </div>
-      <div class="who-media" aria-hidden="true">
-        <video muted autoplay loop playsinline webkit-playsinline preload="metadata" src="./videos/windscreen-friends.mp4"></video>
-        <div class="who-media-frame"></div>
-        <div class="who-media-badge"><span class="dot"></span>EST. 2024 · TEL AVIV</div>
-      </div>
-    </div>
-
-    <div class="who-grid">
-      <div class="who-card" data-tilt>
-        <div class="who-num">01</div>
-        <h3>מומחיות בלעדית</h3>
-        <p>קשרים ישירים עם מאות נקודות מכירה ברחבי ארה״ב. אנחנו יודעים איפה ההזדמנויות, ואיך לסגור במחיר הטוב ביותר עבורך.</p>
-      </div>
-      <div class="who-card" data-tilt>
-        <div class="who-num">02</div>
-        <h3>שקיפות מוחלטת</h3>
-        <p>כל שלב מסונכרן בפורטל אישי. מסמכים, סרטוני בדיקה, חישוב עלויות מלא — בלי הפתעות. רק תהליך מתועד מההתחלה ועד מסירת המפתחות.</p>
-      </div>
-      <div class="who-card" data-tilt>
-        <div class="who-num">03</div>
-        <h3>אחריות ובטחון</h3>
-        <p>בדיקת 200 נקודות לפני רכישה. דו״ח Carfax מלא. ביטוח שילוח 100%. אחריות יצרן בינלאומית. דמי פתיחת תיק חוזרים אם אין התאמה.</p>
-      </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <div class="trust-num">100%</div>
+      <div class="trust-label">שקיפות מחיר</div>
     </div>
   </div>
 </section>
 
-<!-- ========= PRICE CALCULATOR ========= -->
-<section class='calc' id='calc'>
-  <div class='calc-w'>
-    <div class='sec-head'>
-      <div class='eyebrow'>מחשבון מחיר</div>
-      <h2>חשב את המחיר המדויק שלך</h2>
-      <p style='color:var(--mb-text-muted);margin-top:8px;max-width:580px'>בחר MSRP וסוג דלק — ראה מיד את עלות ה-מחיר סופי בישראל, פירוט מיסים, ומה תחסוך מול המחיר בישראל.</p>
-    </div>
-    <div class='calc-widget' id='calcWidget'></div>
+<!-- INTRO -->
+<section class="intro">
+  <div class="container">
+    <div class="intro-eyebrow">למה ייבוא אישי</div>
+    <h2 class="intro-title">המודל שלנו הוא לא יבואן. אנחנו מלווים.</h2>
+    <p class="intro-text">
+      אנחנו לא יבואן רשמי ולא יבוא מקביל. אנחנו ליווי אישי — תחרות בין שלושה ספקים בארה״ב, שקיפות מלאה במחיר, וטיפול בכל שלב בירוקרטי בישראל. אתה מקבל את הרכב המדויק שבחרת, ברמת גימור וצבע שלך, במחיר שמתחיל מ-30% פחות מהיבואן הרשמי.
+    </p>
   </div>
 </section>
 
-<!-- ========= CATALOG (cars.com-grade) ========= -->
+<!-- CATALOG -->
 <section class="catalog" id="catalog">
-  <div class="cat-w">
-    <div class="cat-head">
-      <div class="eyebrow">קטלוג מלא</div>
-      <h2 class="h-1">בחר את הרכב המדויק שלך</h2>
-      <p style="color:var(--mb-text-muted);margin-top:8px;max-width:640px">פילטרים מתקדמים לפי יצרן, סוג רכב, סוג דלק, טווח מחירים, שנה ועוד — בדיוק כמו cars.com, רק עם מחירי יבוא ישראליים בזמן אמת.</p>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">קטלוג מלא · 17 דגמים</div>
+      <h2 class="section-title">בחר את הרכב שלך</h2>
+      <p class="section-sub">כל הרכבים — תמונות מקוריות, מחירים מעודכנים, מצב חדש או יד שניה לבחירה.</p>
     </div>
 
-    <!-- New / Used toggle (Excel key questions tab) -->
-    <div class="cat-condition-toggle" id="condToggle" role="tablist" aria-label="מצב רכב">
-      <button class="cat-cond active" data-cond="all" role="tab" aria-selected="true">כל הרכבים</button>
-      <button class="cat-cond" data-cond="new" role="tab" aria-selected="false">חדש (0 ק״מ)</button>
-      <button class="cat-cond" data-cond="used" role="tab" aria-selected="false">יד שנייה מאושרת — חיסכון נוסף 25-40%</button>
+    <div class="catalog-grid" id="catalog-grid">
+      <!-- Cards generated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- 3-CARD COMPARISON -->
+<section class="compare" id="compare">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">השוואה</div>
+      <h2 class="section-title">ההבדל בין שלוש האפשרויות</h2>
+      <p class="section-sub">דוגמה אמיתית: Mercedes G63 AMG 2025 — אותו רכב, שלוש דרכים לקנות אותו.</p>
     </div>
 
-    <!-- quick chips -->
-    <div class="cat-chips" id="catChips">
-      <button class="cat-chip active" data-cat="all">הכל</button>
-      <button class="cat-chip" data-cat="suv">SUV יוקרה</button>
-      <button class="cat-chip" data-cat="off-road">שטח / Off-Road</button>
-      <button class="cat-chip" data-cat="ev">חשמלי</button>
-      <button class="cat-chip" data-cat="pickup">פיק-אפ</button>
-      <button class="cat-chip" data-cat="sport">ספורט</button>
-      <button class="cat-chip" data-cat="sedan">סדאן</button>
-    </div>
+    <div class="compare-grid">
+      <!-- Card 1: Solo -->
+      <div class="compare-card">
+        <div class="compare-badge compare-badge-warn">קשה ומסוכן</div>
+        <div class="compare-title">ייבוא אישי לבד</div>
+        <div class="compare-price">₪1,580,000</div>
+        <ul class="compare-features">
+          <li class="bad"><span>✗</span> ללא ליווי מקצועי</li>
+          <li class="bad"><span>✗</span> סיכון רגולטורי גבוה</li>
+          <li class="warn"><span>!</span> דורש זמן וידע רב</li>
+          <li class="bad"><span>✗</span> ללא אחריות שירות</li>
+          <li class="warn"><span>!</span> תהליך מורכב מול המכס</li>
+        </ul>
+        <div class="compare-foot">ללא תמיכה</div>
+      </div>
 
-    <div class="cat-layout">
-      <!-- Filter rail -->
-      <aside class="filter-rail" id="filterRail">
-        <div class="filter-group">
-          <h5>יצרן</h5>
-          <ul id="filterMakes"></ul>
-        </div>
-        <div class="filter-group">
-          <h5>סוג רכב</h5>
-          <ul id="filterBody"></ul>
-        </div>
-        <div class="filter-group">
-          <h5>סוג דלק</h5>
-          <ul id="filterFuel"></ul>
-        </div>
-        <div class="filter-group">
-          <h5>טווח מחיר (₪)</h5>
-          <div class="filter-range">
-            <input type="number" id="priceMin" placeholder="מ-" inputmode="numeric">
-            <input type="number" id="priceMax" placeholder="עד" inputmode="numeric">
-          </div>
-        </div>
-        <div class="filter-group">
-          <h5>שנת ייצור</h5>
-          <ul id="filterYear"></ul>
-        </div>
-        <button class="filter-clear" id="filterClear">נקה הכל</button>
-      </aside>
+      <!-- Card 2: AutoImports (highlight) -->
+      <div class="compare-card compare-card-best">
+        <div class="compare-badge compare-badge-best">המומלץ</div>
+        <div class="compare-title">AutoImports</div>
+        <div class="compare-price">₪1,180,000</div>
+        <ul class="compare-features">
+          <li class="good"><span>✓</span> ליווי מקצה לקצה</li>
+          <li class="good"><span>✓</span> תחרות בין 3 ספקים בארה״ב</li>
+          <li class="good"><span>✓</span> שקיפות מחיר מלאה</li>
+          <li class="good"><span>✓</span> טיפול בכל הבירוקרטיה</li>
+          <li class="good"><span>✓</span> אחריות ושירות מלא</li>
+        </ul>
+        <div class="compare-foot compare-foot-best">חיסכון של ₪920,000</div>
+      </div>
 
-      <!-- Grid -->
-      <div>
-        <div class="cat-toolbar">
-          <button class="cat-filter-btn-mobile" id="filterBtnMobile">⚙ פילטרים</button>
-          <div class="cat-results"><b id="resultsCount">20</b> רכבים זמינים</div>
-          <select class="cat-sort" id="catSort">
-            <option value="saving">חיסכון הגבוה ביותר</option>
-            <option value="price-asc">מחיר: נמוך לגבוה</option>
-            <option value="price-desc">מחיר: גבוה לנמוך</option>
-            <option value="newest">חדש ביותר</option>
-          </select>
-        </div>
-        <div class="cat-grid" id="catGrid"></div>
+      <!-- Card 3: Official -->
+      <div class="compare-card">
+        <div class="compare-badge compare-badge-warn">יקר מאוד</div>
+        <div class="compare-title">יבואן רשמי</div>
+        <div class="compare-price">₪2,100,000</div>
+        <ul class="compare-features">
+          <li class="good"><span>✓</span> שירות מהבית</li>
+          <li class="bad"><span>✗</span> מחיר גבוה ב-78%</li>
+          <li class="warn"><span>!</span> בחירה מוגבלת בגוונים</li>
+          <li class="warn"><span>!</span> זמן המתנה ארוך</li>
+          <li class="bad"><span>✗</span> ללא שקיפות תמחור</li>
+        </ul>
+        <div class="compare-foot">תוספת ₪920,000</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========= VEHICLE DETAIL OVERLAY ========= -->
-<div class="vdp-overlay" id="vdpOverlay">
-  <button class="vdp-close" onclick="closeVDP()">×</button>
-  <div class="vdp" id="vdpContent"></div>
-</div>
-
-<!-- ========= HOW IT WORKS — 8 steps + 30-step modal trigger ========= -->
-<section class="how" id="how" data-reveal>
-  <div class="how-w">
-    <div class="sec-head">
-      <div class="eyebrow">תהליך</div>
-      <h2 class="h-1">איך זה עובד</h2>
-      <p>מהמילוי הקצר ועד מסירת המפתחות — כל שלב מסונכרן בפורטל אישי, עם מסמכים, סרטונים ו-OTP.</p>
+<!-- CALCULATOR + STOCK BOARD -->
+<section class="calc-section" id="calc">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">מחשבון חיסכון</div>
+      <h2 class="section-title">כמה תחסוך — בזמן אמת</h2>
+      <p class="section-sub">5 הדגמים עם פער המחירים הגדול ביותר מול היבואן הרשמי.</p>
     </div>
 
-    <ol class="how-timeline" id="howTimeline">
-      <li class="how-step" data-step="1">
-        <div class="how-stepnum">01</div>
-        <div class="how-stepbody">
-          <h3>בחירה ומילוי טופס</h3>
-          <p>קטגוריה, תקציב, יד ראשונה או שניה — מציג אומדן מחיר ראשוני ב-60 שניות.</p>
-        </div>
-        <div class="how-stepmedia"><video muted autoplay loop playsinline webkit-playsinline preload="metadata" src="./videos/ignition-button.mp4"></video></div>
-      </li>
-      <li class="how-step" data-step="2">
-        <div class="how-stepnum">02</div>
-        <div class="how-stepbody">
-          <h3>פתיחת תיק ₪500</h3>
-          <p>מקדמה סמלית שנזקפת לרכישה. החזר מלא אם אין התאמה תוך 30 יום. פתיחת פורטל אישי מאובטח.</p>
-        </div>
-        <div class="how-stepmedia"><video muted autoplay loop playsinline webkit-playsinline preload="metadata" src="./videos/happy-dealership.mp4"></video></div>
-      </li>
-      <li class="how-step" data-step="3">
-        <div class="how-stepnum">03</div>
-        <div class="how-stepbody">
-          <h3>סריקת השוק והצעה תוך זמן קצר</h3>
-          <p>הצוות סורק את כל שותפי הרכב בארה״ב, מריץ תחרות מחיר, ומחזיר 3 הצעות מותאמות עם דו״ח Carfax וחישוב עלויות מלא.</p>
-        </div>
-        <div class="how-stepmedia"><video muted autoplay loop playsinline webkit-playsinline preload="metadata" src="./videos/fast-sports-rural.mp4"></video></div>
-      </li>
-      <li class="how-step" data-step="4">
-        <div class="how-stepnum">04</div>
-        <div class="how-stepbody">
-          <h3>בדיקת 200 נקודות בארה״ב</h3>
-          <p>טכנאי מוסמך בודק את הרכב פיזית, כולל סרטוני 4K והעלאה לפורטל.</p>
-        </div>
-        <div class="how-stepmedia"><video muted autoplay loop playsinline webkit-playsinline preload="metadata" src="./videos/garage-lift.mp4"></video></div>
-      </li>
-      <li class="how-step" data-step="5">
-        <div class="how-stepnum">05</div>
-        <div class="how-stepbody">
-          <h3>שילוח ימי לישראל</h3>
-          <p>RoRo או קונטיינר, ביטוח מלא, מעקב חי דרך הפורטל. משך ממוצע: 38 ימי שיט.</p>
-        </div>
-        <div class="how-stepmedia"><video muted autoplay loop playsinline webkit-playsinline preload="metadata" src="./videos/drone-roro-shipping.mp4"></video></div>
-      </li>
-      <li class="how-step" data-step="6">
-        <div class="how-stepnum">06</div>
-        <div class="how-stepbody">
-          <h3>שחרור ממכס באשדוד</h3>
-          <p>נציגינו מגישים טופס 21, התחייבויות מסחריות, ומשלמים מסים ומע״מ. הרכב משוחרר תוך 7–10 ימי עסקים.</p>
-        </div>
-        <div class="how-stepmedia"><video muted autoplay loop playsinline webkit-playsinline preload="metadata" src="./videos/container-dock-israel.mp4"></video></div>
-      </li>
-      <li class="how-step" data-step="7">
-        <div class="how-stepnum">07</div>
-        <div class="how-stepbody">
-          <h3>סטנדרטיזציה, רישוי ומימון</h3>
-          <p>בדיקת משרד התחבורה, מבחן תקינה ישראלי והנפקת לוחית רישוי. אישור מימון מיידי מבנק שותף — עד 75% מערך הרכב, ריבית מ- 3.9%, תקופה עד 84 חודשים.</p>
-        </div>
-        <div class="how-stepmedia"><video muted autoplay loop playsinline webkit-playsinline preload="metadata" src="./videos/auto-garage-up-lifting.mp4"></video></div>
-      </li>
-      <li class="how-step" data-step="8">
-        <div class="how-stepnum">08</div>
-        <div class="how-stepbody">
-          <h3>ביטוח ומסירת המפתחות</h3>
-          <p>הצעה תחרותית לביטוח חובה ומקיף מהראל / מנורה / איילון. מסירת מפתחות רשמית — האוטו שלך.</p>
-        </div>
-        <div class="how-stepmedia"><video muted autoplay loop playsinline webkit-playsinline preload="metadata" src="./videos/israel-mediterranean.mp4"></video></div>
-      </li>
-    </ol>
-
-    <div class="how-cta-row">
-      <button class="btn-30steps" id="open30Steps">ראה את כל 30 שלבי הרגולציה →</button>
-    </div>
-  </div>
-</section>
-
-<!-- ========= 30-STEP REGULATORY MODAL ========= -->
-<div class="reg30-modal" id="reg30Modal" aria-hidden="true" role="dialog">
-  <div class="reg30-backdrop" data-close="reg30"></div>
-  <div class="reg30-panel" role="document">
-    <header class="reg30-head">
-      <div>
-        <div class="eyebrow">רגולציה ותהליך</div>
-        <h2>30 השלבים המלאים של יבוא אישי</h2>
-        <p>מההערכת שווי רכב בארה״ב ועד הוצאת מספר רכב ישראלי — כל שלב מסונכרן בפורטל הלקוחות.</p>
+    <!-- Stock board -->
+    <div class="stock-board">
+      <div class="stock-header">
+        <div class="stock-title">לוח בורסה · עדכון בזמן אמת</div>
+        <div class="stock-live"><span class="live-dot"></span>LIVE</div>
       </div>
-      <button class="reg30-close" data-close="reg30" aria-label="סגור">×</button>
-    </header>
-    <div class="reg30-body" id="reg30Body"></div>
-  </div>
-</div>
-
-<!-- ========= REVIEWS — editorial pull-quote ========= -->
-<section class="reviews" id="reviews" data-reveal>
-  <div class="sec-w">
-    <div class="sec-head">
-      <div class="eyebrow">לקוחות מספרים</div>
-      <h2 class="h-1">120+ יבואים. אפס תלונות.</h2>
-      <div class="reviews-stat-row">
-        <div class="rstat"><b>4.9</b><span>★★★★★</span></div>
-        <div class="rstat"><b>120+</b><span>לקוחות</span></div>
-        <div class="rstat"><b>98%</b><span>המלצה</span></div>
-        <div class="rstat"><b>0</b><span>תלונות</span></div>
+      <div class="stock-rows">
+        <div class="stock-row">
+          <div class="stock-rank">01</div>
+          <div class="stock-name">Mercedes G580 with EQ</div>
+          <div class="stock-our">₪656,000</div>
+          <div class="stock-dealer">₪1,700,000</div>
+          <div class="stock-save">-₪1,044,000</div>
+          <div class="stock-pct">−61%</div>
+        </div>
+        <div class="stock-row">
+          <div class="stock-rank">02</div>
+          <div class="stock-name">Mercedes G63 AMG</div>
+          <div class="stock-our">₪1,180,000</div>
+          <div class="stock-dealer">₪2,100,000</div>
+          <div class="stock-save">-₪920,000</div>
+          <div class="stock-pct">−44%</div>
+        </div>
+        <div class="stock-row">
+          <div class="stock-rank">03</div>
+          <div class="stock-name">Mercedes GLS 450d</div>
+          <div class="stock-our">₪574,000</div>
+          <div class="stock-dealer">₪1,050,000</div>
+          <div class="stock-save">-₪476,000</div>
+          <div class="stock-pct">−45%</div>
+        </div>
+        <div class="stock-row">
+          <div class="stock-rank">04</div>
+          <div class="stock-name">Lucid Air Pure</div>
+          <div class="stock-our">₪376,000</div>
+          <div class="stock-dealer">₪800,000</div>
+          <div class="stock-save">-₪424,000</div>
+          <div class="stock-pct">−53%</div>
+        </div>
+        <div class="stock-row">
+          <div class="stock-rank">05</div>
+          <div class="stock-name">Mercedes G500</div>
+          <div class="stock-our">₪1,000,000</div>
+          <div class="stock-dealer">₪1,450,000</div>
+          <div class="stock-save">-₪450,000</div>
+          <div class="stock-pct">−31%</div>
+        </div>
       </div>
     </div>
-    <div class="reviews-grid" id="reviewsGrid"></div>
-  </div>
-</section>
 
-<!-- ========= ADVISORY BOARD ========= -->
-<section class="advisors" id="advisors" data-reveal>
-  <div class="sec-w">
-    <div class="sec-head">
-      <div class="eyebrow">חבר היועצים</div>
-      <h2 class="h-1">מומחים שמתדירים רגולציה, מימון ובדיקה טכנית</h2>
-      <p style="max-width:680px;color:var(--mb-text-muted);margin-top:8px">כל תיק עובר דרך צוות מומחים בלתי-תלוי — מייעוץ מס, דרך בדיקה רפואית, ועד לוגיסטיקה ומימון.</p>
-    </div>
-    <div class="adv-grid" id="advGrid"></div>
-    <div class="adv-outlets">
-      <span>מופיע באמצעי התקשורת המובילים</span>
-      <div class="adv-outlets-row">
-        <span>גלובס</span><span>Ynet</span><span>דה־מרקר</span><span>כלכליסט</span><span>מאקו</span><span>N12</span>
+    <!-- Big calc -->
+    <div class="calc-wrap">
+      <div class="calc-headline">
+        <div class="calc-eyebrow">דוגמה: Mercedes G63 AMG 2025</div>
+        <div class="calc-bar calc-bar-dealer">
+          <span class="bar-label">יבואן רשמי</span>
+          <span class="bar-val">₪2,100,000</span>
+        </div>
+        <div class="calc-bar calc-bar-ours">
+          <span class="bar-label">אוטוגלובל</span>
+          <span class="bar-val">₪1,180,000</span>
+        </div>
+        <div class="calc-save">
+          <div class="calc-save-label">חיסכון כולל</div>
+          <div class="calc-save-num">₪918,726</div>
+        </div>
+      </div>
+
+      <div class="calc-specs">
+        <div class="spec-box">
+          <div class="spec-val">3.4<span>s</span></div>
+          <div class="spec-label">0-100 קמ״ש</div>
+        </div>
+        <div class="spec-box">
+          <div class="spec-val">577<span>hp</span></div>
+          <div class="spec-label">הספק</div>
+        </div>
+        <div class="spec-box">
+          <div class="spec-val">V8</div>
+          <div class="spec-label">סוג מנוע</div>
+        </div>
+        <div class="spec-box">
+          <div class="spec-val">850<span>Nm</span></div>
+          <div class="spec-label">מומנט</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========= INTAKE FORM ========= -->
-<section class="intake" id="intake" data-reveal>
-  <div class="sec-w intake-split">
-    <div class="intake-copy">
-      <div class="eyebrow">פתח תיק</div>
-      <h2 class="h-display">ראשון—<br><i class="who-italic">ספר לנו על החלום.</i></h2>
-      <p style="color:var(--mb-text-muted);max-width:480px;margin-top:14px;font-size:16px">מלא תוך 60 שניות. תוך זמן קצר תקבל הצעת רכב ראשונית עם התחשיב מלא — ולא תשלם שקל.</p>
-      <ul class="intake-trust">
-        <li><span>✓</span>החזר מלא של ₪500 אם אין התאמה תוך 30 יום</li>
-        <li><span>✓</span>יועץ אישי צמוד — לא שיחות מכירות</li>
-        <li><span>✓</span>דו״ח Carfax מלא ובדיקת 200 נקודות</li>
-        <li><span>✓</span>USD/ILS נקבע במעמד ההזמנה</li>
-      </ul>
+<!-- PROCESS — BLACK FOLD -->
+<section class="process" id="process">
+  <div class="container">
+    <div class="section-head process-head">
+      <div class="section-eyebrow">תהליך מלא · 15 שלבים</div>
+      <h2 class="section-title">מהבחירה ועד המפתחות שלך</h2>
+      <p class="section-sub">שקיפות מלאה. ליווי מקצועי בכל שלב. אנחנו דואגים — אתה נוסע.</p>
     </div>
-    <form class="intake-form" id="intakeForm" novalidate>
-      <div class="if-row">
-        <label><span>שם מלא<i>*</i></span><input type="text" name="name" required autocomplete="name"></label>
-        <label><span>טלפון<i>*</i></span><input type="tel" name="phone" required autocomplete="tel" inputmode="tel" pattern="[0-9\-\s+]+"></label>
-      </div>
-      <label><span>אימייל</span><input type="email" name="email" autocomplete="email"></label>
-      <div class="if-row">
-        <label><span>קטגוריה<i>*</i></span>
-          <select name="category" required>
-            <option value="">בחר...</option>
-            <option>SUV יוקרה</option>
-            <option>שטח / Off-Road</option>
-            <option>חשמלי EV</option>
-            <option>פיק-אפ</option>
-            <option>ספורט / קופה</option>
-            <option>סדאן</option>
-            <option>לא בטוח</option>
-          </select>
-        </label>
-        <label><span>מצב הרכב<i>*</i></span>
-          <select name="condition" required>
-            <option value="">בחר...</option>
-            <option>חדש (0 ק״מ)</option>
-            <option>יד שנייה עד 30K מייל</option>
-            <option>יד שנייה 30–60K מייל</option>
-            <option>אין העדפה</option>
-          </select>
-        </label>
-      </div>
-      <div class="if-row">
-        <label><span>תקציב משוער<i>*</i></span>
-          <select name="budget" required>
-            <option value="">בחר...</option>
-            <option>עד ₪400K</option>
-            <option>₪400K–700K</option>
-            <option>₪700K–1M</option>
-            <option>₪1M–1.5M</option>
-            <option>₪1.5M+</option>
-          </select>
-        </label>
-        <label><span>זקוק למימון?</span>
-          <select name="financing">
-            <option>בלי מימון</option>
-            <option>מימון חלקי</option>
-            <option>מימון מלא</option>
-          </select>
-        </label>
-      </div>
-      <label><span>בקשות מיוחדות</span><textarea name="notes" rows="3" placeholder="דגם מדויק, צבע פנים/חוץ, תוספות, לוח זמנים..."></textarea></label>
-      <label class="if-check"><input type="checkbox" name="agree" required><span>אני מאשר/ת את תנאי השימוש ומדיניות הפרטיות</span></label>
-      <button class="if-submit" type="submit">שלח וקבל הצעה תוך זמן קצר →</button>
-      <div class="if-status" id="intakeStatus" aria-live="polite"></div>
-    </form>
+
+    <div class="process-grid">
+      <div class="process-step"><div class="step-num">01</div><div class="step-title">בחירת רכב</div><div class="step-body">בוחרים דגם, רמת גימור, צבע ומפרט. מקבלים הערכת מחיר מיידית.</div></div>
+      <div class="process-step"><div class="step-num">02</div><div class="step-title">מרכז שירות</div><div class="step-body">מרכז שירות זמין לאורך כל הדרך — שאלות, ייעוץ, התאמות.</div></div>
+      <div class="process-step"><div class="step-num">03</div><div class="step-title">הזמנה ופיקדון</div><div class="step-body">₪500 פיקדון, צילום ת.ז ורישיון. נפתח תיק לקוח אישי.</div></div>
+      <div class="process-step"><div class="step-num">04</div><div class="step-title">סריקת השוק</div><div class="step-body">הצוות בארה״ב סורק את כל היבשת — תחרות בין שלושה ספקים.</div></div>
+      <div class="process-step"><div class="step-num">05</div><div class="step-title">הצעת מחיר</div><div class="step-body">תוך 72 שעות — הצעת מחיר סופית דרך הפורטל האישי.</div></div>
+      <div class="process-step"><div class="step-num">06</div><div class="step-title">מימון או מזומן</div><div class="step-body">תשלום בטרנספר או דרך שותף מימון מאושר.</div></div>
+      <div class="process-step"><div class="step-num">07</div><div class="step-title">אישור רכישה</div><div class="step-body">אישור סופי לקנייה — הספק בארה״ב סוגר את העסקה.</div></div>
+      <div class="process-step"><div class="step-num">08</div><div class="step-title">איסוף ובדיקה</div><div class="step-body">איסוף הרכב + בדיקה פיזית מקצועית טרם שילוח.</div></div>
+      <div class="process-step"><div class="step-num">09</div><div class="step-title">שילוח ימי</div><div class="step-body">העמסה על ספינה, BoL מועבר ללקוח, כ-38 ימי הפלגה.</div></div>
+      <div class="process-step"><div class="step-num">10</div><div class="step-title">ניירת ישראל</div><div class="step-body">נציגינו מטפלים בכל הניירת מול נמל אשדוד או חיפה.</div></div>
+      <div class="process-step"><div class="step-num">11</div><div class="step-title">מס מכס</div><div class="step-body">חישוב והעברת תשלום המכס בשם הלקוח.</div></div>
+      <div class="process-step"><div class="step-num">12</div><div class="step-title">תקינה</div><div class="step-body">זימון למכון התקינה — תאום מלא מצדנו.</div></div>
+      <div class="process-step"><div class="step-num">13</div><div class="step-title">רישוי</div><div class="step-body">זימון למשרד הרישוי — לוחיות וזיהוי רכב.</div></div>
+      <div class="process-step process-step-final"><div class="step-num">14</div><div class="step-title">המפתחות שלך</div><div class="step-body">איסוף הרכב. ברכות — אתה נוסע על הרכב שחלמת.</div></div>
+      <div class="process-step"><div class="step-num">15</div><div class="step-title">ביטוח</div><div class="step-body">הצעת ביטוח דרך שותף מאושר במחיר משתלם.</div></div>
+    </div>
   </div>
 </section>
 
-<!-- ========= FAQ ========= -->
+<!-- ABOUT + VIDEOS -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">אודותינו</div>
+      <h2 class="section-title">המומחים לייבוא אישי בישראל</h2>
+      <p class="section-sub">מאות לקוחות. אלפי ק״מ של ייעוץ. הרכב שלך מתחיל בלחיצה אחת.</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-video">
+        <img src="images/car-mercedes-g63-amg.jpg" alt="">
+        <div class="about-video-label">בדרך לבית הלקוח</div>
+      </div>
+      <div class="about-video">
+        <img src="images/car-ford-f150-raptor.jpg" alt="">
+        <div class="about-video-label">שילוח ימי מארה״ב</div>
+      </div>
+      <div class="about-video">
+        <img src="images/car-tesla-cybertruck-awd.jpg" alt="">
+        <div class="about-video-label">בדיקה מקצועית</div>
+      </div>
+    </div>
+
+    <div class="about-pillars">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <div class="pillar-title">שקיפות</div>
+        <div class="pillar-body">כל שקל מוצג. כל עלות מתועדת. ללא הפתעות.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <div class="pillar-title">תחרות</div>
+        <div class="pillar-body">שלושה ספקים בארה״ב מתחרים על העסקה שלך.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <div class="pillar-title">ליווי</div>
+        <div class="pillar-body">15 שלבי תהליך — אנחנו לידך בכל אחד מהם.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">לקוחות מספרים</div>
+      <h2 class="section-title">מה לקוחותינו אומרים</h2>
+    </div>
+
+    <div class="test-grid">
+      <div class="test-card">
+        <div class="test-stars">★★★★★</div>
+        <div class="test-quote">"חסכתי 750,000 שקל על G63 AMG מול היבואן הרשמי. תהליך מלא, ליווי מקצועי, רכב הגיע בדיוק כמו שהזמנתי."</div>
+        <div class="test-author">
+          <div class="test-name">דניאל כהן</div>
+          <div class="test-meta">תל אביב · Mercedes G63 AMG</div>
+        </div>
+      </div>
+      <div class="test-card">
+        <div class="test-stars">★★★★★</div>
+        <div class="test-quote">"חיפשתי Bronco Raptor שנים. היבואן הרשמי בכלל לא מייבא. אוטוגלובל הביאו לי את הרכב המדויק תוך 40 יום."</div>
+        <div class="test-author">
+          <div class="test-name">מיכל לוי</div>
+          <div class="test-meta">חיפה · Ford Bronco Raptor</div>
+        </div>
+      </div>
+      <div class="test-card">
+        <div class="test-stars">★★★★★</div>
+        <div class="test-quote">"שקיפות מלאה. ראיתי כל מחיר, כל מס, כל עמלה. בלי הפתעות. מאוד מקצועי, ממליץ בחום."</div>
+        <div class="test-author">
+          <div class="test-name">אורן ברק</div>
+          <div class="test-meta">רמת גן · Tesla Model X</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
 <section class="faq" id="faq">
-  <div class="faq-w">
-    <div class="sec-head center">
-      <div class="eyebrow">שאלות נפוצות</div>
-      <h2 class="h-1">מה צריך לדעת לפני שמתחילים</h2>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">שאלות נפוצות</div>
+      <h2 class="section-title">תשובות לשאלות החשובות</h2>
     </div>
-    <div id="faqList"></div>
-  </div>
-</section>
 
-<!-- ========= BLOG ========= -->
-<section class="blog" id="blog">
-  <div class="blog-w">
-    <div class="sec-head">
-      <div class="eyebrow">בלוג ועדכונים</div>
-      <h2 class="h-1">מה חדש בעולם היבוא האישי</h2>
-    </div>
-    <div class="blog-grid">
-
-      <article class="blog-card" onclick="openBlog('usd')">
-        <div class="blog-card-bg" style="background-image:linear-gradient(135deg,#1a2740,#0a0f1a)"></div>
-        <div class="blog-card-content">
-          <span class="blog-card-cat">שווקים</span>
-          <h3>שיא של כל הזמנים — דולר ב-2.93 ₪</h3>
-          <p>השער הנמוך ביותר זה 7 שנים פותח חלון הזדמנות נדיר לקונים ישראלים. ניתוח שווקים מלא.</p>
-          <a class="read-more">קרא עוד →</a>
-        </div>
-      </article>
-
-      <article class="blog-card" onclick="openBlog('regulation')">
-        <div class="blog-card-bg" style="background-image:linear-gradient(135deg,#162a40,#050a14)"></div>
-        <div class="blog-card-content">
-          <span class="blog-card-cat">רגולציה</span>
-          <h3>תיקון חוק היבוא 2026 — הקלות חדשות</h3>
-          <p>תקנות משרד התחבורה החדשות מאפשרות יבוא רחב יותר ומפחיתות עלויות עד 8% עבור רכבי EV.</p>
-          <a class="read-more">קרא עוד →</a>
-        </div>
-      </article>
-
-      <article class="blog-card" onclick="openBlog('hidden')">
-        <div class="blog-card-bg" style="background-image:linear-gradient(135deg,#1f1a40,#0a0a1a)"></div>
-        <div class="blog-card-content">
-          <span class="blog-card-cat">פנינים נסתרות</span>
-          <h3>3 דגמים שלא ראית בישראל</h3>
-          <p>Lucid Air, Rivian R1S, Cadillac Escalade IQ — דגמים שלא משווקים בארץ אבל זמינים דרכנו במחירים מצוינים.</p>
-          <a class="read-more">קרא עוד →</a>
-        </div>
-      </article>
-
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>כמה זמן לוקח התהליך מההזמנה ועד קבלת הרכב?</summary>
+        <p>כ-60-90 ימים. 72 שעות לקבלת הצעת מחיר, כ-38 ימי הפלגה, ואז כ-3 שבועות תקינה ורישוי בישראל. אנחנו מעדכנים אותך בכל שלב דרך הפורטל האישי.</p>
+      </details>
+      <details class="faq-item">
+        <summary>איך אני יודע שאני באמת חוסך?</summary>
+        <p>אנחנו מציגים שקיפות מלאה — מחיר הרכב בארה״ב, עלויות שילוח (≈$2,000), מסי מכס (≈₪2,000), מע״מ 18%, ועמלת שירות 5%. תוכל להשוות לכל מחיר אצל היבואן הרשמי בכל זמן.</p>
+      </details>
+      <details class="faq-item">
+        <summary>מה קורה אם הרכב מגיע פגום?</summary>
+        <p>הרכב עובר בדיקה פיזית מקצועית בארה״ב לפני שילוח, ובדיקה נוספת בארץ. במקרה חריג של נזק שילוח — מכוסה ע״י ביטוח הימי המלא.</p>
+      </details>
+      <details class="faq-item">
+        <summary>האם אתם יבואן רשמי או יבוא מקביל?</summary>
+        <p>לא. אנחנו ליווי לייבוא אישי. הרכב נקנה על שמך בארה״ב, מובא לישראל על שמך, ועובר תקינה כייבוא אישי. אנחנו מטפלים בכל הבירוקרטיה.</p>
+      </details>
+      <details class="faq-item">
+        <summary>מה גובה הפיקדון ומתי משלמים?</summary>
+        <p>פיקדון של ₪500 בלבד פותח את התיק. תשלום מלא מתבצע רק לאחר אישור הצעת המחיר הסופית והסכמתך לקנייה.</p>
+      </details>
+      <details class="faq-item">
+        <summary>האם ניתן לקבל ביטוח דרככם?</summary>
+        <p>כן. שלב 15 בתהליך — נקבל עבורך הצעות ביטוח מחברת ביטוח שותפה במחיר משתלם.</p>
+      </details>
     </div>
   </div>
 </section>
 
-<!-- ========= TERMS & CONDITIONS ========= -->
-<section class="terms" id="terms" data-reveal>
-  <div class="sec-w">
-    <div class="sec-head">
-      <div class="eyebrow">תנאי שימוש</div>
-      <h2 class="h-1">תנאי שימוש ומדיניות פרטיות</h2>
-    </div>
-    <div class="terms-grid">
-      <details class="terms-item"><summary><span>01</span> ציות לרגולציה ישראלית</summary><p>AutoImports פועלת כמתווכת לשירות היבוא האישי. כל התהליך מתבצע בהתאם מלא לתקנות משרד התחבורה, רשות המסים ומשרד המשפטים. הלקוח רשום כמייבא רשמי אצל מכס ישראל והרכב רשום על שמו.</p></details>
-      <details class="terms-item"><summary><span>02</span> דמי פתיחת תיק והחזרים</summary><p>דמי פתיחת התיק הם ₪500 וייזקפו לטובת הרכישה במעמד השלמת התשלום הסופי. במידה ואין התאמה תוך 30 יום מיום פתיחת התיק, הסכום יוחזר במלואו.</p></details>
-      <details class="terms-item"><summary><span>03</span> מחירים ושערי מטבע</summary><p>כל המחירים מוצגים באתר מהווים הערכה בלבד. התקשירות הסופית תיקבע בהצעה הרשמית בפורטל האישי. USD/ILS נקבע במעמד ההזמנה.</p></details>
-      <details class="terms-item"><summary><span>04</span> בדיקות טכניות ו-Carfax</summary><p>כל רכב עובר בדיקת 200 נקודות במכון מוסמך בארה״ב, לרבות Carfax טיטל והיסטוריית תאונות. כל הממצאים מועלים לפורטל הלקוח לפני תשלום סופי.</p></details>
-      <details class="terms-item"><summary><span>05</span> שילוח וביטוח</summary><p>שילוח ימי מבוטח 100% מערך הרכב דרך שותף הביטוח הממולצ של נמל אשדוד. משך ממוצע 8–12 שבועות. מעקב חי בפורטל האישי.</p></details>
-      <details class="terms-item"><summary><span>06</span> אחריות יצרן</summary><p>יצרני ארה״ב (Ford, Chevy, Jeep, Tesla, Rivian) מעניקים אחריות עולמית. מרצדס/BMW: AutoImports מציעה אחריות יבוא אישי 24 חודש על מרכיבי המנוע וההנעה דרך מוסכים מורשים.</p></details>
-      <details class="terms-item"><summary><span>07</span> ביטול והחזרים</summary><p>ניתן לבטל עד שלב 7 (אישור רכישה) בהחזר מלא של דמי פתיחת התיק בניכוי עלויות איתור. לאחר אישור הרכישה, הרכב של הלקוח — עם זאת קיימת תמיכה בהעברת הרכב אליו או מכירתו בארה״ב.</p></details>
-      <details class="terms-item"><summary><span>08</span> פרטיות ו-GDPR</summary><p>כל המידע של הלקוח מאוחסן בשרת ישראלית אבטוחה לפי חוק הגנת הפרטיות הישראלי ו-GDPR. אנו לא משתפים מידע עם צד שלישי. עיון, תיקון ומחיקה זמינים בכל רגע דרך privacy@gita.cars.</p></details>
-    </div>
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="container">
+    <h2 class="cta-title">הרכב שלך מחכה.</h2>
+    <p class="cta-sub">פתח תיק לקוח ב-2 דקות. ₪500 בלבד.</p>
+    <a href="#catalog" class="btn-primary btn-lg">התחל הזמנה</a>
   </div>
 </section>
 
-<!-- ========= FOOTER ========= -->
-<footer class="footer-mb">
-  <div class="foot-w">
-    <div class="foot-grid">
-      <div class="foot-brand">
-        <div class="foot-brand-name"><span class="mb-logo-mark">Ai</span> AutoImports.co.il</div>
-        <p>ייעוץ ויבוא אישי של רכבי יוקרה מארצות הברית. שקיפות מלאה, מחיר משתלם ב-78%, מסירה תוך 8-12 שבועות.</p>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">AutoImports</div>
+        <div class="footer-tag">ייבוא אישי · ארה״ב לישראל</div>
       </div>
-      <div class="foot-col">
-        <h5>קטלוג</h5>
-        <ul>
-          <li><a href="#catalog">כל הדגמים</a></li>
-          <li><a href="#catalog">SUV יוקרה</a></li>
-          <li><a href="#catalog">חשמלי</a></li>
-          <li><a href="#catalog">פיק-אפ</a></li>
-        </ul>
+      <div class="footer-col">
+        <div class="footer-h">קטלוג</div>
+        <a href="#catalog">כל הדגמים</a>
+        <a href="#compare">השוואת מחירים</a>
+        <a href="#calc">מחשבון חיסכון</a>
       </div>
-      <div class="foot-col">
-        <h5>שירות</h5>
-        <ul>
-          <li><a href="#how">איך זה עובד</a></li>
-          <li><a href="#faq">שאלות נפוצות</a></li>
-          <li><a href="#blog">בלוג</a></li>
-          <li><a href="#who">צור קשר</a></li>
-        </ul>
+      <div class="footer-col">
+        <div class="footer-h">חברה</div>
+        <a href="#about">אודות</a>
+        <a href="#process">תהליך</a>
+        <a href="#faq">שאלות נפוצות</a>
       </div>
-      <div class="foot-col">
-        <h5>קשר</h5>
-        <ul>
-          <li>050-000-0000</li>
-          <li>info@gita.cars</li>
-          <li>ראשון לציון</li>
-        </ul>
+      <div class="footer-col">
+        <div class="footer-h">משפטי</div>
+        <a href="#">תקנון</a>
+        <a href="#">פרטיות</a>
+        <a href="#">תקנות יבוא</a>
       </div>
     </div>
-    <div class="foot-bot">
-      <span>© 2026 AutoImports.co.il. כל הזכויות שמורות.</span>
-      <span>USD/ILS = 2.93 · המחירים להמחשה</span>
+    <div class="footer-bottom">
+      © 2026 AutoImports · ראשון לציון, ישראל · רישיון יבוא 12345
     </div>
   </div>
 </footer>
 
-<!-- ========= MOBILE BOTTOM NAV ========= -->
-<nav class="mob-bottom" aria-label="ניווט מהיר">
-  <a href="#catalog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18M3 12h18M3 18h18"/></svg><span>קטלוג</span></a>
-  <a href="#calc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M16 11h0M8 15h2M12 15h2M16 15h0"/></svg><span>מחשבון</span></a>
-  <a href="#intake" class="mob-bottom-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg><span>פתח תיק</span></a>
-  <a href="#" id="mobWaTrig"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z"/></svg><span>WhatsApp</span></a>
-</nav>
-
-<!-- ========= CURSOR FOLLOWER (desktop only) ========= -->
-<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
-
-<!-- ========= WHATSAPP CHATBOT ========= -->
-<button class="wa-fab" id="waFab" aria-label="WhatsApp Chat">
-  <svg viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.17-3.12.82.83-3.04-.2-.32a8.188 8.188 0 01-1.26-4.38c.01-4.54 3.7-8.24 8.25-8.24zM8.53 7.33c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1 2.56.14.19 1.74 2.69 4.26 3.78 1.86.82 2.5.84 2.94.74.21-.05.46-.13.7-.27.24-.14.46-.31.62-.49.16-.18.26-.4.34-.6.07-.21.1-.41.07-.6-.04-.18-.13-.34-.27-.46-.14-.13-.31-.21-.5-.27-.18-.06-.44-.16-.59-.18-.15-.02-.25-.06-.36.06l-.5.59c-.15.17-.27.2-.42.13-.15-.07-.61-.22-1.18-.71-.44-.39-.74-.87-.82-1.01-.07-.14-.01-.21.06-.28.07-.07.16-.16.23-.25.07-.09.1-.16.16-.27.06-.11.03-.21-.01-.29-.04-.08-.34-.83-.46-1.13-.13-.31-.26-.27-.36-.27z"/></svg>
-  <span class="wa-badge">1</span>
-</button>
-<div class="wa-panel" id="waPanel">
-  <div class="wa-head">
-    <div class="wa-av">G</div>
-    <div class="wa-meta">
-      <h5>AutoImports — סוכן מומחה</h5>
-      <span>זמין · מענה מיידי</span>
-    </div>
-    <button class="wa-close" onclick="document.getElementById('waPanel').classList.remove('open')">×</button>
-  </div>
-  <div class="wa-body" id="waBody"></div>
-  <div class="wa-quick" id="waQuick"></div>
-  <div class="wa-input">
-    <input type="text" id="waInput" placeholder="כתוב הודעה..." />
-    <button id="waSend">←</button>
-  </div>
+<!-- CAR MODAL -->
+<div class="modal" id="car-modal">
+  <div class="modal-overlay"></div>
+  <div class="modal-content" id="modal-content"></div>
 </div>
 
-<script src="./js/data.js"></script>
-<script src="./js/app-mb.js"></script>
-<script src="./js/folds/board.js" defer></script>
-<script src="./js/interactions.js"></script>
-<script src="./js/award.js"></script>
-<script src="./js/folds/how.js"></script>
-<script src="./js/folds/value-prop.js"></script>
-<script src="./js/folds/calc.js"></script>
-<script src="./js/folds/catalog.js"></script>
-<script src="./js/folds/hero.js"></script>
-<script src="./js/folds/hero-init.js"></script>
+<script src="js/cars-data.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
