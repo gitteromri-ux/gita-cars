@@ -96,6 +96,7 @@
           <div class="car-img-wrap">
             <img src="${c.image}" alt="${c.nameHe}" loading="lazy"/>
             <span class="car-badge-discount">−${pct}%</span>
+            <div class="car-condition">${c.condition === 'certified' ? `<span class="cert-badge"><span class="cert-badge-seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><span class="cert-badge-text"><strong>CERTIFIED</strong></span></span>` : `<span class="car-condition-new">חדש מהיצרן</span>`}</div>
           </div>
           <div class="car-info">
             <div class="car-eyebrow-row">
@@ -111,7 +112,7 @@
             </div>
             <div class="car-price-section">
               <div>
-                <div class="car-price-our-label">המחיר שלנו</div>
+                <div class="car-price-our-label">מחיר ייבוא אישי</div>
                 <div class="car-price-our">${fmt(c.ourPrice)}</div>
                 <div class="car-price-old">${fmt(c.dealerPrice)}</div>
               </div>
@@ -181,7 +182,7 @@
           </div>
           <div class="modal-head-right">
             <div class="modal-price-block">
-              <div class="modal-price-our-label">המחיר שלנו · הכל כלול</div>
+              <div class="modal-price-our-label">מחיר ייבוא אישי · הכל כלול</div>
               <div class="modal-price-our">${fmt(car.ourPrice)}</div>
               <div class="modal-price-dealer">יבואן רשמי: ${fmt(car.dealerPrice)}</div>
             </div>

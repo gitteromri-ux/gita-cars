@@ -1,0 +1,381 @@
+#!/usr/bin/env python3
+"""Generate cars-data.js v5 with partner ranking + new image-gen cars."""
+import json
+
+FX = {"usdIls": 2.93, "shippingUsd": 2000, "customsIls": 2000, "discountUsd": 3000, "servicePct": 0.05, "depositIls": 500, "vat": 0.18}
+
+# Ordering: HIGHEST saving % first (partner Excel)
+# condition: 'new' or 'certified'
+# certified condition: prev model year, <25k miles
+CARS = [
+    # === TOP TIER (35%+ saving) ===
+    {
+        "id": "gmc-yukon-denali",
+        "name": "GMC Yukon Denali 6.2 4WD",
+        "nameHe": "GMC יוקון דנאלי 6.2",
+        "eyebrow": "V8 · 2026 · GMC · DENALI",
+        "brand": "GMC", "year": 2026, "condition": "new",
+        "fuel": "בנזין", "engine": "6.2L V8", "hp": 420, "nm": 624, "accel": 5.8, "topSpeed": 180,
+        "transmission": "10-Speed Automatic", "drive": "4WD",
+        "mpg": "5.5 ק\"מ/ליטר", "seats": 8, "doors": 5,
+        "length": 5334, "width": 2057, "height": 1933, "weight": 2630,
+        "dealerPrice": 750000, "ourPrice": 439096,
+        "image": "images/car-gmc-yukon-denali.jpg",
+        "gallery": [],
+        "savingPct": 41.5,
+        "tags": ["V8", "GMC", "פרימיום"],
+        "highlight": "החיסכון הגבוה ביותר בקטגוריה"
+    },
+    {
+        "id": "jeep-gladiator-sport",
+        "name": "Jeep Gladiator Sport 4x4",
+        "nameHe": "ג'יפ גלדיאטור ספורט",
+        "eyebrow": "V6 · 2026 · JEEP",
+        "brand": "Jeep", "year": 2026, "condition": "new",
+        "fuel": "בנזין", "engine": "3.6L V6", "hp": 285, "nm": 353, "accel": 7.6, "topSpeed": 180,
+        "transmission": "8-Speed Auto", "drive": "4x4",
+        "mpg": "8.0 ק\"מ/ליטר", "seats": 5, "doors": 4,
+        "length": 5540, "width": 1893, "height": 1900, "weight": 2200,
+        "dealerPrice": 440000, "ourPrice": 269736,
+        "image": "images/car-jeep-gladiator.jpg",
+        "gallery": [],
+        "savingPct": 38.7,
+        "tags": ["JEEP", "פיק-אפ", "שטח"],
+        "highlight": "פיק-אפ הרפתקה אמריקאי במחיר חצי-ישראלי"
+    },
+    {
+        "id": "mercedes-gle-450",
+        "name": "Mercedes-Benz GLE 450 4MATIC",
+        "nameHe": "מרצדס GLE 450 4MATIC",
+        "eyebrow": "I6 · 2026 · MERCEDES · AMG LINE",
+        "brand": "Mercedes-Benz", "year": 2026, "condition": "new",
+        "fuel": "בנזין מיילד-היברידי", "engine": "3.0L I6 mild-hybrid", "hp": 375, "nm": 500, "accel": 5.6, "topSpeed": 250,
+        "transmission": "9G-TRONIC", "drive": "4MATIC AWD",
+        "mpg": "9.5 ק\"מ/ליטר", "seats": 7, "doors": 5,
+        "length": 4924, "width": 2018, "height": 1796, "weight": 2210,
+        "dealerPrice": 749100, "ourPrice": 469220,
+        "image": "images/car-mercedes-gle-450.jpg",
+        "gallery": [],
+        "savingPct": 37.4,
+        "tags": ["MERCEDES", "פרימיום", "7 מקומות"],
+        "highlight": "SUV פרימיום של 7 מקומות עם חבילת AMG Line"
+    },
+    {
+        "id": "ford-bronco-bigbend",
+        "name": "Ford Bronco Big Bend 4-door",
+        "nameHe": "פורד ברונקו ביג בנד",
+        "eyebrow": "2.7L V6 · 2026 · FORD · CREAM",
+        "brand": "Ford", "year": 2026, "condition": "new",
+        "fuel": "בנזין", "engine": "2.7L EcoBoost V6", "hp": 330, "nm": 563, "accel": 6.7, "topSpeed": 190,
+        "transmission": "10-Speed Auto", "drive": "4x4",
+        "mpg": "7.5 ק\"מ/ליטר", "seats": 5, "doors": 5,
+        "length": 4811, "width": 1928, "height": 1857, "weight": 2210,
+        "dealerPrice": 429000, "ourPrice": 283423,
+        "image": "images/car-ford-bronco-bigbend.jpg",
+        "gallery": [],
+        "savingPct": 33.9,
+        "tags": ["FORD", "שטח", "אייקון"],
+        "highlight": "אייקון השטח האמריקאי בצבע קרם"
+    },
+    {
+        "id": "kia-ev9",
+        "name": "Kia EV9 RWD Standard",
+        "nameHe": "קיה EV9",
+        "eyebrow": "EV · 2026 · KIA · 7 מקומות",
+        "brand": "Kia", "year": 2026, "condition": "new",
+        "fuel": "חשמלי", "engine": "מנוע אחורי", "hp": 215, "nm": 350, "accel": 8.2, "topSpeed": 185,
+        "transmission": "תיבת חשמלית", "drive": "RWD",
+        "mpg": "טווח 480 ק\"מ", "seats": 7, "doors": 5,
+        "length": 5010, "width": 1980, "height": 1755, "weight": 2310,
+        "dealerPrice": 429000, "ourPrice": 293968,
+        "image": "images/car-kia-ev9.jpg",
+        "gallery": [],
+        "savingPct": 31.5,
+        "tags": ["EV", "KIA", "7 מקומות", "משפחתי"],
+        "highlight": "EV משפחתי 7 מקומות במחיר תחרותי"
+    },
+    {
+        "id": "bmw-x5",
+        "name": "BMW X5 xDrive40i",
+        "nameHe": "BMW X5 xDrive40i",
+        "eyebrow": "I6 · 2026 · BMW · X5",
+        "brand": "BMW", "year": 2026, "condition": "new",
+        "fuel": "בנזין מיילד-היברידי", "engine": "3.0L I6 TwinPower", "hp": 380, "nm": 540, "accel": 5.4, "topSpeed": 250,
+        "transmission": "8-Speed Steptronic", "drive": "xDrive AWD",
+        "mpg": "9.2 ק\"מ/ליטר", "seats": 5, "doors": 5,
+        "length": 4935, "width": 2004, "height": 1765, "weight": 2185,
+        "dealerPrice": 685900, "ourPrice": 470978,
+        "image": "images/car-bmw-x5.jpg",
+        "gallery": [],
+        "savingPct": 31.3,
+        "tags": ["BMW", "פרימיום"],
+        "highlight": "SAV הדגל של BMW במחיר שלא היה אצל היבואן"
+    },
+    {
+        "id": "jeep-gc-summit",
+        "name": "Jeep Grand Cherokee Summit 4WD",
+        "nameHe": "ג'יפ גרנד צ'רוקי סאמיט",
+        "eyebrow": "V6 · 2026 · JEEP · SUMMIT",
+        "brand": "Jeep", "year": 2026, "condition": "new",
+        "fuel": "בנזין", "engine": "3.6L V6", "hp": 293, "nm": 353, "accel": 7.0, "topSpeed": 190,
+        "transmission": "8-Speed Auto", "drive": "4WD",
+        "mpg": "7.8 ק\"מ/ליטר", "seats": 5, "doors": 5,
+        "length": 4915, "width": 1979, "height": 1795, "weight": 2150,
+        "dealerPrice": 599900, "ourPrice": 417494,
+        "image": "images/car-jeep-gc-summit.jpg",
+        "gallery": [],
+        "savingPct": 30.4,
+        "tags": ["JEEP", "פרימיום"],
+        "highlight": "רמת גמר עליונה של גרנד צ'רוקי"
+    },
+    # === Iconic + photogenic ===
+    {
+        "id": "mini-cooper-pink",
+        "name": "MINI Cooper S Hardtop",
+        "nameHe": "מיני קופר S",
+        "eyebrow": "טורבו · 2026 · MINI · ורוד פסטל",
+        "brand": "MINI", "year": 2026, "condition": "new",
+        "fuel": "בנזין", "engine": "2.0L Turbo I4", "hp": 201, "nm": 300, "accel": 6.6, "topSpeed": 235,
+        "transmission": "7-Speed DCT", "drive": "FWD",
+        "mpg": "13.5 ק\"מ/ליטר", "seats": 4, "doors": 3,
+        "length": 3876, "width": 1727, "height": 1432, "weight": 1320,
+        "dealerPrice": 245000, "ourPrice": 159000,
+        "image": "images/car-mini-cooper.jpg",
+        "gallery": [],
+        "savingPct": 35.1,
+        "tags": ["MINI", "אייקון", "אורבני"],
+        "highlight": "אייקון בריטי בצבע פסטל — סטייטמנט עירוני"
+    },
+    {
+        "id": "mustang-conv-blue",
+        "name": "Ford Mustang Convertible EcoBoost Premium",
+        "nameHe": "פורד מוסטנג קבריולה EcoBoost Premium",
+        "eyebrow": "טורבו · 2026 · FORD · כחול מטאלי",
+        "brand": "Ford", "year": 2026, "condition": "new",
+        "fuel": "בנזין", "engine": "2.3L EcoBoost I4", "hp": 315, "nm": 475, "accel": 5.2, "topSpeed": 250,
+        "transmission": "10-Speed Auto", "drive": "RWD",
+        "mpg": "10.2 ק\"מ/ליטר", "seats": 4, "doors": 2,
+        "length": 4811, "width": 1916, "height": 1397, "weight": 1701,
+        "dealerPrice": 385000, "ourPrice": 248000,
+        "image": "images/car-mustang-conv-blue.jpg",
+        "gallery": [],
+        "savingPct": 35.6,
+        "tags": ["FORD", "קבריולה", "אייקון"],
+        "highlight": "מוסטנג קבריולה חדשה בכחול מטאלי"
+    },
+    {
+        "id": "toyota-landcruiser",
+        "name": "Toyota Land Cruiser",
+        "nameHe": "טויוטה לנדקרוזר",
+        "eyebrow": "Hybrid I4 · 2026 · TOYOTA · 1958 Edition",
+        "brand": "Toyota", "year": 2026, "condition": "new",
+        "fuel": "היברידי", "engine": "2.4L Hybrid I4", "hp": 326, "nm": 630, "accel": 7.5, "topSpeed": 175,
+        "transmission": "8-Speed Auto", "drive": "4WD",
+        "mpg": "9.6 ק\"מ/ליטר", "seats": 5, "doors": 5,
+        "length": 4925, "width": 1980, "height": 1925, "weight": 2380,
+        "dealerPrice": 485000, "ourPrice": 305000,
+        "image": "images/car-landcruiser.jpg",
+        "gallery": [],
+        "savingPct": 37.1,
+        "tags": ["TOYOTA", "שטח", "אגדה"],
+        "highlight": "האגדה חוזרת — Land Cruiser 250 חדש"
+    },
+    # === Cadillac & more ===
+    {
+        "id": "cadillac-escalade",
+        "name": "Cadillac Escalade Sport V8 4WD",
+        "nameHe": "קאדילק אסקלייד ספורט V8",
+        "eyebrow": "V8 · 2026 · CADILLAC · ESCALADE",
+        "brand": "Cadillac", "year": 2026, "condition": "new",
+        "fuel": "בנזין", "engine": "6.2L V8", "hp": 420, "nm": 624, "accel": 5.9, "topSpeed": 180,
+        "transmission": "10-Speed Auto", "drive": "4WD",
+        "mpg": "5.2 ק\"מ/ליטר", "seats": 7, "doors": 5,
+        "length": 5380, "width": 2060, "height": 1948, "weight": 2680,
+        "dealerPrice": 899990, "ourPrice": 646314,
+        "image": "images/car-cadillac-escalade.jpg",
+        "gallery": [],
+        "savingPct": 28.2,
+        "tags": ["CADILLAC", "V8", "פרימיום"],
+        "highlight": "SUV הדגל של קאדילק"
+    },
+    {
+        "id": "mustang-conv-cert",
+        "name": "Ford Mustang Convertible EcoBoost Premium — Certified",
+        "nameHe": "פורד מוסטנג קבריולה — Certified",
+        "eyebrow": "טורבו · 2025 · FORD · שחור · CPO",
+        "brand": "Ford", "year": 2025, "condition": "certified",
+        "fuel": "בנזין", "engine": "2.3L EcoBoost I4", "hp": 315, "nm": 475, "accel": 5.2, "topSpeed": 250,
+        "transmission": "10-Speed Auto", "drive": "RWD",
+        "mpg": "10.2 ק\"מ/ליטר", "seats": 4, "doors": 2,
+        "length": 4811, "width": 1916, "height": 1397, "weight": 1701,
+        "dealerPrice": 360000, "ourPrice": 210000,
+        "image": "images/car-mustang-conv-black.jpg",
+        "gallery": [],
+        "savingPct": 41.7,
+        "tags": ["FORD", "קבריולה", "CERTIFIED"],
+        "highlight": "Certified Pre-Owned — אחריות יצרן פעילה"
+    },
+    {
+        "id": "g63",
+        "name": "Mercedes-AMG G63",
+        "nameHe": "מרצדס G63 AMG",
+        "eyebrow": "V8 · 2026 · MERCEDES-AMG",
+        "brand": "Mercedes-AMG", "year": 2026, "condition": "new",
+        "fuel": "בנזין", "engine": "4.0L V8 ביטורבו", "hp": 577, "nm": 850, "accel": 4.5, "topSpeed": 240,
+        "transmission": "9G-TRONIC", "drive": "4MATIC AWD",
+        "mpg": "5.8 ק\"מ/ליטר", "seats": 5, "doors": 5,
+        "length": 4866, "width": 1984, "height": 1969, "weight": 2560,
+        "dealerPrice": 2100000, "ourPrice": 1181274,
+        "image": "images/car-mercedes-g63-amg.jpg",
+        "gallery": [],
+        "savingPct": 43.7,
+        "tags": ["MERCEDES", "V8", "אייקון"],
+        "highlight": "אייקון. הג'יפ של הג'יפים."
+    },
+    {
+        "id": "jeep-gc-altitude",
+        "name": "Jeep Grand Cherokee Altitude 4WD",
+        "nameHe": "ג'יפ גרנד צ'רוקי Altitude",
+        "eyebrow": "V6 · 2026 · JEEP",
+        "brand": "Jeep", "year": 2026, "condition": "new",
+        "fuel": "בנזין", "engine": "3.6L V6", "hp": 293, "nm": 353, "accel": 7.2, "topSpeed": 190,
+        "transmission": "8-Speed Auto", "drive": "4WD",
+        "mpg": "7.8 ק\"מ/ליטר", "seats": 5, "doors": 5,
+        "length": 4915, "width": 1979, "height": 1795, "weight": 2150,
+        "dealerPrice": 399900, "ourPrice": 292280,
+        "image": "images/car-jeep-gc-altitude.jpg",
+        "gallery": [],
+        "savingPct": 26.9,
+        "tags": ["JEEP", "שטח"],
+        "highlight": "שילוב מרשים של ספורט וגרנד צ'רוקי"
+    },
+    {
+        "id": "tesla-x",
+        "name": "Tesla Model X Long Range",
+        "nameHe": "טסלה Model X Long Range",
+        "eyebrow": "EV · 2026 · TESLA",
+        "brand": "Tesla", "year": 2026, "condition": "new",
+        "fuel": "חשמלי", "engine": "Dual Motor AWD", "hp": 670, "nm": 1020, "accel": 3.8, "topSpeed": 250,
+        "transmission": "תיבת חשמלית", "drive": "AWD",
+        "mpg": "טווח 560 ק\"מ", "seats": 6, "doors": 5,
+        "length": 5037, "width": 1999, "height": 1684, "weight": 2510,
+        "dealerPrice": 729713, "ourPrice": 429134,
+        "image": "images/car-tesla-model-x-lr.jpg",
+        "gallery": [],
+        "savingPct": 41.2,
+        "tags": ["TESLA", "EV"],
+        "highlight": "Model X — חיסכון מקסימלי על EV"
+    },
+    {
+        "id": "ford-bronco-raptor",
+        "name": "Ford Bronco Raptor",
+        "nameHe": "פורד ברונקו ראפטור",
+        "eyebrow": "V6 ביטורבו · 2026 · FORD · RAPTOR",
+        "brand": "Ford", "year": 2026, "condition": "new",
+        "fuel": "בנזין", "engine": "3.0L EcoBoost V6", "hp": 418, "nm": 590, "accel": 5.5, "topSpeed": 200,
+        "transmission": "10-Speed Auto", "drive": "4x4",
+        "mpg": "6.2 ק\"מ/ליטר", "seats": 5, "doors": 5,
+        "length": 4900, "width": 2192, "height": 1900, "weight": 2440,
+        "dealerPrice": 805000, "ourPrice": 464434,
+        "image": "images/car-ford-bronco-raptor.jpg",
+        "gallery": [],
+        "savingPct": 42.3,
+        "tags": ["FORD", "שטח", "ספורט"],
+        "highlight": "אגדת השטח הספורטיבית של פורד"
+    },
+    {
+        "id": "jeep-wrangler",
+        "name": "Jeep Wrangler Unlimited Sport S",
+        "nameHe": "ג'יפ רנגלר Unlimited Sport S",
+        "eyebrow": "V6 · 2026 · JEEP · 4x4",
+        "brand": "Jeep", "year": 2026, "condition": "new",
+        "fuel": "בנזין", "engine": "3.6L V6", "hp": 285, "nm": 353, "accel": 7.8, "topSpeed": 180,
+        "transmission": "8-Speed Auto", "drive": "4x4",
+        "mpg": "7.5 ק\"מ/ליטר", "seats": 5, "doors": 5,
+        "length": 4882, "width": 1894, "height": 1839, "weight": 2090,
+        "dealerPrice": 366300, "ourPrice": 235873,
+        "image": "images/car-jeep-wrangler.jpg",
+        "gallery": [],
+        "savingPct": 35.6,
+        "tags": ["JEEP", "אייקון", "שטח"],
+        "highlight": "אייקון השטח האמריקאי"
+    },
+    # === Certified pre-owned, prev year, <25k miles ===
+    {
+        "id": "wrangler-rubicon-cert",
+        "name": "Jeep Wrangler Rubicon 4-door — Certified",
+        "nameHe": "ג'יפ רנגלר רוביקון — Certified",
+        "eyebrow": "V6 · 2025 · JEEP · CPO",
+        "brand": "Jeep", "year": 2025, "condition": "certified",
+        "fuel": "בנזין", "engine": "3.6L V6", "hp": 285, "nm": 353, "accel": 7.5, "topSpeed": 180,
+        "transmission": "8-Speed Auto", "drive": "4x4",
+        "mpg": "7.5 ק\"מ/ליטר", "seats": 5, "doors": 5,
+        "length": 4882, "width": 1894, "height": 1839, "weight": 2090,
+        "dealerPrice": 380000, "ourPrice": 229367,
+        "image": "images/car-wrangler-rubicon-cert.jpg",
+        "gallery": [],
+        "savingPct": 39.6,
+        "tags": ["JEEP", "CERTIFIED", "שטח"],
+        "highlight": "Certified Pre-Owned · עד 25k mi · אחריות יצרן"
+    },
+    {
+        "id": "mustang-mache-cert",
+        "name": "Ford Mustang Mach-E Select — Certified",
+        "nameHe": "פורד מוסטנג Mach-E — Certified",
+        "eyebrow": "EV · 2025 · FORD · CPO",
+        "brand": "Ford", "year": 2025, "condition": "certified",
+        "fuel": "חשמלי", "engine": "Single Motor RWD", "hp": 266, "nm": 430, "accel": 6.2, "topSpeed": 180,
+        "transmission": "חשמלי", "drive": "RWD",
+        "mpg": "טווח 420 ק\"מ", "seats": 5, "doors": 5,
+        "length": 4713, "width": 1881, "height": 1625, "weight": 1995,
+        "dealerPrice": 265000, "ourPrice": 167171,
+        "image": "images/car-mustang-mache-cert.jpg",
+        "gallery": [],
+        "savingPct": 36.9,
+        "tags": ["FORD", "EV", "CERTIFIED"],
+        "highlight": "Mach-E חשמלי, Certified, פחות מ-25k מייל"
+    },
+    {
+        "id": "mercedes-glb-cert",
+        "name": "Mercedes-Benz GLB 250 — Certified",
+        "nameHe": "מרצדס GLB 250 — Certified",
+        "eyebrow": "I4 · 2025 · MERCEDES · CPO",
+        "brand": "Mercedes-Benz", "year": 2025, "condition": "certified",
+        "fuel": "בנזין", "engine": "2.0L Turbo I4", "hp": 221, "nm": 350, "accel": 7.1, "topSpeed": 215,
+        "transmission": "8G-DCT", "drive": "4MATIC",
+        "mpg": "11.5 ק\"מ/ליטר", "seats": 7, "doors": 5,
+        "length": 4634, "width": 1834, "height": 1658, "weight": 1740,
+        "dealerPrice": 350000, "ourPrice": 229186,
+        "image": "images/car-mercedes-glb-cert.jpg",
+        "gallery": [],
+        "savingPct": 34.5,
+        "tags": ["MERCEDES", "CERTIFIED", "7 מקומות"],
+        "highlight": "מרצדס משפחתי 7 מקומות — מצב חדש כמעט"
+    },
+]
+
+# Generate JS file
+js_lines = ["// AutoImports v5 — cars data, ranked by saving %", 
+            "// Generated from partner Excel rankings",
+            "",
+            f"const FX = {json.dumps(FX)};",
+            "",
+            "const CARS = ["]
+
+for car in CARS:
+    js_lines.append("  " + json.dumps(car, ensure_ascii=False) + ",")
+
+js_lines.append("];")
+js_lines.append("")
+js_lines.append("// Stock models for live board (top 5 highest saving)")
+js_lines.append("const STOCK_MODELS = CARS.slice(0, 5).map(c => ({ id: c.id, name: c.nameHe, price: c.ourPrice, dealer: c.dealerPrice, savingPct: c.savingPct }));")
+js_lines.append("")
+js_lines.append("if (typeof window !== 'undefined') { window.CARS = CARS; window.FX = FX; window.STOCK_MODELS = STOCK_MODELS; }")
+
+with open('/home/user/workspace/site-number-1/js/cars-data.js', 'w', encoding='utf-8') as f:
+    f.write('\n'.join(js_lines))
+
+print(f"Wrote {len(CARS)} cars to cars-data.js")
+print("\nRanking by saving %:")
+for c in sorted(CARS, key=lambda x: -x['savingPct']):
+    print(f"  {c['savingPct']:5.1f}% — {c['nameHe']} ({c['condition']})")

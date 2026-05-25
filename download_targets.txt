@@ -1,0 +1,15 @@
+gmc-yukon-denali|2025 GMC Yukon Denali 6.2 4WD exterior black
+jeep-gladiator|2025 Jeep Gladiator Sport 4x4 exterior
+mercedes-gle-450|2025 Mercedes-Benz GLE 450 4MATIC AMG Line silver
+ford-bronco-bigbend|2025 Ford Bronco Big Bend cream beige 4-door
+jeep-gc-summit|2025 Jeep Grand Cherokee Summit 4WD
+mini-cooper|2025 MINI Cooper S Hardtop pink
+mustang-conv-blue|2025 Ford Mustang Convertible EcoBoost Premium blue metallic
+landcruiser|2025 Toyota Land Cruiser 1958 Edition
+cadillac-escalade|2025 Cadillac Escalade Sport V8 black
+mustang-conv-black|2024 Ford Mustang Convertible EcoBoost Premium black certified
+jeep-gc-altitude|2025 Jeep Grand Cherokee Altitude 4WD
+jeep-wrangler|2025 Jeep Wrangler Unlimited Sport S
+wrangler-rubicon-cert|2024 Jeep Wrangler Rubicon 4-door
+mustang-mache-cert|2024 Ford Mustang Mach-E Select
+mercedes-glb-cert|2024 Mercedes-Benz GLB 250 4MATIC

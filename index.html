@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/v5.css">
 </head>
 <body>
 
@@ -22,15 +23,31 @@
     <nav class="nav-links">
       <a href="catalog.html">קטלוג</a>
       <a href="how.html">איך זה עובד</a>
-      <a href="why.html">למה אנחנו</a>
+      <div class="nav-drop">
+        <a class="nav-drop-trigger" href="why.html">למה אנחנו ▾</a>
+        <div class="nav-drop-menu">
+          <a href="why.html">למה אצלנו</a>
+          <a href="trust.html">מדוע לסמוך עלינו</a>
+          <a href="regulations.html">רגולציה בישראל</a>
+          <a href="used-cars.html">רכב משומש מארה”ב</a>
+          <a href="reviews.html">ביקורות לקוחות</a>
+        </div>
+      </div>
       <a href="about.html">אודות</a>
-      <a href="faq.html">שאלות נפוצות</a>
-      <a href="reviews.html">ביקורות</a>
       <a href="blog.html">בלוג</a>
+      <div class="nav-drop">
+        <a class="nav-drop-trigger" href="faq.html">גם ▾</a>
+        <div class="nav-drop-menu">
+          <a href="faq.html">שאלות נפוצות</a>
+          <a href="forms.html">טפסים</a>
+          <a href="bot.html">בוט עזרה</a>
+          <a href="terms.html">תקנון ותנאים</a>
+        </div>
+      </div>
     </nav>
     <div class="nav-actions">
-      <a href="#login" class="nav-login">כניסת לקוחות</a>
-      <a href="#catalog" class="nav-cta">התחל הזמנה</a>
+      <a href="forms.html" class="nav-login">הצעת מחיר</a>
+      <a href="catalog.html" class="nav-cta">התחל הזמנה</a>
     </div>
   </div>
 </header>
@@ -38,20 +55,23 @@
 <!-- HERO — CINEMATIC -->
 <section class="hero">
   <div class="hero-stage">
-    <div class="hero-slide active" data-i="0"><img src="images/car-ford-bronco-raptor.jpg" alt=""></div>
-    <div class="hero-slide" data-i="1"><img src="images/car-mustang-gt-v8.jpg" alt=""></div>
-    <div class="hero-slide" data-i="2"><img src="images/car-mercedes-g63-amg.jpg" alt=""></div>
-    <div class="hero-slide" data-i="3"><img src="images/car-tesla-cybertruck-awd.jpg" alt=""></div>
-    <div class="hero-slide" data-i="4"><img src="images/car-rivian-r1s.jpg" alt=""></div>
+    <div class="hero-slide active" data-i="0"><img src="images/car-ford-bronco-bigbend.jpg" alt="Ford Bronco קרם"></div>
+    <div class="hero-slide" data-i="1"><img src="images/car-jeep-wrangler.jpg" alt="Jeep Wrangler"></div>
+    <div class="hero-slide" data-i="2"><img src="images/car-mini-cooper.jpg" alt="MINI Cooper"></div>
+    <div class="hero-slide" data-i="3"><img src="images/car-mustang-conv-blue.jpg" alt="Ford Mustang Convertible"></div>
+    <div class="hero-slide" data-i="4"><img src="images/car-landcruiser.jpg" alt="Toyota Land Cruiser"></div>
+    <div class="hero-slide" data-i="5"><img src="images/car-mercedes-g63-amg.jpg" alt="Mercedes-AMG G63"></div>
+    <div class="hero-slide" data-i="6"><img src="images/car-bmw-x5.jpg" alt="BMW X5"></div>
   </div>
 
+  <div class="hero-scrim"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">ייבוא אישי · מארה״ב לישראל</div>
     <h1 class="hero-title">
       <span class="line">הרכב שתמיד חלמת</span>
-      <span class="line line-bold">במחיר שלא דמיינת</span>
+      <span class="line line-bold">במחיר שלא תיארת.</span>
     </h1>
-    <p class="hero-sub">אנחנו מלווים אותך מרגע הבחירה ועד המפתחות בידיך. חיסכון של עד 60% מול היבואן הרשמי.</p>
+    <p class="hero-sub">השיטה החדשה לקניית רכבים בישראל — ייבוא אישי ישירות מהיצרן האמריקאי, של הדגמים המשתלמים והנחשקים ביותר, בצורה פשוטה וללא דאגות. תן לנו להראות לך שברכבים — פרימיום זה אפשרי.</p>
     <div class="hero-actions">
       <a href="#catalog" class="btn btn-primary btn-lg">צפה בקטלוג</a>
       <a href="#stock" class="btn btn-ghost btn-lg">מחירים בזמן אמת</a>
@@ -65,11 +85,13 @@
   </div>
 
   <div class="hero-indicators">
-    <button class="hero-dot active" data-slide="0"></button>
-    <button class="hero-dot" data-slide="1"></button>
-    <button class="hero-dot" data-slide="2"></button>
-    <button class="hero-dot" data-slide="3"></button>
-    <button class="hero-dot" data-slide="4"></button>
+    <button class="hero-dot active" data-slide="0" aria-label="Bronco"></button>
+    <button class="hero-dot" data-slide="1" aria-label="Wrangler"></button>
+    <button class="hero-dot" data-slide="2" aria-label="MINI"></button>
+    <button class="hero-dot" data-slide="3" aria-label="Mustang"></button>
+    <button class="hero-dot" data-slide="4" aria-label="Land Cruiser"></button>
+    <button class="hero-dot" data-slide="5" aria-label="G63"></button>
+    <button class="hero-dot" data-slide="6" aria-label="BMW X5"></button>
   </div>
   <div class="hero-scroll">SCROLL ↓</div>
 </section>
@@ -77,41 +99,30 @@
 <!-- BRAND MARQUEE -->
 <section class="brand-marquee">
   <div class="marquee-track">
-    <div class="marquee-item">MERCEDES-BENZ</div>
-    <div class="marquee-item">·</div>
-    <div class="marquee-item">TESLA</div>
-    <div class="marquee-item">·</div>
-    <div class="marquee-item">FORD</div>
-    <div class="marquee-item">·</div>
-    <div class="marquee-item">BMW</div>
-    <div class="marquee-item">·</div>
-    <div class="marquee-item">RIVIAN</div>
-    <div class="marquee-item">·</div>
-    <div class="marquee-item">JEEP</div>
-    <div class="marquee-item">·</div>
-    <div class="marquee-item">CHEVROLET</div>
-    <div class="marquee-item">·</div>
-    <div class="marquee-item">LUCID</div>
-    <div class="marquee-item">·</div>
-    <div class="marquee-item">KIA</div>
-    <div class="marquee-item">·</div>
-    <div class="marquee-item">MERCEDES-BENZ</div>
-    <div class="marquee-item">·</div>
-    <div class="marquee-item">TESLA</div>
-    <div class="marquee-item">·</div>
-    <div class="marquee-item">FORD</div>
-    <div class="marquee-item">·</div>
-    <div class="marquee-item">BMW</div>
-    <div class="marquee-item">·</div>
-    <div class="marquee-item">RIVIAN</div>
-    <div class="marquee-item">·</div>
-    <div class="marquee-item">JEEP</div>
-    <div class="marquee-item">·</div>
-    <div class="marquee-item">CHEVROLET</div>
-    <div class="marquee-item">·</div>
-    <div class="marquee-item">LUCID</div>
-    <div class="marquee-item">·</div>
-    <div class="marquee-item">KIA</div>
+    <div class="marquee-item"><span class="brand-logo" title="Mercedes-Benz"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3"><circle cx="50" cy="50" r="46"/><path d="M50 6 L50 50 M50 50 L88 72 M50 50 L12 72" stroke-linecap="round"/></svg></span><span class="brand-name">MERCEDES-BENZ</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="Tesla"><svg viewBox="0 0 100 50" fill="currentColor"><path d="M50 50 L42 12 L18 6 Q22 14 30 16 L46 18 L42 50z M58 50 L66 12 L90 6 Q86 14 78 16 L62 18 L58 50z M30 6 Q50 0 70 6 L70 0 Q50 -2 30 0z" transform="translate(0,2)"/></svg></span><span class="brand-name">TESLA</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="BMW"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="50" r="32" fill="currentColor" opacity="0.15"/><path d="M50 18 L50 50 L82 50 A32 32 0 0 0 50 18z" fill="currentColor" opacity="0.6"/><path d="M50 50 L50 82 L18 50 A32 32 0 0 0 50 82z" fill="currentColor" opacity="0.6"/><text x="50" y="14" font-size="8" fill="currentColor" text-anchor="middle" font-weight="700">BMW</text></svg></span><span class="brand-name">BMW</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="Ford"><svg viewBox="0 0 140 56" fill="none"><ellipse cx="70" cy="28" rx="66" ry="24" stroke="currentColor" stroke-width="2.5"/><text x="70" y="38" font-size="26" font-family="Georgia, serif" font-style="italic" font-weight="700" fill="currentColor" text-anchor="middle">Ford</text></svg></span><span class="brand-name">FORD</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="Rivian"><svg viewBox="0 0 120 30" fill="currentColor"><text x="0" y="22" font-size="22" font-weight="800" letter-spacing="2">RIVIAN</text><circle cx="110" cy="8" r="3"/></svg></span><span class="brand-name">RIVIAN</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="Jeep"><svg viewBox="0 0 120 40" fill="none" stroke="currentColor" stroke-width="2.5"><text x="60" y="30" font-size="26" font-weight="900" fill="currentColor" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="2">Jeep</text></svg></span><span class="brand-name">JEEP</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="Chevrolet"><svg viewBox="0 0 100 50" fill="none" stroke="currentColor" stroke-width="3"><path d="M10 20 L50 30 L90 20 L82 32 L50 38 L18 32 z M10 20 L18 32 M90 20 L82 32"/></svg></span><span class="brand-name">CHEVROLET</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="Lucid"><svg viewBox="0 0 130 28" fill="currentColor"><text x="0" y="22" font-size="22" font-weight="300" letter-spacing="4" font-family="Helvetica, Arial">LUCID</text></svg></span><span class="brand-name">LUCID</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="Kia"><svg viewBox="0 0 100 40" fill="none" stroke="currentColor" stroke-width="3"><text x="50" y="30" font-size="28" font-weight="900" fill="currentColor" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="1">KIA</text></svg></span><span class="brand-name">KIA</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="Cadillac"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><rect x="20" y="20" width="60" height="60" rx="4"/><path d="M20 50 L80 50 M50 20 L50 80" stroke-width="2"/><circle cx="35" cy="35" r="4" fill="currentColor"/><circle cx="65" cy="35" r="4" fill="currentColor"/><circle cx="35" cy="65" r="4" fill="currentColor"/><circle cx="65" cy="65" r="4" fill="currentColor"/></svg></span><span class="brand-name">CADILLAC</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="GMC"><svg viewBox="0 0 100 40" fill="currentColor"><text x="50" y="28" font-size="22" font-weight="900" text-anchor="middle" font-family="Arial Black, sans-serif" letter-spacing="2">GMC</text></svg></span><span class="brand-name">GMC</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="Dodge"><svg viewBox="0 0 110 30" fill="currentColor"><text x="55" y="22" font-size="20" font-weight="900" text-anchor="middle" font-family="Arial Black, sans-serif" letter-spacing="3">DODGE</text></svg></span><span class="brand-name">DODGE</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="Mercedes-Benz"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3"><circle cx="50" cy="50" r="46"/><path d="M50 6 L50 50 M50 50 L88 72 M50 50 L12 72" stroke-linecap="round"/></svg></span><span class="brand-name">MERCEDES-BENZ</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="Tesla"><svg viewBox="0 0 100 50" fill="currentColor"><path d="M50 50 L42 12 L18 6 Q22 14 30 16 L46 18 L42 50z M58 50 L66 12 L90 6 Q86 14 78 16 L62 18 L58 50z M30 6 Q50 0 70 6 L70 0 Q50 -2 30 0z" transform="translate(0,2)"/></svg></span><span class="brand-name">TESLA</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="BMW"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="50" r="32" fill="currentColor" opacity="0.15"/><path d="M50 18 L50 50 L82 50 A32 32 0 0 0 50 18z" fill="currentColor" opacity="0.6"/><path d="M50 50 L50 82 L18 50 A32 32 0 0 0 50 82z" fill="currentColor" opacity="0.6"/><text x="50" y="14" font-size="8" fill="currentColor" text-anchor="middle" font-weight="700">BMW</text></svg></span><span class="brand-name">BMW</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="Ford"><svg viewBox="0 0 140 56" fill="none"><ellipse cx="70" cy="28" rx="66" ry="24" stroke="currentColor" stroke-width="2.5"/><text x="70" y="38" font-size="26" font-family="Georgia, serif" font-style="italic" font-weight="700" fill="currentColor" text-anchor="middle">Ford</text></svg></span><span class="brand-name">FORD</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="Rivian"><svg viewBox="0 0 120 30" fill="currentColor"><text x="0" y="22" font-size="22" font-weight="800" letter-spacing="2">RIVIAN</text><circle cx="110" cy="8" r="3"/></svg></span><span class="brand-name">RIVIAN</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="Jeep"><svg viewBox="0 0 120 40" fill="none" stroke="currentColor" stroke-width="2.5"><text x="60" y="30" font-size="26" font-weight="900" fill="currentColor" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="2">Jeep</text></svg></span><span class="brand-name">JEEP</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="Chevrolet"><svg viewBox="0 0 100 50" fill="none" stroke="currentColor" stroke-width="3"><path d="M10 20 L50 30 L90 20 L82 32 L50 38 L18 32 z M10 20 L18 32 M90 20 L82 32"/></svg></span><span class="brand-name">CHEVROLET</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="Lucid"><svg viewBox="0 0 130 28" fill="currentColor"><text x="0" y="22" font-size="22" font-weight="300" letter-spacing="4" font-family="Helvetica, Arial">LUCID</text></svg></span><span class="brand-name">LUCID</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="Kia"><svg viewBox="0 0 100 40" fill="none" stroke="currentColor" stroke-width="3"><text x="50" y="30" font-size="28" font-weight="900" fill="currentColor" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing="1">KIA</text></svg></span><span class="brand-name">KIA</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="Cadillac"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><rect x="20" y="20" width="60" height="60" rx="4"/><path d="M20 50 L80 50 M50 20 L50 80" stroke-width="2"/><circle cx="35" cy="35" r="4" fill="currentColor"/><circle cx="65" cy="35" r="4" fill="currentColor"/><circle cx="35" cy="65" r="4" fill="currentColor"/><circle cx="65" cy="65" r="4" fill="currentColor"/></svg></span><span class="brand-name">CADILLAC</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="GMC"><svg viewBox="0 0 100 40" fill="currentColor"><text x="50" y="28" font-size="22" font-weight="900" text-anchor="middle" font-family="Arial Black, sans-serif" letter-spacing="2">GMC</text></svg></span><span class="brand-name">GMC</span></div>
+    <div class="marquee-item"><span class="brand-logo" title="Dodge"><svg viewBox="0 0 110 30" fill="currentColor"><text x="55" y="22" font-size="20" font-weight="900" text-anchor="middle" font-family="Arial Black, sans-serif" letter-spacing="3">DODGE</text></svg></span><span class="brand-name">DODGE</span></div>
   </div>
 </section>
 
@@ -144,6 +155,55 @@
   </div>
 </section>
 
+<!-- CERTIFIED EXPLAINER -->
+<section class="cert-section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">CERTIFIED PRE-OWNED · מה זה באמת</span>
+      <h2>רכבים חדשים — או Certified בלבד.</h2>
+      <p>אנחנו מייבאים רכב חדש מהיצרן, או רכב Certified Pre-Owned — משנת הרישום הקודמת עם פחות מ-25,000 מייל, שעבר הסמכה רשמית של היצרן.</p>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-visual">
+        <div class="cert-big-seal">
+          <div class="cert-big-seal-inner">
+            <div class="cert-big-seal-text-top">Manufacturer</div>
+            <div class="cert-big-seal-text-main">CPO</div>
+            <div class="cert-big-seal-text-sub">CERTIFIED</div>
+          </div>
+        </div>
+      </div>
+      <div class="cert-content">
+        <h2>מה זה <span class="cert-gold">Certified Pre-Owned</span>?</h2>
+        <p class="cert-lead">CPO הוא תו היקר בתעשיית הרכב המשומש האמריקאית — מדובר על הגדרה רשמית ואחידה של היצרן. רכב עובר בדיקה מקיפה של מאות נקודות, מגיע עם היסטוריה מלאה, ומגובה באחריות יצרן בינלאומית.</p>
+        <div class="cert-criteria">
+          <div class="cert-criteria-item">
+            <div class="cert-criteria-num">1</div>
+            <div class="cert-criteria-text"><strong>שנת הרישום הקודמת בלבד</strong><span>רכבי 2024–2025 בלבד. לא רכבים ישנים.</span></div>
+          </div>
+          <div class="cert-criteria-item">
+            <div class="cert-criteria-num">2</div>
+            <div class="cert-criteria-text"><strong>פחות מ-25,000 מייל במונה</strong><span>מד הרכב חובה להציג קריאת מנוע אותנטית ומאומת.</span></div>
+          </div>
+          <div class="cert-criteria-item">
+            <div class="cert-criteria-num">3</div>
+            <div class="cert-criteria-text"><strong>בדיקה רשמית של היצרן</strong><span>רכב עובר רשימת בדיקות רסמית — מנוע, תיבת הילוכים, בלמים, מערכות חשמל, תאורה. כל פגם מתוקן במקור.</span></div>
+          </div>
+          <div class="cert-criteria-item">
+            <div class="cert-criteria-num">4</div>
+            <div class="cert-criteria-text"><strong>אחריות יצרן מורחבת</strong><span>אחריות יצרן בינלאומית, למשך של תקופת הזמן המקורית, על כל רכב CPO.</span></div>
+          </div>
+          <div class="cert-criteria-item">
+            <div class="cert-criteria-num">5</div>
+            <div class="cert-criteria-text"><strong>דוח Carfax מלא מצורף</strong><span>מקבלים את כל ההיסטוריה של הרכב, ללא תאונות מדווחים או היסטוריית תאונות.</span></div>
+          </div>
+        </div>
+        <a href="used-cars.html" class="btn-primary" style="display:inline-flex;align-items:center;gap:8px;padding:14px 26px;background:linear-gradient(135deg,#c9a96e,#b8975e);color:#0a0a0a;border-radius:999px;text-decoration:none;font-weight:700;font-size:14px;">למד עוד על רכב Certified →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CATALOG -->
 <section class="catalog" id="catalog">
   <div class="container">
@@ -160,218 +220,348 @@
 <section class="compare" id="compare">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">השוואה</span>
-      <h2>שלוש דרכים. תוצאה אחת.</h2>
-      <p>דוגמה אמיתית: Mercedes G63 AMG 2025 — אותו רכב, שלוש אפשרויות רכישה.</p>
+      <span class="eyebrow">השוואת פתרונות · ייבוא רכב מארה״ב לישראל</span>
+      <h2>שלוש דרכים לקנות רכב. הבדלי תוצאה גדולים.</h2>
+      <p>השוואה אמיתית בין יבואן רשמי, יבוא מקביל וייבוא אישי דרכנו — לפי הפרמטרים שבאמת חשובים: מחיר, בחירה, שליטה, אחריות וסיכון.</p>
     </div>
-    <div class="compare-grid">
-      <div class="compare-card">
-        <div class="compare-badge compare-badge-warn">קשה ומסוכן</div>
-        <div class="compare-title-row">ייבוא אישי לבד</div>
-        <div class="compare-price-row">₪1,580,000</div>
-        <ul class="compare-features-list">
-          <li class="bad"><span class="icon">✗</span><span>ללא ליווי מקצועי</span></li>
-          <li class="bad"><span class="icon">✗</span><span>סיכון רגולטורי גבוה</span></li>
-          <li class="warn"><span class="icon">!</span><span>דורש זמן וידע רב</span></li>
-          <li class="bad"><span class="icon">✗</span><span>ללא אחריות שירות</span></li>
-          <li class="warn"><span class="icon">!</span><span>תהליך מורכב מול המכס</span></li>
-        </ul>
-        <div class="compare-foot-row">תוספת זמן וכאב ראש</div>
-      </div>
 
-      <div class="compare-card compare-card-best">
-        <div class="compare-badge compare-badge-best">★ המומלץ</div>
-        <div class="compare-title-row">AutoImports</div>
-        <div class="compare-price-row">₪1,180,000</div>
-        <ul class="compare-features-list">
-          <li class="good"><span class="icon">✓</span><span>ליווי מקצועי מקצה לקצה</span></li>
-          <li class="good"><span class="icon">✓</span><span>תחרות בין 3 ספקים בארה״ב</span></li>
-          <li class="good"><span class="icon">✓</span><span>שקיפות מחיר מלאה</span></li>
-          <li class="good"><span class="icon">✓</span><span>טיפול בכל הבירוקרטיה</span></li>
-          <li class="good"><span class="icon">✓</span><span>אחריות ושירות מלא</span></li>
-        </ul>
-        <div class="compare-foot-row compare-foot-best">חיסכון של ₪920,000</div>
-      </div>
+    <div class="compare-table-wrap">
+      <table class="compare-table-v2">
+        <thead>
+          <tr>
+            <th class="ct-param">פרמטר</th>
+            <th class="ct-col ct-bad">
+              <div class="ct-col-label">יבואן רשמי</div>
+              <div class="ct-col-sub">דילר ישראלי בלעדי</div>
+            </th>
+            <th class="ct-col ct-mid">
+              <div class="ct-col-label">יבוא מקביל</div>
+              <div class="ct-col-sub">סוחר עצמאי מייבא במלאי</div>
+            </th>
+            <th class="ct-col ct-best">
+              <div class="ct-col-badge">★ אנחנו</div>
+              <div class="ct-col-label">ייבוא אישי דרכנו</div>
+              <div class="ct-col-sub">הזמנה ישירה משוק ארה״ב</div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ct-param">פער מחיר מול מחיר ארה״ב</td>
+            <td class="ct-bad">+70% עד +120%</td>
+            <td class="ct-mid">+35% עד +55%</td>
+            <td class="ct-best">+18% עד +28%</td>
+          </tr>
+          <tr>
+            <td class="ct-param">שקיפות תמחור</td>
+            <td class="ct-bad"><span class="ct-x">✗</span> מחיר סופי בלבד</td>
+            <td class="ct-mid"><span class="ct-q">!</span> חלקית</td>
+            <td class="ct-best"><span class="ct-v">✓</span> כל שקל מפורט בכתב</td>
+          </tr>
+          <tr>
+            <td class="ct-param">בחירת דגם, צבע ורמת גימור</td>
+            <td class="ct-bad"><span class="ct-x">✗</span> מוגבל למלאי מקומי</td>
+            <td class="ct-mid"><span class="ct-q">!</span> רק מה שכבר בארץ</td>
+            <td class="ct-best"><span class="ct-v">✓</span> 100% חופש — כל שוק ארה״ב</td>
+          </tr>
+          <tr>
+            <td class="ct-param">בחירת הרכב הספציפי (VIN)</td>
+            <td class="ct-bad"><span class="ct-x">✗</span> לא</td>
+            <td class="ct-mid"><span class="ct-x">✗</span> לא</td>
+            <td class="ct-best"><span class="ct-v">✓</span> כן — אתה מאשר את ה-VIN</td>
+          </tr>
+          <tr>
+            <td class="ct-param">היסטוריית רכב (Carfax/AutoCheck)</td>
+            <td class="ct-bad">לא רלוונטי (חדש)</td>
+            <td class="ct-mid"><span class="ct-q">!</span> לא תמיד מוצג</td>
+            <td class="ct-best"><span class="ct-v">✓</span> Carfax מלא לפני רכישה</td>
+          </tr>
+          <tr>
+            <td class="ct-param">בדיקה פיזית לפני שילוח (PPI)</td>
+            <td class="ct-bad">לא רלוונטי</td>
+            <td class="ct-mid"><span class="ct-x">✗</span> אין</td>
+            <td class="ct-best"><span class="ct-v">✓</span> בדיקת PPI מקצועית</td>
+          </tr>
+          <tr>
+            <td class="ct-param">זמן עד מסירה</td>
+            <td class="ct-mid">3–9 חודשים</td>
+            <td class="ct-best">מיידי (מלאי)</td>
+            <td class="ct-mid">60–80 ימים</td>
+          </tr>
+          <tr>
+            <td class="ct-param">מימון / הלוואת רכב</td>
+            <td class="ct-best"><span class="ct-v">✓</span> בנקי</td>
+            <td class="ct-mid"><span class="ct-q">!</span> תלוי בסוחר</td>
+            <td class="ct-best"><span class="ct-v">✓</span> דרך שותף מימון</td>
+          </tr>
+          <tr>
+            <td class="ct-param">אחריות יצרן</td>
+            <td class="ct-best"><span class="ct-v">✓</span> מלאה דרך הסניף</td>
+            <td class="ct-mid"><span class="ct-q">!</span> תלוי דגם</td>
+            <td class="ct-best"><span class="ct-v">✓</span> אחריות יצרן בינלאומית</td>
+          </tr>
+          <tr>
+            <td class="ct-param">ליווי מקצועי לאורך התהליך</td>
+            <td class="ct-mid">מכירתי בלבד</td>
+            <td class="ct-bad"><span class="ct-x">✗</span> מינימלי</td>
+            <td class="ct-best"><span class="ct-v">✓</span> מנהל תיק אישי 24/7</td>
+          </tr>
+          <tr>
+            <td class="ct-param">סיכון רגולטורי / תקינה</td>
+            <td class="ct-best"><span class="ct-v">✓</span> אפס (באחריותם)</td>
+            <td class="ct-mid"><span class="ct-q">!</span> חלקי</td>
+            <td class="ct-best"><span class="ct-v">✓</span> אנחנו אחראים מלאים</td>
+          </tr>
+          <tr>
+            <td class="ct-param">פיקדון התחלתי</td>
+            <td class="ct-mid">10%–30%</td>
+            <td class="ct-best">מלא במלאי</td>
+            <td class="ct-best">500 ₪ בלבד</td>
+          </tr>
+          <tr class="ct-bottom-row">
+            <td class="ct-param">שורה תחתונה</td>
+            <td class="ct-bad">המחיר הגבוה ביותר. הכי פחות סיכון בירוקרטי.</td>
+            <td class="ct-mid">חיסכון בינוני. בחירה מוגבלת למלאי.</td>
+            <td class="ct-best">חיסכון מקסימלי + בחירה מלאה + ליווי צמוד.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-      <div class="compare-card">
-        <div class="compare-badge compare-badge-warn">יקר מאוד</div>
-        <div class="compare-title-row">יבואן רשמי</div>
-        <div class="compare-price-row">₪2,100,000</div>
-        <ul class="compare-features-list">
-          <li class="good"><span class="icon">✓</span><span>שירות מהבית</span></li>
-          <li class="bad"><span class="icon">✗</span><span>מחיר גבוה ב-78%</span></li>
-          <li class="warn"><span class="icon">!</span><span>בחירה מוגבלת בגוונים</span></li>
-          <li class="warn"><span class="icon">!</span><span>זמן המתנה ארוך</span></li>
-          <li class="bad"><span class="icon">✗</span><span>ללא שקיפות תמחור</span></li>
-        </ul>
-        <div class="compare-foot-row">תוספת ₪920,000</div>
-      </div>
+    <div class="compare-disclaimer">
+      * הנתונים מבוססים על שיחות עם 500+ לקוחות, ניתוח עסקאות בשוק הישראלי 2024–2026, ופרסומים רשמיים של רשות המסים, משרד התחבורה, ויבואני רכב מורשים.
     </div>
   </div>
 </section>
 
 <!-- PROCESS — PREMIUM TIMELINE -->
-<section class="process" id="process">
+<!-- PROCESS · 5-STEP INTERACTIVE -->
+<section class="process-v2" id="process">
   <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">תהליך מלא · 15 שלבים</span>
-      <h2>מהבחירה ועד המפתחות שלך</h2>
-      <p>שקיפות בכל שלב. אנחנו מלווים — אתה בשליטה. תהליך מסודר, מתוזמן וברור.</p>
-    </div>
-
-    <div class="timeline">
-      <div class="tl-step right">
-        <div class="tl-content">
-          <div class="tl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h7v9H3zm11 0h7v9h-7zM3 3h18v6H3z"/></svg></div>
-          <div class="tl-title">בחירת רכב</div>
-          <div class="tl-body">בוחרים דגם, רמת גימור, צבע ומפרט מדויק. מקבלים הערכת מחיר מיידית באתר.</div>
-          <span class="tl-duration">⏱ מיידי</span>
-        </div>
-        <div class="tl-marker"><div class="tl-circle">01</div></div>
+    <div class="proc-head">
+      <div class="proc-head-side">
+        <p class="proc-sub">חפש דגם, ראה את התהליך המדויק עבורו. כל שלב — מי אחראי, אילו מסמכים, וכמה ימים. שקיפות מוחלטת לפני שאתה מתחיל.</p>
       </div>
-
-      <div class="tl-step left">
-        <div class="tl-content">
-          <div class="tl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg></div>
-          <div class="tl-title">מרכז שירות פתוח</div>
-          <div class="tl-body">מרכז שירות זמין לאורך כל הדרך — שאלות, ייעוץ והתאמות באמצעות וואטסאפ או טלפון.</div>
-          <span class="tl-duration">⏱ 24/7</span>
-        </div>
-        <div class="tl-marker"><div class="tl-circle">02</div></div>
-      </div>
-
-      <div class="tl-step right">
-        <div class="tl-content">
-          <div class="tl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 8h.01M18 16h.01"/></svg></div>
-          <div class="tl-title">הזמנה ופיקדון</div>
-          <div class="tl-body">₪500 פיקדון, צילום תעודת זהות ורישיון. נפתח עבורך תיק לקוח אישי בפורטל.</div>
-          <span class="tl-duration">⏱ 15 דקות</span>
-        </div>
-        <div class="tl-marker"><div class="tl-circle">03</div></div>
-      </div>
-
-      <div class="tl-step left">
-        <div class="tl-content">
-          <div class="tl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
-          <div class="tl-title">סריקת השוק בארה״ב</div>
-          <div class="tl-body">הצוות בארה״ב סורק את כל היבשת — תחרות בין שלושה ספקים מאומתים על העסקה הטובה ביותר.</div>
-          <span class="tl-duration">⏱ 48-72 שעות</span>
-        </div>
-        <div class="tl-marker"><div class="tl-circle">04</div></div>
-      </div>
-
-      <div class="tl-step right">
-        <div class="tl-content">
-          <div class="tl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
-          <div class="tl-title">הצעת מחיר סופית</div>
-          <div class="tl-body">תוך 72 שעות — הצעת מחיר מפורטת, שקופה, דרך הפורטל האישי. כולל פירוט מלא של עלויות.</div>
-          <span class="tl-duration">⏱ עד 72 שעות</span>
-        </div>
-        <div class="tl-marker"><div class="tl-circle">05</div></div>
-      </div>
-
-      <div class="tl-step left">
-        <div class="tl-content">
-          <div class="tl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
-          <div class="tl-title">מימון או תשלום</div>
-          <div class="tl-body">תשלום בטרנספר ישיר או דרך שותף מימון מאושר. אפשרויות גמישות לבחירתך.</div>
-          <span class="tl-duration">⏱ 1-3 ימים</span>
-        </div>
-        <div class="tl-marker"><div class="tl-circle">06</div></div>
-      </div>
-
-      <div class="tl-step right">
-        <div class="tl-content">
-          <div class="tl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-          <div class="tl-title">אישור הרכישה</div>
-          <div class="tl-body">לאחר אישורך — הספק בארה״ב סוגר את העסקה ומעביר את הרכב לבדיקה ושילוח.</div>
-          <span class="tl-duration">⏱ מיידי</span>
-        </div>
-        <div class="tl-marker"><div class="tl-circle">07</div></div>
-      </div>
-
-      <div class="tl-step left">
-        <div class="tl-content">
-          <div class="tl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="m16 8-8 8M8 8l8 8"/></svg></div>
-          <div class="tl-title">איסוף ובדיקה פיזית</div>
-          <div class="tl-body">איסוף הרכב מהמשרד בארה״ב + בדיקה פיזית מקצועית של מומחה לפני העמסה על האונייה.</div>
-          <span class="tl-duration">⏱ שבוע</span>
-        </div>
-        <div class="tl-marker"><div class="tl-circle">08</div></div>
-      </div>
-
-      <div class="tl-step right">
-        <div class="tl-content">
-          <div class="tl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 21a4 4 0 0 0 4-4V9a4 4 0 0 1 4-4h7l-4-4h2"/><path d="M21 18s.5-2 0-3-2-1-2-1H6"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/></svg></div>
-          <div class="tl-title">שילוח ימי</div>
-          <div class="tl-body">העמסה על אונייה, מסמך BoL מועבר ללקוח, מעקב בזמן אמת. כ-38 ימי הפלגה לישראל.</div>
-          <span class="tl-duration">⏱ 38 ימים</span>
-        </div>
-        <div class="tl-marker"><div class="tl-circle">09</div></div>
-      </div>
-
-      <div class="tl-step left">
-        <div class="tl-content">
-          <div class="tl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-          <div class="tl-title">ניירת ישראל</div>
-          <div class="tl-body">נציגינו מטפלים בכל הניירת מול נמל אשדוד או חיפה. אתה לא נוגע בכלום.</div>
-          <span class="tl-duration">⏱ 5 ימים</span>
-        </div>
-        <div class="tl-marker"><div class="tl-circle">10</div></div>
-      </div>
-
-      <div class="tl-step right">
-        <div class="tl-content">
-          <div class="tl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-          <div class="tl-title">תשלום מסי מכס</div>
-          <div class="tl-body">חישוב מדויק של מס הקנייה (18% מע״מ + ~₪2,000 מכס) והעברת תשלום בשמך.</div>
-          <span class="tl-duration">⏱ 2-3 ימים</span>
-        </div>
-        <div class="tl-marker"><div class="tl-circle">11</div></div>
-      </div>
-
-      <div class="tl-step left">
-        <div class="tl-content">
-          <div class="tl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-          <div class="tl-title">תקינה</div>
-          <div class="tl-body">זימון למכון התקינה — אנחנו מתאמים, מלווים ודואגים לאישור התקני. אתה מקבל הודעה.</div>
-          <span class="tl-duration">⏱ 3-5 ימים</span>
-        </div>
-        <div class="tl-marker"><div class="tl-circle">12</div></div>
-      </div>
-
-      <div class="tl-step right">
-        <div class="tl-content">
-          <div class="tl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg></div>
-          <div class="tl-title">משרד הרישוי</div>
-          <div class="tl-body">זימון למשרד הרישוי — לוחיות זיהוי, רישיון רכב ישראלי, וכל המסמכים הדרושים.</div>
-          <span class="tl-duration">⏱ 2 ימים</span>
-        </div>
-        <div class="tl-marker"><div class="tl-circle">13</div></div>
-      </div>
-
-      <div class="tl-step left">
-        <div class="tl-content" style="background: linear-gradient(135deg, rgba(201,169,110,0.15), rgba(201,169,110,0.05)); border-color: rgba(201,169,110,0.4);">
-          <div class="tl-icon" style="color: var(--gold)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/></svg></div>
-          <div class="tl-title" style="color: var(--gold)">המפתחות שלך 🎉</div>
-          <div class="tl-body">איסוף הרכב מנקודה שתבחר. ברכות — אתה נוסע על הרכב שתמיד חלמת.</div>
-          <span class="tl-duration">⏱ היום הגדול</span>
-        </div>
-        <div class="tl-marker"><div class="tl-circle" style="background: var(--gold); color: var(--carbon); border-color: var(--gold);">14</div></div>
-      </div>
-
-      <div class="tl-step right">
-        <div class="tl-content">
-          <div class="tl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-          <div class="tl-title">ביטוח שלך</div>
-          <div class="tl-body">הצעת ביטוח דרך שותף מאושר במחיר משתלם, מותאם לרכב יבוא אישי.</div>
-          <span class="tl-duration">⏱ אופציונלי</span>
-        </div>
-        <div class="tl-marker"><div class="tl-circle">15</div></div>
+      <div class="proc-head-title">
+        <h2 class="proc-title">מהחלום עד החנייה<br><span class="proc-title-red">— 5 שלבים, ניידים אצלנו.</span></h2>
       </div>
     </div>
+
+    <div class="proc-search">
+      <button class="proc-search-toggle"><span>פתח כרטיס</span> <span class="proc-search-arrow">↓</span></button>
+      <div class="proc-search-input">
+        <span class="proc-search-label">חפש דגם · ראה את התהליך המדויק</span>
+        <div class="proc-search-models">Bronco · G63 · Mustang · Cybertruck ·</div>
+        <span class="proc-search-icon">⌕</span>
+      </div>
+    </div>
+
+    <div class="proc-cards" role="tablist">
+      <button class="proc-card" data-step="5" role="tab">
+        <div class="proc-card-top">
+          <div class="proc-card-icon teal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>
+          </div>
+          <div class="proc-card-num">05</div>
+        </div>
+        <div class="proc-card-title">מסירה + שירות מתמשך</div>
+        <div class="proc-card-days">יום 0</div>
+      </button>
+
+      <button class="proc-card" data-step="4" role="tab">
+        <div class="proc-card-top">
+          <div class="proc-card-icon purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <div class="proc-card-num">04</div>
+        </div>
+        <div class="proc-card-title">מכס + סטנדרטיזציה</div>
+        <div class="proc-card-days">10–14 ימים</div>
+      </button>
+
+      <button class="proc-card" data-step="3" role="tab">
+        <div class="proc-card-top">
+          <div class="proc-card-icon amber">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 13a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v3H2zM6 16v2M18 16v2"/><circle cx="7" cy="13" r="1.5"/><circle cx="17" cy="13" r="1.5"/></svg>
+          </div>
+          <div class="proc-card-num">03</div>
+        </div>
+        <div class="proc-card-title">איסוף ושייט</div>
+        <div class="proc-card-days">38–45 ימים</div>
+      </button>
+
+      <button class="proc-card" data-step="2" role="tab">
+        <div class="proc-card-top">
+          <div class="proc-card-icon red">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+          </div>
+          <div class="proc-card-num">02</div>
+        </div>
+        <div class="proc-card-title">סריקת ארה״ב + הצעה</div>
+        <div class="proc-card-days">3–7 ימים</div>
+      </button>
+
+      <button class="proc-card active" data-step="1" role="tab" aria-selected="true">
+        <div class="proc-card-top">
+          <div class="proc-card-icon green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m8 12 3 3 5-6"/></svg>
+          </div>
+          <div class="proc-card-num">01</div>
+        </div>
+        <div class="proc-card-title">בחירה + הזמנה</div>
+        <div class="proc-card-days">1–3 ימים</div>
+      </button>
+    </div>
+
+    <!-- STEP DETAIL PANELS -->
+    <div class="proc-panel active" data-panel="1" data-color="green">
+      <div class="proc-panel-head">
+        <div class="proc-panel-big">01<span class="proc-panel-of">OF 05</span></div>
+        <div class="proc-panel-titles">
+          <div class="proc-panel-meta">שלב 1 מתוך 5 · 1–3 ימים</div>
+          <h3 class="proc-panel-title">בחירה + הזמנה</h3>
+          <p class="proc-panel-sub">בוחרים דגם, מקבלים הצעת מחיר מלאה ושקופה, מפקידים 500 ₪.</p>
+        </div>
+      </div>
+      <div class="proc-substeps">
+        <div class="proc-sub">
+          <div class="proc-sub-num">01</div>
+          <div class="proc-sub-title">בחירת הרכב באתר</div>
+          <div class="proc-sub-body">תיכנס לאתר ותבחר את הדגם, רמת הגימור, הצבע הפנימי והחיצוני, וכל התוספות. תקבל מיד הערכת מחיר ראשונית והודאי — מחיר רכב + עלויות שילוח + מס + שירות.</div>
+        </div>
+        <div class="proc-sub">
+          <div class="proc-sub-num">02</div>
+          <div class="proc-sub-title">מוקד שירות זמין בכל שלב</div>
+          <div class="proc-sub-body">בכל שלב בתהליך תוכלו ליצור קשר עם מוקד השירות שלנו בעברית. נדריך אתכם לאורך כל הדרך ונענה לכל שאלה לגבי הרכב, התהליך והעלויות.</div>
+        </div>
+        <div class="proc-sub">
+          <div class="proc-sub-num">03</div>
+          <div class="proc-sub-title">הזמנה ומקדמה של 500 ₪</div>
+          <div class="proc-sub-body">ברגע שהחלטתם, אתם משלמים מקדמה זעירה של 500 ₪. ושולחים אלינו רישיון נהיגה ותעודת זהות. כך אנחנו מוסמכים להתחיל לעבוד בשבילכם.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proc-panel" data-panel="2" data-color="red">
+      <div class="proc-panel-head">
+        <div class="proc-panel-big">02<span class="proc-panel-of">OF 05</span></div>
+        <div class="proc-panel-titles">
+          <div class="proc-panel-meta">שלב 2 מתוך 5 · 3–7 ימים</div>
+          <h3 class="proc-panel-title">סריקת ארה״ב + הצעה</h3>
+          <p class="proc-panel-sub">סורקים את ארה״ב, מציגים לך את הרכב הספציפי, מאשרים רכישה.</p>
+        </div>
+      </div>
+      <div class="proc-substeps">
+        <div class="proc-sub">
+          <div class="proc-sub-num">04</div>
+          <div class="proc-sub-title">סריקת ארה״ב — מציאת הרכב הספציפי</div>
+          <div class="proc-sub-body">הצוות שלנו סורק את כל ארה״ב כדי למצוא לכם את הרכב החדש או המשומש המדויק, לפי הדגם המבוקש, רמת הגימור והצבעים. עובדים מול מספר שותפי רכב ומבצעים תחרות ביניהם — כדי לתת לכם את המחיר הטוב ביותר.</div>
+        </div>
+        <div class="proc-sub">
+          <div class="proc-sub-num">05</div>
+          <div class="proc-sub-title">מציאה והגשת הצעה ב-מהיר</div>
+          <div class="proc-sub-body">בממוצע מהיר (לעיתים פחות) — אנחנו מציגים לכם את הרכב הספציפי, עם כל הפרטים, רשומות שירות, היסטוריה, ומחיר סופי מלא דרך פורטל הרכב האישי שלכם. הצידור — הרכבים הטובים נחטפים מהר.</div>
+        </div>
+        <div class="proc-sub">
+          <div class="proc-sub-num">06</div>
+          <div class="proc-sub-title">תשלום מלא או מימון מיידי</div>
+          <div class="proc-sub-body">החלטתם לרכוש? אתם יכולים לשלם במזומן (מחיר רכב + השילוח, ללא המכס בשלב זה) או לקבל הלוואה דרך שותף המימון שלנו עם אישור עקרוני מיידי בקליק.</div>
+        </div>
+        <div class="proc-sub">
+          <div class="proc-sub-num">07</div>
+          <div class="proc-sub-title">אישור הרכישה — הרכב שלכם</div>
+          <div class="proc-sub-body">אנחנו שולחים לכם אישור רכישה רשמי. הרכב הספציפי, עם מספר VIN ייחודי, נחתם עליו הוא שלכם. Magic Moment ✨ — הרכב שלכם.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proc-panel" data-panel="3" data-color="amber">
+      <div class="proc-panel-head">
+        <div class="proc-panel-big">03<span class="proc-panel-of">OF 05</span></div>
+        <div class="proc-panel-titles">
+          <div class="proc-panel-meta">שלב 3 מתוך 5 · 38–45 ימים</div>
+          <h3 class="proc-panel-title">איסוף ושייט</h3>
+          <p class="proc-panel-sub">איסוף, בדיקה, העמסה והפלגה — אתם רואים הכל בזמן אמת.</p>
+        </div>
+      </div>
+      <div class="proc-substeps">
+        <div class="proc-sub">
+          <div class="proc-sub-num">08</div>
+          <div class="proc-sub-title">איסוף ובדיקה פיזית בארה״ב</div>
+          <div class="proc-sub-body">הצוות שלנו אוסף את הרכב מהמוכר ומבצע בדיקה פיזית מקצועית של מומחה (PPI) לפני העמסה. תקבלו דוח מפורט עם תמונות של מצב הרכב.</div>
+        </div>
+        <div class="proc-sub">
+          <div class="proc-sub-num">09</div>
+          <div class="proc-sub-title">העמסה על אונייה + מעקב חי</div>
+          <div class="proc-sub-body">הרכב עולה על האונייה בנמל ביציאה מארה״ב. מקבלים שטר מטען (BoL) ומעקב חי על מסלול האונייה דרך הפורטל. כ-38 ימי הפלגה לישראל.</div>
+        </div>
+        <div class="proc-sub">
+          <div class="proc-sub-num">10</div>
+          <div class="proc-sub-title">הגעה לנמל בישראל</div>
+          <div class="proc-sub-body">הרכב מגיע לנמל אשדוד או חיפה. אנחנו מטפלים בכל הניירת מול הנמל — אתם לא נוגעים בכלום. תקבלו עדכון ברגע ההגעה.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proc-panel" data-panel="4" data-color="purple">
+      <div class="proc-panel-head">
+        <div class="proc-panel-big">04<span class="proc-panel-of">OF 05</span></div>
+        <div class="proc-panel-titles">
+          <div class="proc-panel-meta">שלב 4 מתוך 5 · 10–14 ימים</div>
+          <h3 class="proc-panel-title">מכס + סטנדרטיזציה</h3>
+          <p class="proc-panel-sub">משחררים את הרכב מהמכס, עוברים מכון תקינה, מקבלים לוחיות.</p>
+        </div>
+      </div>
+      <div class="proc-substeps">
+        <div class="proc-sub">
+          <div class="proc-sub-num">11</div>
+          <div class="proc-sub-title">שחרור ממכס + תשלום מסים</div>
+          <div class="proc-sub-body">חישוב מדויק של מסי הקנייה (18% מע״מ + מכס ~₪2,000) והעברת תשלום בשמכם. אנחנו דואגים לכל הניירת ולשחרור הרכב מהמכס.</div>
+        </div>
+        <div class="proc-sub">
+          <div class="proc-sub-num">12</div>
+          <div class="proc-sub-title">מכון תקינה</div>
+          <div class="proc-sub-body">זימון למכון התקינה — אנחנו מתאמים, מלווים ודואגים לאישור התקני. הרכב עובר את כל הבדיקות הנדרשות בחוק הישראלי.</div>
+        </div>
+        <div class="proc-sub">
+          <div class="proc-sub-num">13</div>
+          <div class="proc-sub-title">משרד הרישוי + לוחיות</div>
+          <div class="proc-sub-body">זימון למשרד הרישוי — לוחיות זיהוי ישראליות, רישיון רכב ישראלי, וכל המסמכים הדרושים. הרכב מוכן לכביש.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proc-panel" data-panel="5" data-color="teal">
+      <div class="proc-panel-head">
+        <div class="proc-panel-big">05<span class="proc-panel-of">OF 05</span></div>
+        <div class="proc-panel-titles">
+          <div class="proc-panel-meta">שלב 5 מתוך 5 · יום 0</div>
+          <h3 class="proc-panel-title">מסירה + שירות מתמשך</h3>
+          <p class="proc-panel-sub">איסוף הרכב, ביטוח, וליווי גם אחרי שאתם נוסעים.</p>
+        </div>
+      </div>
+      <div class="proc-substeps">
+        <div class="proc-sub">
+          <div class="proc-sub-num">14</div>
+          <div class="proc-sub-title">המפתחות שלכם — מסירה</div>
+          <div class="proc-sub-body">איסוף הרכב מנקודה שתבחרו — מהמשרד שלנו או מסירה עד הבית. ברכות — אתם נוסעים על הרכב שתמיד חלמתם.</div>
+        </div>
+        <div class="proc-sub">
+          <div class="proc-sub-num">15</div>
+          <div class="proc-sub-title">ביטוח דרך שותף מאושר</div>
+          <div class="proc-sub-body">הצעת ביטוח דרך שותף מאושר במחיר משתלם, מותאם לרכב יבוא אישי. אופציונלי, ללא חובה.</div>
+        </div>
+        <div class="proc-sub">
+          <div class="proc-sub-num">16</div>
+          <div class="proc-sub-title">שירות מתמשך לאורך הבעלות</div>
+          <div class="proc-sub-body">מוקד תמיכה זמין גם לאחר המסירה — שאלות על הרכב, חלפים, או טיפולים. אנחנו לא נעלמים אחרי המסירה.</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
+
 
 <!-- ABOUT -->
 <section class="about" id="about">
@@ -484,7 +674,7 @@
     <div class="faq-list">
       <details class="faq-item">
         <summary>כמה זמן לוקח התהליך מההזמנה ועד קבלת הרכב?</summary>
-        <p>כ-60-90 ימים. 72 שעות לקבלת הצעת מחיר סופית, כ-38 ימי הפלגה, ואז כ-3 שבועות לתקינה ורישוי בישראל. אנחנו מעדכנים אותך בכל שלב דרך הפורטל האישי.</p>
+        <p>כ-60-90 ימים. מהיר לקבלת הצעת מחיר סופית, כ-38 ימי הפלגה, ואז כ-3 שבועות לתקינה ורישוי בישראל. אנחנו מעדכנים אותך בכל שלב דרך הפורטל האישי.</p>
       </details>
       <details class="faq-item">
         <summary>איך אני יודע שאני באמת חוסך?</summary>
@@ -597,5 +787,18 @@
 
 <script src="js/cars-data.js"></script>
 <script src="js/app.js"></script>
+<script>
+// Process v2 — tab switching
+document.querySelectorAll('.proc-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const step = card.dataset.step;
+    document.querySelectorAll('.proc-card').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.proc-panel').forEach(p => p.classList.remove('active'));
+    card.classList.add('active');
+    const panel = document.querySelector(`.proc-panel[data-panel="${step}"]`);
+    if (panel) panel.classList.add('active');
+  });
+});
+</script>
 </body>
 </html>
