@@ -27,6 +27,16 @@ const CARS = [
 ];
 
 // Stock models for live board (top 5 highest saving)
-const STOCK_MODELS = CARS.slice(0, 5).map(c => ({ id: c.id, name: c.nameHe, price: c.ourPrice, dealer: c.dealerPrice, savingPct: c.savingPct }));
+const STOCK_MODELS = CARS.slice(0, 5).map(c => ({
+  id: c.id,
+  symbol: (c.brand || '').toUpperCase().slice(0,4),
+  name: c.nameHe,
+  price: c.ourPrice,
+  ours: c.ourPrice,
+  dealer: c.dealerPrice,
+  change: (c.dealerPrice - c.ourPrice),
+  pct: c.savingPct || 0,
+  savingPct: c.savingPct
+}));
 
 if (typeof window !== 'undefined') { window.CARS = CARS; window.FX = FX; window.STOCK_MODELS = STOCK_MODELS; }
