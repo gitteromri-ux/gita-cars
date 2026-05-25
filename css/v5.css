@@ -418,27 +418,37 @@
 }
 .compare-table-v2 {
   width: 100%;
-  border-collapse: collapse;
-  font-size: 14.5px;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+  table-layout: fixed;
+  direction: rtl;
 }
 .compare-table-v2 thead th {
-  padding: 22px 18px;
+  padding: 20px 14px;
   font-weight: 700;
   text-align: center;
   border-bottom: 2px solid rgba(255,255,255,0.08);
-  vertical-align: top;
-  background: rgba(255,255,255,0.02);
+  vertical-align: middle;
+  background: rgba(255,255,255,0.025);
+  white-space: normal;
+  word-break: keep-all;
+  line-height: 1.4;
 }
 .compare-table-v2 th.ct-param,
 .compare-table-v2 td.ct-param {
   text-align: right;
-  padding-inline-start: 28px;
-  background: rgba(0,0,0,0.2);
-  color: rgba(255,255,255,0.75);
+  padding: 16px 22px;
+  background: rgba(0,0,0,0.28);
+  color: rgba(255,255,255,0.85);
   font-weight: 600;
-  font-size: 14px;
-  width: 30%;
+  font-size: 13.5px;
+  width: 26%;
+  border-inline-end: 1px solid rgba(255,255,255,0.06);
+  white-space: normal;
+  line-height: 1.45;
 }
+.compare-table-v2 thead th:not(.ct-param) { width: 24.66%; }
 .ct-col-label {
   font-size: 18px;
   font-weight: 800;
@@ -472,10 +482,14 @@
 }
 .compare-table-v2 tbody tr:hover { background: rgba(255,255,255,0.015); }
 .compare-table-v2 tbody td {
-  padding: 16px 14px;
+  padding: 14px 10px;
   text-align: center;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255,255,255,0.82);
   vertical-align: middle;
+  white-space: normal;
+  word-break: keep-all;
+  line-height: 1.45;
+  font-size: 13.5px;
 }
 .compare-table-v2 td.ct-best {
   background: rgba(201,169,110,0.05);
