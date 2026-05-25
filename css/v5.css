@@ -543,6 +543,30 @@
 /* Hide old compare cards if still present */
 .compare-grid { display: none !important; }
 
+/* Override section bg + header for dark table */
+section.compare, .compare {
+  background: #0a0a0a !important;
+  color: #fff;
+}
+section.compare .section-head h2,
+.compare .section-head h2 {
+  color: #fff !important;
+}
+section.compare .section-head p,
+.compare .section-head p {
+  color: rgba(255,255,255,0.7) !important;
+}
+section.compare .section-head .eyebrow,
+.compare .section-head .eyebrow {
+  color: #c9a96e !important;
+}
+.compare-table-wrap {
+  background: #121212 !important;
+  border: 1px solid rgba(255,255,255,0.06);
+  max-width: 1200px;
+  margin: 44px auto 0;
+}
+
 /* Catalog image proportions — uniform */
 .car-card-img,
 .car-card .car-image,
