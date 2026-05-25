@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>קטלוג רכבים · AutoImports</title>
+<meta name="description" content="כל הרכבים שלנו במקום אחד. סנן לפי סוג מנוע, יצרן, או מחיר. לחץ על רכב לצפייה במפרט מלא.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hero-nav" style="position:fixed;top:0;left:0;right:0;background:rgba(10,10,10,0.85);backdrop-filter:blur(20px);z-index:90;padding:18px 32px;">
+  <div class="nav-row" style="max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;">
+    <div class="nav-cta-wrap"><a href="forms.html" class="nav-cta" style="background:#fff;color:#0a0a0a;padding:10px 22px;border-radius:100px;text-decoration:none;font-family:'Heebo';font-weight:500;font-size:14px;">התחל הזמנה</a> <a href="bot.html" class="nav-cta nav-cta-secondary" style="color:#fff;margin-right:12px;font-family:'Heebo';font-size:14px;text-decoration:none;">בוט עזרה</a></div>
+    <nav class="nav-center" style="display:flex;gap:32px;align-items:center;">
+      <a href="faq.html" style="color:rgba(255,255,255,0.85);text-decoration:none;font-family:'Heebo';font-size:14px;">שאלות</a>
+      <a href="about.html" style="color:rgba(255,255,255,0.85);text-decoration:none;font-family:'Heebo';font-size:14px;">אודות</a>
+      <a href="how.html" style="color:rgba(255,255,255,0.85);text-decoration:none;font-family:'Heebo';font-size:14px;">תהליך</a>
+      <a href="reviews.html" style="color:rgba(255,255,255,0.85);text-decoration:none;font-family:'Heebo';font-size:14px;">ביקורות</a>
+      <a href="why.html" style="color:rgba(255,255,255,0.85);text-decoration:none;font-family:'Heebo';font-size:14px;">השוואה</a>
+      <a href="catalog.html" style="color:rgba(255,255,255,0.85);text-decoration:none;font-family:'Heebo';font-size:14px;">קטלוג</a>
+      <a href="blog.html" style="color:rgba(255,255,255,0.85);text-decoration:none;font-family:'Heebo';font-size:14px;">בלוג</a>
+    </nav>
+    <a href="index.html" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-family:'Heebo';font-weight:700;font-size:18px;">AutoImports <span style="background:#fff;color:#0a0a0a;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;">AI</span></a>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <a href="index.html" class="back-link">← חזור לדף הבית</a>
+  <div class="page-eyebrow">17 דגמים זמינים</div>
+  <h1 class="page-title">קטלוג מלא</h1>
+  <p class="page-subtitle">כל הרכבים שלנו במקום אחד. סנן לפי סוג מנוע, יצרן, או מחיר. לחץ על רכב לצפייה במפרט מלא.</p>
+</section>
+
+
+<section class="page-section">
+  <div class="catalog-toolbar">
+    <button class="filter-pill active" data-filter="all">הכל</button>
+    <button class="filter-pill" data-filter="EV">חשמלי</button>
+    <button class="filter-pill" data-filter="V8">V8</button>
+    <button class="filter-pill" data-filter="DIESEL">דיזל</button>
+    <button class="filter-pill" data-filter="PHEV">היברידי</button>
+    <button class="filter-pill" data-filter="MERCEDES">Mercedes</button>
+    <button class="filter-pill" data-filter="BMW">BMW</button>
+    <button class="filter-pill" data-filter="TESLA">Tesla</button>
+    <button class="filter-pill" data-filter="FORD">Ford</button>
+    <select class="sort-select" id="sort-select">
+      <option value="discount">סדר לפי: חיסכון גבוה</option>
+      <option value="price-low">מחיר זול ↑</option>
+      <option value="price-high">מחיר יקר ↓</option>
+      <option value="hp">כוח סוס</option>
+    </select>
+  </div>
+  <div class="catalog-grid" id="catalog-page-grid"></div>
+</section>
+
+<script src="js/cars-data.js"></script>
+<script>
+(function(){
+  const fmt = (n) => '₪' + Math.round(n).toLocaleString('he-IL');
+  let activeFilter = 'all';
+  let activeSort = 'discount';
+
+  function render() {
+    let cars = window.CARS.slice();
+    if (activeFilter !== 'all') {
+      cars = cars.filter(c => c.eyebrow.toUpperCase().includes(activeFilter));
+    }
+    if (activeSort === 'discount') cars.sort((a,b) => (b.dealerPrice-b.ourPrice) - (a.dealerPrice-a.ourPrice));
+    else if (activeSort === 'price-low') cars.sort((a,b) => a.ourPrice - b.ourPrice);
+    else if (activeSort === 'price-high') cars.sort((a,b) => b.ourPrice - a.ourPrice);
+    else if (activeSort === 'hp') cars.sort((a,b) => b.hp - a.hp);
+
+    document.getElementById('catalog-page-grid').innerHTML = cars.map(c => {
+      const saving = c.dealerPrice - c.ourPrice;
+      const pct = Math.round((saving/c.dealerPrice)*100);
+      const parts = c.eyebrow.split(' · ');
+      return `
+        <article class="car-card" onclick="window.location='car.html?id=${c.id}'">
+          <div class="car-img-wrap"><img src="${c.image}" alt="${c.nameHe}" loading="lazy"><span class="car-badge-discount">−${pct}%</span></div>
+          <div class="car-info">
+            <div class="car-eyebrow-row"><span>${parts[0]||''}</span><span class="dot">·</span><span>${parts[1]||''}</span><span class="dot">·</span><span>${parts[2]||''}</span></div>
+            <h3 class="car-name">${c.name}</h3>
+            <div class="car-specs-row">
+              <div class="car-spec"><div class="car-spec-val">${c.accel}s</div><div class="car-spec-label">0-100</div></div>
+              <div class="car-spec"><div class="car-spec-val">${c.hp}</div><div class="car-spec-label">HP</div></div>
+              <div class="car-spec"><div class="car-spec-val">${c.nm}</div><div class="car-spec-label">N·M</div></div>
+            </div>
+            <div class="car-price-section">
+              <div><div class="car-price-our-label">המחיר שלנו</div><div class="car-price-our">${fmt(c.ourPrice)}</div><div class="car-price-old">${fmt(c.dealerPrice)}</div></div>
+              <div style="text-align:left"><div class="car-price-our-label">חיסכון</div><div style="font-family:'Inter';font-weight:700;font-size:18px;color:#d62828">−${Math.round(saving/1000)}K</div></div>
+            </div>
+            <button class="car-cta-build">צפה במפרט מלא ←</button>
+          </div>
+        </article>`;
+    }).join('');
+  }
+
+  document.querySelectorAll('.filter-pill').forEach(p => p.addEventListener('click', () => {
+    document.querySelectorAll('.filter-pill').forEach(x => x.classList.remove('active'));
+    p.classList.add('active');
+    activeFilter = p.dataset.filter;
+    render();
+  }));
+  document.getElementById('sort-select').addEventListener('change', e => { activeSort = e.target.value; render(); });
+  render();
+})();
+</script>
+
+
+
+<section class="page-cta">
+  <h2>מוכן להתחיל?</h2>
+  <p>אנחנו כאן 24/7 בוואטסאפ. תהליך מלא, שקוף, ומתחיל בפיקדון של ₪500 בלבד.</p>
+  <div class="cta-btns">
+    <a class="btn-wa" href="https://wa.me/972500000000" target="_blank">דבר איתנו בוואטסאפ ←</a>
+    <a class="btn-out" href="index.html#catalog">לקטלוג המלא</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#0a0a0a;color:#fff;padding:60px 32px;text-align:center;border-top:1px solid rgba(255,255,255,0.06);">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:32px;">
+      <a href="index.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">בית</a>
+      <a href="catalog.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">קטלוג</a>
+      <a href="how.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">תהליך</a>
+      <a href="why.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">למה אנחנו</a>
+      <a href="reviews.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">ביקורות</a>
+      <a href="regulations.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">רגולציה</a>
+      <a href="used-cars.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">משומשים</a>
+      <a href="trust.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">אמון</a>
+      <a href="terms.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">תקנון</a>
+      <a href="about.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">אודות</a>
+      <a href="forms.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">טפסים</a>
+      <a href="faq.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">שאלות</a>
+      <a href="blog.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">בלוג</a>
+      <a href="bot.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">בוט עזרה</a>
+    </div>
+    <div style="font-family:'Heebo';font-size:13px;color:rgba(255,255,255,0.4);">© 2026 AutoImports.co.il · יבוא אישי מארה"ב · רישיון מס׳ 12345</div>
+  </div>
+</footer>
+
+</body>
+</html>

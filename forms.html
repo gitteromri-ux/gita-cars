@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>טפסים · AutoImports</title>
+<meta name="description" content="מלא טופס קצר ונחזור אליך תוך 2 שעות עסקיות עם הצעת מחיר מותאמת.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hero-nav" style="position:fixed;top:0;left:0;right:0;background:rgba(10,10,10,0.85);backdrop-filter:blur(20px);z-index:90;padding:18px 32px;">
+  <div class="nav-row" style="max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;">
+    <div class="nav-cta-wrap"><a href="forms.html" class="nav-cta" style="background:#fff;color:#0a0a0a;padding:10px 22px;border-radius:100px;text-decoration:none;font-family:'Heebo';font-weight:500;font-size:14px;">התחל הזמנה</a> <a href="bot.html" class="nav-cta nav-cta-secondary" style="color:#fff;margin-right:12px;font-family:'Heebo';font-size:14px;text-decoration:none;">בוט עזרה</a></div>
+    <nav class="nav-center" style="display:flex;gap:32px;align-items:center;">
+      <a href="faq.html" style="color:rgba(255,255,255,0.85);text-decoration:none;font-family:'Heebo';font-size:14px;">שאלות</a>
+      <a href="about.html" style="color:rgba(255,255,255,0.85);text-decoration:none;font-family:'Heebo';font-size:14px;">אודות</a>
+      <a href="how.html" style="color:rgba(255,255,255,0.85);text-decoration:none;font-family:'Heebo';font-size:14px;">תהליך</a>
+      <a href="reviews.html" style="color:rgba(255,255,255,0.85);text-decoration:none;font-family:'Heebo';font-size:14px;">ביקורות</a>
+      <a href="why.html" style="color:rgba(255,255,255,0.85);text-decoration:none;font-family:'Heebo';font-size:14px;">השוואה</a>
+      <a href="catalog.html" style="color:rgba(255,255,255,0.85);text-decoration:none;font-family:'Heebo';font-size:14px;">קטלוג</a>
+      <a href="blog.html" style="color:rgba(255,255,255,0.85);text-decoration:none;font-family:'Heebo';font-size:14px;">בלוג</a>
+    </nav>
+    <a href="index.html" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-family:'Heebo';font-weight:700;font-size:18px;">AutoImports <span style="background:#fff;color:#0a0a0a;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;">AI</span></a>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <a href="index.html" class="back-link">← חזור לדף הבית</a>
+  <div class="page-eyebrow">GET STARTED</div>
+  <h1 class="page-title">התחל את התהליך</h1>
+  <p class="page-subtitle">מלא טופס קצר ונחזור אליך תוך 2 שעות עסקיות עם הצעת מחיר מותאמת.</p>
+</section>
+
+
+<section class="page-section">
+  <div class="form-block">
+    <h2 style="text-align:center;margin-bottom:32px;font-size:36px;">התחל את התהליך</h2>
+    <p style="text-align:center;color:#666;margin-bottom:32px;">מלא את הטופס — ניצור איתך קשר תוך 2 שעות עסקיות.</p>
+    <form onsubmit="event.preventDefault();alert('תודה! יצרנו עמך קשר.');">
+      <div class="form-row"><label>שם מלא *</label><input type="text" required placeholder="ישראל ישראלי"></div>
+      <div class="form-row"><label>טלפון *</label><input type="tel" required placeholder="050-0000000"></div>
+      <div class="form-row"><label>דוא"ל</label><input type="email" placeholder="you@example.com"></div>
+      <div class="form-row"><label>איזה רכב מעניין אותך? *</label>
+        <select required>
+          <option value="">בחר דגם...</option>
+          <option>Mercedes G63 AMG</option>
+          <option>Mercedes G500 / G580 EQ</option>
+          <option>Mercedes GLE / GLS</option>
+          <option>BMW X5 / X7</option>
+          <option>Tesla Cybertruck</option>
+          <option>Tesla Model X / S</option>
+          <option>Lucid Air</option>
+          <option>Rivian R1S</option>
+          <option>Ford Bronco / Raptor</option>
+          <option>Ford F-150 Raptor</option>
+          <option>Ford Mustang GT</option>
+          <option>Chevy Tahoe / Traverse</option>
+          <option>Kia EV9</option>
+          <option>Jeep Wrangler</option>
+          <option>אחר — נציין בהערות</option>
+        </select>
+      </div>
+      <div class="form-row"><label>שנת ייצור מועדפת</label>
+        <select><option>2025 חדש</option><option>2024 כמעט חדש</option><option>2023</option><option>2022</option><option>פתוח לכל שנה</option></select>
+      </div>
+      <div class="form-row"><label>תקציב (אופציונלי)</label>
+        <select><option>פתוח</option><option>עד ₪300,000</option><option>₪300K-500K</option><option>₪500K-800K</option><option>₪800K-1.2M</option><option>₪1.2M+</option></select>
+      </div>
+      <div class="form-row"><label>הערות נוספות</label><textarea placeholder="צבע, רמת גימור, תוספות מיוחדות..."></textarea></div>
+      <button type="submit" class="form-submit">שלח · נחזור אליך תוך 2 שעות</button>
+    </form>
+  </div>
+</section>
+
+<section class="page-section dark" style="text-align:center;">
+  <div style="max-width:600px;margin:0 auto;">
+    <div class="page-eyebrow">או דרכים נוספות</div>
+    <h2 style="color:#fff;font-size:36px;">צור איתנו קשר ישירות</h2>
+    <div style="display:flex;justify-content:center;gap:16px;margin-top:32px;flex-wrap:wrap;">
+      <a href="https://wa.me/972500000000" target="_blank" style="background:#25D366;color:#fff;padding:18px 32px;border-radius:100px;text-decoration:none;font-family:'Heebo';">WhatsApp</a>
+      <a href="tel:+972500000000" style="background:#c9a96e;color:#0a0a0a;padding:18px 32px;border-radius:100px;text-decoration:none;font-family:'Heebo';">050-000-0000</a>
+      <a href="mailto:info@autoimports.co.il" style="background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.3);padding:18px 32px;border-radius:100px;text-decoration:none;font-family:'Heebo';">דוא"ל</a>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="page-cta">
+  <h2>מוכן להתחיל?</h2>
+  <p>אנחנו כאן 24/7 בוואטסאפ. תהליך מלא, שקוף, ומתחיל בפיקדון של ₪500 בלבד.</p>
+  <div class="cta-btns">
+    <a class="btn-wa" href="https://wa.me/972500000000" target="_blank">דבר איתנו בוואטסאפ ←</a>
+    <a class="btn-out" href="index.html#catalog">לקטלוג המלא</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#0a0a0a;color:#fff;padding:60px 32px;text-align:center;border-top:1px solid rgba(255,255,255,0.06);">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:32px;">
+      <a href="index.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">בית</a>
+      <a href="catalog.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">קטלוג</a>
+      <a href="how.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">תהליך</a>
+      <a href="why.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">למה אנחנו</a>
+      <a href="reviews.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">ביקורות</a>
+      <a href="regulations.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">רגולציה</a>
+      <a href="used-cars.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">משומשים</a>
+      <a href="trust.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">אמון</a>
+      <a href="terms.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">תקנון</a>
+      <a href="about.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">אודות</a>
+      <a href="forms.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">טפסים</a>
+      <a href="faq.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">שאלות</a>
+      <a href="blog.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">בלוג</a>
+      <a href="bot.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Heebo';font-size:14px;">בוט עזרה</a>
+    </div>
+    <div style="font-family:'Heebo';font-size:13px;color:rgba(255,255,255,0.4);">© 2026 AutoImports.co.il · יבוא אישי מארה"ב · רישיון מס׳ 12345</div>
+  </div>
+</footer>
+
+</body>
+</html>
