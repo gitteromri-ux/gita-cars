@@ -51,7 +51,8 @@
     <button class="filter-pill" data-filter="TESLA">Tesla</button>
     <button class="filter-pill" data-filter="FORD">Ford</button>
     <select class="sort-select" id="sort-select">
-      <option value="discount">סדר לפי: חיסכון גבוה</option>
+      <option value="recommended">סדר מומלץ</option>
+      <option value="discount">חיסכון גבוה</option>
       <option value="price-low">מחיר זול ↑</option>
       <option value="price-high">מחיר יקר ↓</option>
       <option value="hp">כוח סוס</option>
@@ -65,14 +66,15 @@
 (function(){
   const fmt = (n) => '₪' + Math.round(n).toLocaleString('he-IL');
   let activeFilter = 'all';
-  let activeSort = 'discount';
+  let activeSort = 'recommended';
 
   function render() {
     let cars = window.CARS.slice();
     if (activeFilter !== 'all') {
       cars = cars.filter(c => c.eyebrow.toUpperCase().includes(activeFilter));
     }
-    if (activeSort === 'discount') cars.sort((a,b) => (b.dealerPrice-b.ourPrice) - (a.dealerPrice-a.ourPrice));
+    if (activeSort === 'recommended') { /* keep array order */ }
+    else if (activeSort === 'discount') cars.sort((a,b) => (b.dealerPrice-b.ourPrice) - (a.dealerPrice-a.ourPrice));
     else if (activeSort === 'price-low') cars.sort((a,b) => a.ourPrice - b.ourPrice);
     else if (activeSort === 'price-high') cars.sort((a,b) => b.ourPrice - a.ourPrice);
     else if (activeSort === 'hp') cars.sort((a,b) => b.hp - a.hp);
